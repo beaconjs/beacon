@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+/***** Card Wall ****/
+.story { width: 200px; padding: 10px 5px; margin: 10px 0; background-color: #ffffc0; min-height: 5em;}
+
+.story .time { float: right; color: #aaa; font-size: 0.8em;}
+
+.story .title a { color: #a00; text-decoration: none; font-size: 1.5em;}
+
+#newStory { display: none; height: 200px; width: 400px; background-color: #eee; position: absolute; top: 30%; left: 30%; padding: 10px;}

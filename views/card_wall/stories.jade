@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+    h1= title
+    a(onclick="addStory()")!="Add"
+    #stories
+        - each story in stories
+          div.story
+            div.title 
+                a(href="/story/"+story._id)!= story.title
+            div.time= story.created_at
+            div.text= story.body
+    #newStory
+        form(action="/stories/create", method="POST")
+            input(type="text", name="title")
+            br
+            textarea(name="body")
+            br
+            input(type="submit")

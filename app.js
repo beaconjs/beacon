@@ -6,6 +6,7 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , stories = require('./routes/card_wall/stories')
   , http = require('http')
   , path = require('path');
 
@@ -22,6 +23,11 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(err, req, res, next){
+  console.error(err.stack);
+  res.send(500, 'Something broke!');
+});
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
@@ -29,6 +35,8 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/stories', stories.list);
+app.post('/stories/create', stories.create);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
