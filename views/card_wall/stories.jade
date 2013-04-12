@@ -11,9 +11,13 @@ block content
             div.time= story.created_at
             div.text= story.body
     #newStory
-        form(action="/stories/create", method="POST")
-            input(type="text", name="title")
-            br
-            textarea(name="body")
-            br
-            input(type="submit")
+        form(action="/stories/create", method="POST", class="forms columnar")
+            fieldset
+                ul
+                    li
+                        input(type="text", name="title", class="width-100")
+                    li
+                        textarea(name="body", class="width-100")
+                    li
+                        input(type="submit", class="btn")
+    #fade

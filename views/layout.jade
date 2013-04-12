@@ -2,7 +2,12 @@ doctype 5
 html
   head
     title= title
+    link(rel='stylesheet', href='/stylesheets/kube.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/jquery.min.js')
     script(src='/javascripts/story.js')
+    script(src='/javascripts/kube.buttons.js')
+    script(src='/javascripts/kube.tabs.js')
   body
-    block content
+    #page
+      block content
