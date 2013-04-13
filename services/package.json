@@ -8,6 +8,7 @@
   "dependencies": {
     "express": "3.1.1",
     "supervisor": "*",
+    "mocha": "*",
     "jade": "*"
   }
 }
