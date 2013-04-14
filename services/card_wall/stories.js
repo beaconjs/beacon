@@ -40,12 +40,5 @@ StoryProvider.prototype.save = function(stories, callback) {
   callback(null, stories);
 };
 
-/* Lets bootstrap with dummy data */
-new StoryProvider().save([
-  {title: 'Card one', text: 'This is a story'},
-  {title: 'Card two', body: 'This is the story two'},
-  {title: 'Card three', body: 'This is the story three'}
-], function(error, stories){});
-
 exports.StoryProvider = StoryProvider;
 
