@@ -6,18 +6,31 @@ body {
 #page { width: 90%; padding: 10px; margin: 24px auto; border: 2px #EEE solid; height: 800px; box-shadow: 5px 5px 5px #CCC; background: #FFF; overflow: auto;}
 
 textarea { min-height: 100px;}
+select { width: 30%; font-size: 2em;}
+.left { float: left; }
+.right { float: right; }
 
 /***** Card Wall ****/
 .add_link { background-color: #369; padding: 3px 10px; color: #FFF; border-radius: 5px; float: right;}
 
-.story { width: 15em; padding: 10px 5px; margin: 10px 2px; background-color: #FFD; min-height: 5em; box-shadow: 5px 5px 5px #EEE; float: left; }
+.story { width: 20em; padding: 0.7em; margin: 0.5em 2px; background-color: #FFD; border: 2px #EEA solid; min-height: 5em; box-shadow: 5px 5px 5px #EEE; float: left; cursor: move; color: #aaa;}
 
-.story .title a { color: #a00; text-decoration: none; font-size: 1.5em;}
+.story .title a { color: #666; text-decoration: none; font-size: 1.2em;}
+.story .right { text-align: right;}
 
-#newStory { display: none; width: 400px; background-color: #eee; position: absolute; top: 25%; left: 25%; padding: 10px; z-index: 100;}
+.story .points { color: #FC0; width: 2em; font-size: 1.5em; margin: -0.5em -0.5em 0.5em 0; float: right; padding: 2px 5px; }
+
+#newStory { display: none; width: 60%; background-color: #eee; position: absolute; top: 25%; left: 15%; padding: 10px; z-index: 100;}
+#newStory .right { width: 50%; }
+#newStory input[type="text"], #newStory textarea { display: none;}
+.storypoints label { width: auto !important; background: #FFD; padding: 5px 4px; font-size: 0.8em;}
+.storypoints label.selected { background: #AA0 !important; }
+.storypoints input[type="radio"] { display: none;}
+.textFieldDiv, .textAreaDiv {padding: 0 5px; background-color: #fff; border-bottom: #CCC 1px solid;}
+.textAreaDiv {min-height: 10em; }
 
 #fade { display: none; position: absolute; left: 0%; top: 0%; background-color: black; -moz-opacity: 0.7; opacity: .70; 
     filter: alpha(opacity=70); width: 100%; height: 100%; z-index: 90; }
 
-.lane { width: 15%; border-right: 3px #EEE solid; padding: 10px; float: left; height: 80%; overflow: auto;}
+.lane { width: 20%; border-right: 3px #EEE solid; padding: 10px; float: left; height: 80%; overflow: auto;}
 .lane .heading { background: #FFF; border-bottom: 3px #8C8 solid; font-size: 1.3em; text-transform: capitalize; padding: 3px; }
