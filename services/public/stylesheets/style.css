@@ -21,6 +21,8 @@ select { width: 30%; font-size: 2em;}
 .story .points { color: #FC0; width: 2em; font-size: 1.5em; margin: -0.5em -0.5em 0.5em 0; float: right; padding: 2px 5px; }
 
 #newStory { display: none; width: 60%; background-color: #eee; position: absolute; top: 25%; left: 15%; padding: 10px; z-index: 100;}
+#newStory .close { background: url(../images/close.png) no-repeat; float: right; height: 70px; width: 70px; margin: -50px;}
+
 #newStory .right { width: 50%; }
 #newStory input[type="text"], #newStory textarea { display: none;}
 .storypoints label { width: auto !important; background: #FFD; padding: 5px 4px; font-size: 0.8em;}

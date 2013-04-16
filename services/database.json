@@ -1,0 +1,19 @@
+{
+  "dev": {
+    "driver": "mysql",
+    "user": "beacon",
+    "password": "beacon",
+    "database": "beacon"
+  },
+
+  "test": {
+    "driver": "sqlite3",
+    "filename": ":memory:"
+  },
+
+  "prod": {
+    "driver": "mysql",
+    "user": "root",
+    "password": "root"
+  }
+}

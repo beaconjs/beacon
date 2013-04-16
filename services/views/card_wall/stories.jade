@@ -11,6 +11,7 @@ block content
                 a(onclick="openStory("+story._id + ");")!= story.title
             div.text= story.body
     #newStory
+        .close(onclick="closePopup()")
         form(action="/stories/create", method="POST", class="forms columnar")
             fieldset
                 ul
@@ -44,6 +45,6 @@ block content
                         textarea#storyDetails(name="body", class="width-100", placeholder="Story details")
                         #storyDetailsDiv(contenteditable="true", class="textAreaDiv")
                     li
-                        input(type="submit", class="btn")
                         a(onclick="closePopup()", class="btn")="Close"
+                        input(type="submit", class="btn")
     #fade
