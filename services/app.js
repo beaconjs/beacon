@@ -7,7 +7,9 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , stories = require('./routes/card_wall/stories')
+  , cardModels = require('./models/card_wall')
   , http = require('http')
+  , db = require("./db")
   , path = require('path');
 
 var app = express();
