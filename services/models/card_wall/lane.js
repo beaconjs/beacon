@@ -17,7 +17,7 @@ var lanes_table = function(sequelize, DataTypes) {
       created_by: DataTypes.INTEGER,
       created_at: DataTypes.DATE,
       modified_by: DataTypes.INTEGER,
-      modified_at: DataTypes.DATE;
+      modified_at: DataTypes.DATE
     });
 };
 
