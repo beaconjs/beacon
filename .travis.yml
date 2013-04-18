@@ -4,4 +4,7 @@ node_js:
 before_script:
   - cd services
   - npm install -g mocha
+  - npm install -g db-migrate
   - mysql -e 'create database beacon_test;'
+  - db-migrate up -m ./migrations --config ./database.json -e test
+
