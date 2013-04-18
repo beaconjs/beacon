@@ -1,3 +1,6 @@
+var db = require("../../db.js").sequelize;
+var DataTypes = require("sequelize");
+
 var Story = require('./story').table
 
 var Epic = function(name, details, status, stories) {
@@ -16,7 +19,7 @@ var epics_table = function(sequelize, DataTypes) {
       created_by: DataTypes.INTEGER,
       created_at: DataTypes.DATE,
       modified_by: DataTypes.INTEGER,
-      modified_at: DataTypes.DATE;
+      modified_at: DataTypes.DATE
     });
 };
 
@@ -24,3 +27,11 @@ table.hasMany(Story);
 
 exports=Epic;
 exports.table=epics_table;
+exports.save=function(epic) {
+    var instance = epics_table().build(epic);
+    instance.save().success(function(){
+        console.log("saved");
+    }).error(function(error) {
+        console.log(error);
+    });
+};
