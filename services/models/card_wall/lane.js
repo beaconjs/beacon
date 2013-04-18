@@ -1,3 +1,6 @@
+var db = require("../../db.js").sequelize;
+var DataTypes = require("sequelize");
+
 var Lane = function(name, max_stories, status) {
  this.name = name, 
  this.max_stories = max_stories, 
@@ -20,3 +23,11 @@ var lanes_table = function(sequelize, DataTypes) {
 
 exports=Lane;
 exports.table=lanes_table;
+exports.save=function(lane) {
+    var instance = lanes_table().build(lane);
+    instance.save().success(function(){
+        console.log("saved");
+    }).error(function(error) {
+        console.log(error);
+    });
+};
