@@ -7,8 +7,9 @@
   },
 
   "test": {
-    "driver": "sqlite3",
-    "filename": ":memory:"
+    "driver": "mysql",
+    "user": "root",
+    "database": "beacon_test"
   },
 
   "prod": {
