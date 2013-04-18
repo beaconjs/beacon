@@ -1,6 +1,7 @@
 language: node_js
 node_js:
-  - "0.10.4"
+  - "0.8"
 before_script:
   - cd services
+  - npm install -g mocha
   - mysql -e 'create database beacon_test;'
