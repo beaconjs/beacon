@@ -21,7 +21,7 @@ if ('development' == app.get('env')) {
 
 if ('test' == app.get('env')) {
   dbConfig = dbConfig.test;
-  sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password);
+  sequelize = new Sequelize(dbConfig.database, dbConfig.user);
 }
 
 exports.sequelize = sequelize
