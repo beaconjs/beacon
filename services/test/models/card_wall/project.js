@@ -12,8 +12,8 @@ describe('Project', function(){
             expect(o.id).to.not.equal(null);
             done();
         }, function(error){
-            console.log(error);
             done();
+            if (error) throw error;
         });
     })
   })
