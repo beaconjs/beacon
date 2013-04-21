@@ -1,31 +1,34 @@
-var StoryProvider = require('../../card_wall/stories').StoryProvider;
-
-var storyProvider= new StoryProvider();
+var Story = require('../../models/card_wall/story').get;
 
 /*
  * GET story listing.
  */
 
 exports.list = function(req, res){
-  storyProvider.findAll( function(error,docs){
+  Story.all( function(docs){
         res.render('card_wall/stories.jade', { 
             title: 'Card Wall',
             stories:docs
         });
-    })
+    }, function(error) { 
+        console.log(error); 
+    });
 };
 
 exports.create = function(req, res){
     var s = req.body;
-    storyProvider.save(s, function(){});
 
-    var story = new Story('title', 'details', 1, 1, 1, null, null);
-        story.save();
+    console.log(s);
 
-  storyProvider.findAll( function(error,docs){
+    var story = new Story(s.title, s.details, 1, 1, 1, null, null);
+    story.save(function(){}, function(){});
+
+    Story.all( function(docs){
         res.render('card_wall/stories.jade', { 
             title: 'Card Wall',
             stories:docs
         });
-    })
+    }, function(error) { 
+        console.log(error); 
+    });
 };

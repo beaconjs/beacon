@@ -38,6 +38,6 @@ Story.prototype.save=function(onSuccess, onError) {
     stories_table.build(this).save().success(onSuccess).error(onError);
 };
 
-Story.prototype.all=function(onSuccess, onError) {
+Story.all=function(onSuccess, onError) {
     stories_table.all().success(onSuccess).error(onError);
 };

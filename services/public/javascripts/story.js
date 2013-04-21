@@ -73,4 +73,12 @@ function enableDragDrop(css, drag, drop) {
 $(document).ready(function() {
     enableDragDrop('.story', true, true);
     enableDragDrop('.lane', false, true);
+
+    $("#storyTitleDiv").blur(function() {
+      $("#storyTitle").val($("#storyTitleDiv").html());
+    });
+
+    $("#storyDetailsDiv").blur(function() {
+      $("#storyDetails").val($("#storyDetailsDiv").html());
+    });
 });
