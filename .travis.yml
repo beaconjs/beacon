@@ -7,5 +7,4 @@ before_script:
   - npm install -g db-migrate
   - npm install
   - mysql -e 'create database beacon_test;'
-  - db-migrate up -m ./migrations --config ./database.json -e test
 

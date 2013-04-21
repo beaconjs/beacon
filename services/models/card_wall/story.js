@@ -20,30 +20,24 @@ var stories_table = db.define('stories', {
       owner: DataTypes.INTEGER,
       points: DataTypes.INTEGER,
       sprint_id: DataTypes.INTEGER,
+      epic_id: DataTypes.INTEGER,
       status: DataTypes.STRING,
       created_by: DataTypes.INTEGER,
       created_at: DataTypes.DATE,
       modified_by: DataTypes.INTEGER,
       modified_at: DataTypes.DATE
     }, { 
-      timestamps: false
+      timestamps: false,
+      underscored: true
     });
 
 exports.get=Story;
+exports.table=stories_table;
 
 Story.prototype.save=function(onSuccess, onError) {
-    stories_table.build(this).save()
-    .success(function(o){
-        onSuccess(o.values);
-    }).error(function(error) {
-        onError();
-    });
+    stories_table.build(this).save().success(onSuccess).error(onError);
 };
 
 Story.prototype.all=function(onSuccess, onError) {
-    stories_table.all().success(function(o){
-        onSuccess();
-    }).error(function(error) {
-        onError();
-    });
+    stories_table.all().success(onSuccess).error(onError);
 };

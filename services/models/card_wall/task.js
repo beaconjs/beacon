@@ -1,29 +1,26 @@
 var db = require("../../db.js").sequelize;
 var DataTypes = require("sequelize");
 
-var Task = function( name) {
- this.name = name,
+var Task = function( title) {
+ this.title = title,
  this.created_at = new Date(),
  this.modified_at = new Date();
 };
 
-var tasks_table = function() {
-    return db.define('tasks', {
-      name: DataTypes.STRING,
+var tasks_table = db.define('tasks', {
+      title: DataTypes.STRING,
       created_by: DataTypes.INTEGER,
       created_at: DataTypes.DATE,
       modified_by: DataTypes.INTEGER,
       modified_at: DataTypes.DATE
+    }, { 
+      timestamps: false,
+      underscored: true
     });
-};
 
-exports.Task=Task;
+exports.get=Task;
 exports.table=tasks_table;
-exports.save=function(task) {
-    var instance = tasks_table().build(task);
-    instance.save().success(function(){
-        console.log("saved");
-    }).error(function(error) {
-        console.log(error);
-    });
+
+Task.prototype.save=function(onSuccess, onError) {
+    tasks_table.build(this).save().success(onSuccess).error(onError);
 };

@@ -5,8 +5,8 @@ exports.up = function(db, callback) {
     db.createTable('sprints', {
         id: { type: 'int', primaryKey: true, autoIncrement: true },
         title: 'string',
-        startDate: 'datetime',
-        endDate: 'datetime',
+        start_date: 'datetime',
+        end_date: 'datetime',
         created_at: 'datetime',
         modified_at: 'datetime',
         created_by: 'int',

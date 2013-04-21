@@ -9,8 +9,7 @@ var Lane = function(name, max_stories, status) {
  this.modified_at = new Date();
 };
 
-var lanes_table = function(sequelize, DataTypes) {
-    sequelize.define('lanes', {
+var lanes_table = db.define('lanes', {
       name: DataTypes.STRING,
       max_stories: DataTypes.INTEGER,
       status: DataTypes.STRING,
@@ -18,16 +17,14 @@ var lanes_table = function(sequelize, DataTypes) {
       created_at: DataTypes.DATE,
       modified_by: DataTypes.INTEGER,
       modified_at: DataTypes.DATE
+    }, { 
+      timestamps: false,
+      underscored: true
     });
-};
 
-exports=Lane;
+exports.get=Lane;
 exports.table=lanes_table;
-exports.save=function(lane) {
-    var instance = lanes_table().build(lane);
-    instance.save().success(function(){
-        console.log("saved");
-    }).error(function(error) {
-        console.log(error);
-    });
+
+Lane.prototype.save=function(onSuccess, onError) {
+    lanes_table.build(this).save().success(onSuccess).error(onError);
 };

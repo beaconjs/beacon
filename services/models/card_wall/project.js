@@ -1,7 +1,7 @@
 var db = require("../../db.js").sequelize;
 var DataTypes = require("sequelize");
 
-var Epic = require('./epic').table
+var epics = require('./epic').table
 
 var Project = function(name, description, epics, created_by) {
  this.name = name, 
@@ -13,26 +13,23 @@ var Project = function(name, description, epics, created_by) {
  this.modified_at = new Date();
 };
 
-var projects_table = function(sequelize, DataTypes) {
-    sequelize.define('projects', {
+var projects_table = db.define('projects', {
       name: DataTypes.STRING,
       description: DataTypes.STRING,
       created_by: DataTypes.INTEGER,
       created_at: DataTypes.DATE,
       modified_by: DataTypes.INTEGER,
       modified_at: DataTypes.DATE
+    }, { 
+      timestamps: false,
+      underscored: true
     });
-};
 
-table.hasMany(Epic);
+projects_table.hasMany(epics);
 
-exports=Project;
+exports.get=Project;
 exports.table=projects_table;
-exports.save=function(project) {
-    var instance = projects_table().build(project);
-    instance.save().success(function(){
-        console.log("saved");
-    }).error(function(error) {
-        console.log(error);
-    });
+
+Project.prototype.save=function(onSuccess, onError) {
+    projects_table.build(this).save().success(onSuccess).error(onError);
 };

@@ -1,14 +1,14 @@
 var expect = require('chai').expect,
     should = require('chai').should();
 
-var Story = require('../../../models/card_wall/story').get;
+var Task = require('../../../models/card_wall/task').get;
 
 var assert = require("assert")
-describe('Story', function(){
+describe('Task', function(){
   describe('#save()', function(){
-    it('should save a story', function(done){
-        var story = new Story('title', 'details', 1, 1, 1, null, null);
-        story.save(function(o){
+    it('should save a task', function(done){
+        var task = new Task('test task');
+        task.save(function(o){
             expect(o.id).to.not.equal(null);
             done();
         }, function(error){
