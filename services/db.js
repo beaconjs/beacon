@@ -1,28 +1,16 @@
 var express = require('express'),
     Sequelize = require("sequelize");
 
+var app = express();
+var env = app.get('env') == 'development' ? 'dev' : app.get('env');
+
 // db config
 var fs = require('fs');
 var dbConfigFile = __dirname + '/database.json';
-var dbConfig = null;
-
-var sequelize = null;
-
 var data = fs.readFileSync(dbConfigFile, 'utf8');
 
-dbConfig = JSON.parse(data);
-
-var app = express();
-
-if ('development' == app.get('env')) {
-  dbConfig = dbConfig.dev;
-  sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password);
-}
-
-if ('test' == app.get('env')) {
-  dbConfig = dbConfig.test;
-  sequelize = new Sequelize(dbConfig.database, dbConfig.user);
-}
+var dbConfig = JSON.parse(data)[env];
+var password = dbConfig.password ? dbConfig.password : null;
+var sequelize = new Sequelize(dbConfig.database, dbConfig.user, password, { logging: false });
 
 exports.sequelize = sequelize
-

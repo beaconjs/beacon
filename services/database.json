@@ -12,7 +12,7 @@
     "database": "beacon_test"
   },
 
-  "prod": {
+  "production": {
     "driver": "mysql",
     "user": "root",
     "database": "beacon_live"
