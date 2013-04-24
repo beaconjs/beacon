@@ -17,9 +17,6 @@ exports.list = function(req, res){
 
 exports.create = function(req, res){
     var s = req.body;
-
-    console.log(s);
-
     var story = new Story(s.title, s.details, 1, 1, 1, null, null);
     story.save(function(){}, function(){});
 

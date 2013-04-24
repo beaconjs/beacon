@@ -4,13 +4,13 @@ var DataTypes = require("sequelize");
 var epics = require('./epic').table
 
 var Project = function(name, description, epics, created_by) {
-  this.name = name, 
-  this.description = description, 
-  this.epics = epics,
-  this.created_by = created_by,
-  this.modified_by = created_by,
-  this.created_at = new Date(),
-  this.modified_at = new Date();
+ this.name = name, 
+ this.description = description, 
+ this.epics = epics,
+ this.created_by = created_by,
+ this.modified_by = created_by,
+ this.created_at = new Date(),
+ this.modified_at = new Date();
 };
 
 var projects_table = db.define('projects', {

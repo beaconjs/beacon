@@ -1,0 +1,68 @@
+<html>
+<head>
+    <link rel="stylesheet" href="stylesheets/kube.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="javascripts/jquery.min.js"></script>
+    <script src="javascripts/jquery.hotkeys.js"></script>
+    <script src="javascripts/story.js"></script>
+    <script src="javascripts/richtext.js"></script>
+    <script src="javascripts/kube.buttons.js"></script>
+    <script src="javascripts/kube.tabs.js"></script>
+</head>
+<body>
+    <div id="page">
+        <div class="row">
+            <div class="breadcrumbs">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Project 1</a></li>
+                    <li><span>Notes</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="sixth">
+                <div class="nav-v">
+                    <ul>
+                        <li><a href="#">Note 1</a></li>
+                        <li><span>Note 2</span></li>
+                        <li><a href="#">Note 3</a></li>
+                        <li><a href="#">Note 4</a></li>
+                        <li><a href="#">Note 5</a></li>
+                    </ul>
+                </div>   
+            </div>
+            <div class="fivesixth">
+                <div id="notedetails-msg" class="richtext-auto-save"></div>
+                <div class="richtextbuttons">
+                    <ul>
+                        <li class="richbtn"><button onclick="formatText('bold');">B</button></li>
+                        <li class="richbtn"><button onclick="formatText('italic');">I</button></li>
+                        <li class="richbtn seperator"><button onclick="formatText('underline');">U</button></li>
+                        <li class="richbtn">Font Size</li>
+                        <li class="richbtn">
+                            <select onchange="formatText('FontSize',this.selectedIndex + 1);" name="fontSize">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                            </select>
+                        </li>
+                        <li class="richbtn seperator"><button onclick="var color=prompt('Please enter font color (full hash)');formatText('ForeColor',color);">Color</button></li>
+                        <li class="richbtn"><button onclick="var url=prompt('Please enter the URL');formatText('CreateLink',url);">Link</button></li>
+                        <li class="richbtn seperator"><button onclick="formatText('Unlink');">Unlink</button></li>
+                        <li class="richbtn"><button onclick="formatText('InsertUnorderedList');">UL</button></li>
+                        <li class="richbtn"><button onclick="formatText('InsertOrderedList');">OL</button></li>
+                    </ul>
+                </div>
+                <div class="richtext" id="notedetails_div" contenteditable>
+                </div>
+                <textarea id="notedetails" class="richtextarea"></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

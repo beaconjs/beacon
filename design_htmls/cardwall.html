@@ -1,0 +1,75 @@
+<html>
+<head>
+    <link rel="stylesheet" href="stylesheets/kube.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="javascripts/jquery.min.js"></script>
+    <script src="javascripts/story.js"></script>
+    <script src="javascripts/kube.buttons.js"></script>
+    <script src="javascripts/kube.tabs.js"></script>
+</head>
+<body>
+<div id="page">
+    <h1>Card Wall</h1>
+    <a onclick="addStory()" class="add_link">Add</a>
+            <div class="lane">
+                <div class="heading">TO DO</div>
+                <div class="story" draggable="true">
+                    <div class="left">
+                        <div class="title"> <a onclick="openStory(1)" >test</a></div>
+                        <div class="text">jksfkjhs jksfkjhs jksfkjhs</div>
+                    </div>
+                    <div class="right">
+                        <div class="points">2</div>
+                        <div class="assigned">Aishwarya</div>
+                    </div>
+                </div>
+                <div class="story" draggable="true"><div class="title"> <a href="/story/2">another</a></div><div class="text">jsfjjhg</div></div>
+            </div>
+            <div class="lane">
+                <div class="heading">In progress</div>
+                <div class="story" draggable="true"><div class="title"> <a href="/story/1">test</a></div><div class="text">jksfkjhs</div></div>
+                <div class="story" draggable="true"><div class="title"> <a href="/story/2">another</a></div><div class="text">jsfjjhg</div></div>
+            </div>
+            <div class="lane">
+                <div class="heading">Done</div>
+                <div class="story" draggable="true"><div class="title"> <a href="/story/1">test</a></div><div class="text">jksfkjhs</div></div>
+                <div class="story" draggable="true"><div class="title"> <a href="/story/2">another</a></div><div class="text">jsfjjhg</div></div>
+            </div>
+
+            <div id="newStory">
+                <div class="close" onclick="closePopup()"></div>
+            <form action="/stories/create" method="POST" class="forms columnar">
+                <fieldset>
+                    <ul>
+                        <li><input type="text" name="title" id="storyTitle" class="width-100" placeholder="Story name">
+                            <div contenteditable="true" id="storyTitleDiv" class="textFieldDiv">test test</div></li>
+                        <li>
+                            <select id="storyOwner" name="owner">
+                                <option value="1">Aishwarya</option>
+                                <option value="2">Amit</option>
+                            </select>
+                            <div class="right">
+                                <label>Points</label>
+                                <div class="storypoints">
+                                    <input id="storyPoints" type="radio" name="points" value="1"><label>1</label>
+                                    <input id="storyPoints" type="radio" name="points" value="2"><label>2</label>
+                                    <input id="storyPoints" type="radio" name="points" value="3"><label class="selected">3</label>
+                                    <input id="storyPoints" type="radio" name="points" value="5"><label>5</label>
+                                    <input id="storyPoints" type="radio" name="points" value="8"><label>8</label>
+                                    <input id="storyPoints" type="radio" name="points" value="13"><label>13</label>
+                                    <input id="storyPoints" type="radio" name="points" value="21"><label>21</label>
+                                    <input id="storyPoints" type="radio" name="points" value="34"><label>34</label>
+                                </div>
+                            </div>
+                        </li>
+                        <li><textarea name="body" id="storyDetails" class="width-100" placeholder="Story Details"></textarea>
+                            <div contenteditable="true" id="storyDetailsDiv" class="textAreaDiv"></div></li>
+                        <li><input type="submit" class="btn"><a onclick="closePopup()" class="btn">Close</a></li>
+                    </ul>
+                </fieldset>
+            </form>
+        </div>
+        <div id="fade"></div>
+    </div>
+</body>
+</html>

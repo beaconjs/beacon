@@ -12,6 +12,8 @@ var express = require('express')
   , db = require("./db")
   , path = require('path');
 
+require('./chat_server');
+
 var app = express();
 
 // all environments
