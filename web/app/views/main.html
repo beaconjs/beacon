@@ -19,7 +19,16 @@
             </div>  
         </div>
         <div class="fivesixth">
-            
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+                <tr ng-repeat="project in projects" ng-click="select(project.id)">
+                    <td>{{project.name}}</td>
+                    <td>{{project.description}}</td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>

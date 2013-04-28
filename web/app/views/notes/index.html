@@ -1,0 +1,71 @@
+<div class="row">
+            <div class="breadcrumbs">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Project</a></li>
+                    <li><span>Notes</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="sixth">
+                <div class="nav-v">
+                    <ul>
+                        <li><a href="#">Note 1</a></li>
+                        <li><span>Note 2</span></li>
+                        <li><a href="#">Note 3</a></li>
+                        <li><a href="#">Note 4</a></li>
+                        <li><a href="#">Note 5</a></li>
+                    </ul>
+                </div>   
+            </div>
+            <div class="twothird">
+                <div id="notedetails-msg" class="richtext-auto-save"></div>
+                <div id="notedetails-dropzone-container" class="richtext-dropzone">
+                    <div id="notedetails-dropzone" class="richtext-dropzone-inner">
+                        <form action="/test" method="post" enctype="multipart/form-data" class="dropzone clickable" id="notedetails-dropzone-form">
+                        </form>
+                        <button onclick="closeDropZone()">OK</button>
+                    </div>
+                </div>
+                <div class="richtextbuttons">
+                    <ul>
+                        <li class="richbtn"><button onclick="formatText('bold');">B</button></li>
+                        <li class="richbtn"><button onclick="formatText('italic');">I</button></li>
+                        <li class="richbtn seperator"><button onclick="formatText('underline');">U</button></li>
+                        <li class="richbtn">Font Size</li>
+                        <li class="richbtn">
+                            <select onchange="formatText('FontSize',this.selectedIndex + 1);" name="fontSize">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3" selected>3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                            </select>
+                        </li>
+                        <li class="richbtn seperator"><button onclick="var color=prompt('Please enter font color (full hash)');formatText('ForeColor',color);">Color</button></li>
+                        <li class="richbtn"><button onclick="var url=prompt('Please enter the URL');formatText('CreateLink',url);">Link</button></li>
+                        <li class="richbtn seperator"><button onclick="formatText('Unlink');">Unlink</button></li>
+                        <li class="richbtn"><button onclick="formatText('InsertUnorderedList');">UL</button></li>
+                        <li class="richbtn seperator"><button onclick="formatText('InsertOrderedList');">OL</button></li>
+                        <li class="richbtn"><button onclick="attachFile(false);">Attach File</button></li>
+                        <li class="richbtn seperator"><button onclick="attachFile(true);">Image</button></li>
+                        <li class="richbtn"><button onclick="insertTable();">Table</button></li>
+                    </ul>
+                </div>
+                <div class="richtext" id="notedetails_div" contenteditable>
+                </div>
+                <textarea id="notedetails" class="richtextarea"></textarea>
+            </div>
+            <div class="sixth">
+                <div class="drawer">
+                    <ul>
+                        <li><a href="#">Chat</a></li>
+                        <li><span>Notes</span></li>
+                        <li><a href="#">Plan</a></li>
+                    </ul>
+                </div>   
+            </div>
+        </div>

@@ -12,6 +12,9 @@ angular.module('webApp', [])
       }).when('/notes', {
         templateUrl: 'views/notes/index.html',
         controller: 'NotesCtrl'
+      }).when('/chat', {
+        templateUrl: 'views/chat.html',
+        controller: 'NotesCtrl'
       }).when('/projects/new', {
         templateUrl: 'views/projects/add.html',
         controller: 'ProjectsCtrl'

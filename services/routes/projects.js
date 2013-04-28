@@ -5,7 +5,12 @@ var Project = require('../models/project').get;
  */
 
 exports.list = function(req, res){
-  res.json(Project.all(function(){}, function(){}));
+    console.log(1);
+  Project.all(function(o){
+    res.json(o);
+  }, function(err){
+    res.send(err);
+  });
 };
 
 exports.create = function(req, res){
