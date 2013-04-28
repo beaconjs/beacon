@@ -1,14 +1,14 @@
 var expect = require('chai').expect,
     should = require('chai').should();
 
-var Project = require('../../../models/card_wall/project').get;
+var Note = require('../../models/note').get;
 
 var assert = require("assert")
-describe('Project', function(){
+describe('Note', function(){
   describe('#save()', function(){
-    it('should save a project', function(done){
-        var project = new Project('test project', 'this is a test project');
-        project.save(function(o){
+    it('should save a note', function(done){
+        var note = new Note('test note', 'this is a test note');
+        note.save(function(o){
             expect(o.id).to.not.equal(null);
             done();
         }, function(error){
