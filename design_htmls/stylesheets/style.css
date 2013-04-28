@@ -74,7 +74,7 @@ border-bottom: #eee solid 1px;
 padding: 5px 0;
 }
 
-.chat-box span { color: #888; float: right;}
+.chat-box span { color: #888; float: right; font-size: 0.8em;}
 
 .nav-v span.online { color: #329532; }
 .nav-v span.offline { color: #a43739; }

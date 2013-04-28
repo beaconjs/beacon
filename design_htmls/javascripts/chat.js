@@ -1,12 +1,11 @@
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-function chat(message) {
-    var date = new Date(); 
-    var d = date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear() + ' @ ' + date.getHours() + ':' + date.getMinutes();
+function chat(author, message) {
+    var d = moment().format('MMM Do, YYYY h:mm a');
     var msg = "";
     msg += message;
     msg += ' <span>' + d + "</span>";
-    $('.chat-box').append("<div class='chat-row'>" + msg + "</div>");
+    $('.chat-box').append("<div class='chat-row'><b>" + author + '</b> : ' + msg + "</div>");
     $('div.chat-box').scrollTo('div.chat-row:last');
 }
 
@@ -39,7 +38,7 @@ var startChat = function () {
     // for better performance - to avoid searching in DOM
     var content = $('.chat-box');
     var input = $('#chatMsg');
-    var status = $('.chat-box');
+    var status = $('#status');
  
     // my color assigned by the server
     var myColor = false;
@@ -109,11 +108,11 @@ var startChat = function () {
     /**
      * Send mesage when user presses Enter key
      */
-    /*input.keydown(function(e) {
+    input.keydown(function(e) {
         if (e.keyCode === 13) {
             sendChat();
         }
-    });*/
+    });
  
     /**
      * This method is optional. If the server wasn't able to respond to the
@@ -132,7 +131,7 @@ var startChat = function () {
      * Add message to the chat window
      */
     function addMessage(author, message, color, dt) {
-        chat(message);
+        chat(author, message);
     }
 };
 
