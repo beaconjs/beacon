@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="stylesheets/style.css">
     <script src="javascripts/jquery.min.js"></script>
     <script src="javascripts/jquery.hotkeys.js"></script>
+    <script src="javascripts/dropzone.js"></script>
     <script src="javascripts/story.js"></script>
     <script src="javascripts/richtext.js"></script>
     <script src="javascripts/kube.buttons.js"></script>
@@ -32,8 +33,15 @@
                     </ul>
                 </div>   
             </div>
-            <div class="fivesixth">
+            <div class="twothird">
                 <div id="notedetails-msg" class="richtext-auto-save"></div>
+                <div id="notedetails-dropzone-container" class="richtext-dropzone">
+                    <div id="notedetails-dropzone" class="richtext-dropzone-inner">
+                        <form action="/test" method="post" enctype="multipart/form-data" class="dropzone clickable" id="notedetails-dropzone-form">
+                        </form>
+                        <button onclick="closeDropZone()">OK</button>
+                    </div>
+                </div>
                 <div class="richtextbuttons">
                     <ul>
                         <li class="richbtn"><button onclick="formatText('bold');">B</button></li>
@@ -55,12 +63,24 @@
                         <li class="richbtn"><button onclick="var url=prompt('Please enter the URL');formatText('CreateLink',url);">Link</button></li>
                         <li class="richbtn seperator"><button onclick="formatText('Unlink');">Unlink</button></li>
                         <li class="richbtn"><button onclick="formatText('InsertUnorderedList');">UL</button></li>
-                        <li class="richbtn"><button onclick="formatText('InsertOrderedList');">OL</button></li>
+                        <li class="richbtn seperator"><button onclick="formatText('InsertOrderedList');">OL</button></li>
+                        <li class="richbtn"><button onclick="attachFile(false);">Attach File</button></li>
+                        <li class="richbtn seperator"><button onclick="attachFile(true);">Image</button></li>
+                        <li class="richbtn"><button onclick="insertTable();">Table</button></li>
                     </ul>
                 </div>
                 <div class="richtext" id="notedetails_div" contenteditable>
                 </div>
                 <textarea id="notedetails" class="richtextarea"></textarea>
+            </div>
+            <div class="sixth">
+                <div class="drawer">
+                    <ul>
+                        <li><a href="#">Chat</a></li>
+                        <li><span>Notes</span></li>
+                        <li><a href="#">Plan</a></li>
+                    </ul>
+                </div>   
             </div>
         </div>
     </div>

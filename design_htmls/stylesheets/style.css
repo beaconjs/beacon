@@ -1,5 +1,5 @@
 body {
-    background-color: #eee;
+    background-color: #88B0D7;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -38,7 +38,10 @@ select { width: 30%; font-size: 2em;}
 .lane .heading { background: #FFF; border-bottom: 3px #8C8 solid; font-size: 1.3em; text-transform: capitalize; padding: 3px; }
 
 .richtext-auto-save {float: right; margin: 1em; height: 1em; color: #888; font-size: 0.8em;}
-.richtext { border: #EEE solid 1px; min-height: 20em; padding: 1em; }
+.richtext { border: #ccc solid 1px; min-height: 20em; padding: 1em; }
+.richtext table { border: #ccc solid 1px; }
+.richtext table td { border: #ccc solid 1px; min-width: 4em; }
+
 .richtextbuttons { margin-bottom: 0.3em; min-height: 1.5em; background-color: #F3F3F3; padding: 0.5em;}
 .richtextbuttons ul { list-style: none; padding: 0px; margin: 0px;}
 .richtextbuttons ul li { float: left; cursor: hand; cursor: pointer; }
@@ -48,3 +51,31 @@ select { width: 30%; font-size: 2em;}
 .richtextbuttons .richbtn { padding: 0.2em; }
 .richtextbuttons .seperator { border-right: 1px solid #ccc;}
 .richtextarea {display: none;}
+
+.richtext-dropzone { display: none; padding: 2em; position: absolute; z-index: 10; background-color: #f0f0f0; }
+.richtext-dropzone-inner { border: 2px dashed #888; min-height: 3em; min-width: 40em; padding: 6em;}
+
+.drawer { float: left; text-align: left; width: 100%;}
+.drawer ul { list-style: none; color: #AAA; float: right; }
+.drawer ul li { padding: 0; margin: 0; }
+.drawer a { text-decoration: none; }
+
+.chat-box {
+border: #CCC solid 1px;
+height: 80%;
+width: 95%;padding: 0 2em;
+color: #444;
+overflow: auto;
+font-size: 0.9em;
+}
+
+.chat-box .chat-row {
+border-bottom: #eee solid 1px;
+padding: 5px 0;
+}
+
+.chat-box span { color: #888; float: right;}
+
+.nav-v span.online { color: #329532; }
+.nav-v span.offline { color: #a43739; }
+
