@@ -33,3 +33,7 @@ exports.table=projects_table;
 Project.prototype.save=function(onSuccess, onError) {
     projects_table.build(this).save().success(onSuccess).error(onError);
 };
+
+Project.all=function(onSuccess, onError) {
+    projects_table.all().success(onSuccess).error(onError);
+};

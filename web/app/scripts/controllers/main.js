@@ -1,10 +1,8 @@
 'use strict';
 
 angular.module('webApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($rootScope, $location) {
+    $rootScope.gotoPage = function(path) {
+        $location.path(path);
+    }
   });
