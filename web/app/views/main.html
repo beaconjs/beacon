@@ -8,27 +8,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="sixth">
-            <div class="nav-v">
-                <ul>
-                    <li><a href="#/projects/new">Add Project</a></li>
-                    <li><a href="#/notes">Notes</a></li>
-                    <li><a href="#/chat">Chat</a></li>
-                    <li><a href="#/plan">Plan</a></li>
-                </ul>
-            </div>  
-        </div>
-        <div class="fivesixth">
-            <table>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                </tr>
-                <tr ng-repeat="project in projects" ng-click="select(project.id)">
-                    <td>{{project.name}}</td>
-                    <td>{{project.description}}</td>
-                </tr>
-            </table>
-        </div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            <tr ng-repeat="project in projects" ng-click="select(project.id)">
+                <td>{{project.name}}</td>
+                <td>{{project.description}}</td>
+            </tr>
+        </table>
     </div>
 </div>

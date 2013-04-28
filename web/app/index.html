@@ -24,7 +24,12 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div id="page" ng-view></div>
+    
+    <div id="page">
+      <div ng-view style="float:left; width: 95%;"></div>
+      <div ng-include="'views/_menu.html'" style="background-color:#88B0D7; float:right;"></div>
+    </div>
+
 
     <script src="components/angular/angular.js"></script>
     <script src="components/angular-sanitize/angular-sanitize.js"></script>

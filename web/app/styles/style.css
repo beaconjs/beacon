@@ -46,6 +46,8 @@ select { width: 30%; font-size: 2em;}
 .richtextbuttons ul { list-style: none; padding: 0px; margin: 0px;}
 .richtextbuttons ul li { float: left; cursor: hand; cursor: pointer; }
 
+.menu ul li { cursor: hand; cursor: pointer; }
+
 .richtextbuttons ul li select { width: 40px;}
 
 .richtextbuttons .richbtn { padding: 0.2em; }
