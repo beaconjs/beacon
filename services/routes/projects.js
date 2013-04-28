@@ -5,7 +5,6 @@ var Project = require('../models/project').get;
  */
 
 exports.list = function(req, res){
-    console.log(1);
   Project.all(function(o){
     res.json(o);
   }, function(err){
