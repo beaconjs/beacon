@@ -12,12 +12,18 @@ function chat(message) {
 
 var connection = null;
 
+var chat_initiated = false;
+var myName = 'test test';
+
 var sendChat = function() {
+    if (!chat_initiated) { 
+        chat_initiated = true;
+        connection.send(myName);
+    }
     var msg = $('#chatMsg').val();
     if (!msg) {
         return;
     }
-    console.log(msg);
     // send the message as an ordinary text
     connection.send(msg);
     $('#chatMsg').val('');
@@ -38,7 +44,6 @@ var startChat = function () {
     // my color assigned by the server
     var myColor = false;
     // my name sent to the server
-    var myName = 'test test';
  
     // if user is running mozilla then use it's built-in WebSocket
     window.WebSocket = window.WebSocket || window.MozWebSocket;
