@@ -103,7 +103,8 @@ wsServer.on('request', function(request) {
                     time: (new Date()).getTime(),
                     text: htmlEntities(message.utf8Data),
                     author: userName,
-                    color: userColor
+                    color: userColor,
+                    channel: channel
                 };
                 history.push(obj);
                 channels[channel].history = history.slice(-100);

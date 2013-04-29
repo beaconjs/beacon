@@ -14,6 +14,7 @@ angular.module('webApp')
         $('div.chat-box').scrollTo('div.chat-row:last');
     }
 
+    var channel = 'project_' + $rootScope.project_id;
     var connection = null;
 
     var chat_initiated = false;
@@ -62,7 +63,7 @@ angular.module('webApp')
         }
      
         // open connection
-        connection = new WebSocket('ws://127.0.0.1:1337', 'project_' + $rootScope.project_id);
+        connection = new WebSocket('ws://127.0.0.1:1337', channel);
 
         connection.onopen = function () {
             //channel
@@ -85,6 +86,8 @@ angular.module('webApp')
                 console.log('This doesn\'t look like a valid JSON: ', message.data);
                 return;
             }
+
+            if (json.data.channel !== channel) return;
      
             // NOTE: if you're not sure about the JSON structure
             // check the server source code above
