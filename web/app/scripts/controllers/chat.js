@@ -62,11 +62,10 @@ angular.module('webApp')
         }
      
         // open connection
-        connection = new WebSocket('ws://127.0.0.1:1337');
+        connection = new WebSocket('ws://127.0.0.1:1337', 'project_' + $rootScope.project_id);
 
         connection.onopen = function () {
-            // first we want users to enter their names
-            input.removeAttr('disabled');
+            //channel
         };
      
         connection.onerror = function (error) {

@@ -6,6 +6,9 @@ angular.module('webApp')
 
     $http.get("http://localhost:3000/projects").success(function(res){
         $scope.projects = res;
+        if (res && res.length > 0) {
+            $scope.select(res[0].id);
+        }
     }).error(function(error){
         console.log(error);
     });

@@ -14,10 +14,15 @@ var http = require('http');
 /**
  * Global variables
  */
-// latest 100 messages
-var history = [ ];
-// list of currently connected clients (users)
-var clients = [ ];
+ var Channel = function(name) {
+    this.name = name,
+    // latest 100 messages
+    this.history = [ ],
+    // list of currently connected clients (users)
+    this.clients = [ ];
+ }
+
+var channels = {}; // hash map of channels (name -> obj)
 
 /**
  * Helper function for escaping input strings
@@ -54,14 +59,19 @@ var wsServer = new webSocketServer({
 // This callback function is called every time someone
 // tries to connect to the WebSocket server
 wsServer.on('request', function(request) {
-    console.log((new Date()) + ' Connection from origin ' + request.origin + '.');
+    var channel = request.requestedProtocols[0]; // no direct way of adding a header :-(
+    console.log((new Date()) + ' Connection from origin ' + request.origin + ' for channel ' + channel + '.');
+
+    if (!channels[channel]) channels[channel] = new Channel(channel);
+
+    var history = channels[channel].history;
 
     // accept connection - you should check 'request.origin' to make sure that
     // client is connecting from your website
     // (http://en.wikipedia.org/wiki/Same_origin_policy)
     var connection = request.accept(null, request.origin); 
     // we need to know client index to remove them on 'close' event
-    var index = clients.push(connection) - 1;
+    var index = channels[channel].clients.push(connection) - 1;
     var userName = false;
     var userColor = false;
 
@@ -96,12 +106,12 @@ wsServer.on('request', function(request) {
                     color: userColor
                 };
                 history.push(obj);
-                history = history.slice(-100);
+                channels[channel].history = history.slice(-100);
 
                 // broadcast message to all connected clients
                 var json = JSON.stringify({ type:'message', data: obj });
-                for (var i=0; i < clients.length; i++) {
-                    clients[i].sendUTF(json);
+                for (var i=0; i < channels[channel].clients.length; i++) {
+                    channels[channel].clients[i].sendUTF(json);
                 }
             }
         }
@@ -113,7 +123,7 @@ wsServer.on('request', function(request) {
             console.log((new Date()) + " Peer "
                 + connection.remoteAddress + " disconnected.");
             // remove user from the list of connected clients
-            clients.splice(index, 1);
+            channels[channel].clients.splice(index, 1);
             // push back user's color to be reused by another user
             colors.push(userColor);
         }
