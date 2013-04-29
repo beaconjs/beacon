@@ -67,7 +67,6 @@ angular.module('webApp')
         connection.onopen = function () {
             // first we want users to enter their names
             input.removeAttr('disabled');
-            status.text('Choose name:');
         };
      
         connection.onerror = function (error) {
@@ -92,7 +91,6 @@ angular.module('webApp')
             // check the server source code above
             if (json.type === 'color') { // first response from the server with user's color
                 myColor = json.data;
-                status.text(myName + ': ').css('color', myColor);
                 input.removeAttr('disabled').focus();
                 // from now user can start sending messages
             } else if (json.type === 'history') { // entire message history

@@ -39,6 +39,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.post('/authenticate', user.authenticate);
 app.get('/users', user.list);
 app.get('/stories', stories.list);
 app.post('/stories/create', stories.create);
