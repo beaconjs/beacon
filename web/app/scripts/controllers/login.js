@@ -10,7 +10,6 @@ angular.module('webApp')
             username: $scope.username, 
             password: $scope.password 
         }).success(function(response) {
-            console.log(response);
             $rootScope.loggedInUser = response;
             $location.path("/");
         }).error(function(error) {

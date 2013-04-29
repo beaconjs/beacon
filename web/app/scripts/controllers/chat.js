@@ -17,7 +17,7 @@ angular.module('webApp')
     var connection = null;
 
     var chat_initiated = false;
-    var myName = 'test test';
+    var myName = $rootScope.loggedInUser.name;
 
     $scope.sendChat = function() {
         if (!chat_initiated) { 
