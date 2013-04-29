@@ -81,3 +81,4 @@ padding: 5px 0;
 .nav-v span.online { color: #329532; }
 .nav-v span.offline { color: #a43739; }
 
+.login-form {margin: 20em; padding: 2em; border: #eee solid 1px;}
