@@ -34,7 +34,7 @@ Note.prototype.save=function(onSuccess, onError) {
     notes_table.build(this).save().success(onSuccess).error(onError);
   } else {
     notes_table.find(this.id).success(function(o) { 
-      o.updateAttributes({ title: note.title, details: note.details, modified_at: new Date() }).success(onSuccess).error(onError); 
+      o.updateAttributes({ title: note.title, details: note.details, modified_at: new Date(), modified_by: note.modified_by }).success(onSuccess).error(onError); 
     });
   }
 };
