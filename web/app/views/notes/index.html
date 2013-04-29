@@ -20,6 +20,7 @@
                 </div>   
             </div>
             <div class="fivesixth">
+                <input type="text" ng-model="notetitle" class="width-100"/><br>
                 <div id="notedetails-msg" class="richtext-auto-save"></div>
                 <div id="notedetails-dropzone-container" class="richtext-dropzone">
                     <div id="notedetails-dropzone" class="richtext-dropzone-inner">
@@ -57,6 +58,6 @@
                 </div>
                 <div class="richtext" id="notedetails_div" contenteditable>
                 </div>
-                <textarea id="notedetails" class="richtextarea"></textarea>
+                <textarea id="notedetails" class="richtextarea" ng-model="notedetails"></textarea>
             </div>
         </div>

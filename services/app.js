@@ -8,6 +8,7 @@ var express = require('express')
   , user = require('./routes/user')
   , stories = require('./routes/card_wall/stories')
   , projects = require('./routes/projects')
+  , notes = require('./routes/notes')
   , cardModels = require('./models/card_wall')
   , http = require('http')
   , db = require("./db")
@@ -45,6 +46,7 @@ app.get('/stories', stories.list);
 app.post('/stories/create', stories.create);
 app.post('/projects', projects.create);
 app.get('/projects', projects.list);
+app.post('/notes', notes.create);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

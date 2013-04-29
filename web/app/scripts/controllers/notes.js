@@ -1,10 +1,18 @@
 'use strict';
 
 angular.module('webApp')
-  .controller('NotesCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('NotesCtrl', function ($rootScope, $scope, $http) {
+    $scope.note_id = null;
+
+    $scope.$watch('notedetails', function(){
+        $http.post('http://localhost:3000/notes', {
+            id: $scope.note_id,
+            title: $scope.notetitle,
+            details: $('#notedetails').val(),
+            project: $rootScope.project_id,
+            user: $rootScope.loggedInUser.id
+        }).success(function(o){
+            if (o.id) $scope.note_id = o.id;
+        });
+    });
   });

@@ -28,5 +28,13 @@ exports.get=Note;
 exports.table=notes_table;
 
 Note.prototype.save=function(onSuccess, onError) {
+  var note = this;
+
+  if (!this.id) {
     notes_table.build(this).save().success(onSuccess).error(onError);
+  } else {
+    notes_table.find(this.id).success(function(o) { 
+      o.updateAttributes({ title: note.title, details: note.details, modified_at: new Date() }).success(onSuccess).error(onError); 
+    });
+  }
 };
