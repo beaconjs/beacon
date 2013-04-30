@@ -68,6 +68,11 @@ angular.module('webApp')
         connection.onopen = function () {
             //channel
         };
+
+        connection.onclose = function () {
+            //channel
+            console.log("closed...");
+        };
      
         connection.onerror = function (error) {
             // just in there were some problems with conenction...

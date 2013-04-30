@@ -122,7 +122,7 @@ wsServer.on('request', function(request) {
     connection.on('close', function(connection) {
         if (userName !== false && userColor !== false) {
             console.log((new Date()) + " Peer "
-                + connection.remoteAddress + " disconnected.");
+                + userName + "(" + connection.remoteAddress + ") disconnected.");
             // remove user from the list of connected clients
             channels[channel].clients.splice(index, 1);
             // push back user's color to be reused by another user
