@@ -11,11 +11,7 @@
             <div class="sixth">
                 <div class="nav-v">
                     <ul>
-                        <li><a href="#">Note 1</a></li>
-                        <li><span>Note 2</span></li>
-                        <li><a href="#">Note 3</a></li>
-                        <li><a href="#">Note 4</a></li>
-                        <li><a href="#">Note 5</a></li>
+                        <li ng-repeat="note in notes"><a href="#" ng-show="note.title">{{note.title}}</a><a href="#" ng-hide="note.title">(no name)</a></li>
                     </ul>
                 </div>   
             </div>

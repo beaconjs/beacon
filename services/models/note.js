@@ -38,3 +38,7 @@ Note.prototype.save=function(onSuccess, onError) {
     });
   }
 };
+
+Note.all=function(projectId, onSuccess, onError) {
+    notes_table.findAll({ where: { project_id: projectId } }).success(onSuccess).error(onError);
+};

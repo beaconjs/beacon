@@ -5,14 +5,11 @@ var Note = require('../models/note').get;
  */
 
 exports.list = function(req, res){
-  Note.all( function(docs){
-        res.render('card_wall/stories.jade', { 
-            title: 'Card Wall',
-            stories:docs
-        });
-    }, function(error) { 
-        console.log(error); 
-    });
+  Note.all(req.params.id, function(o){
+    res.json(o);
+  }, function(err){
+    res.send(err);
+  });
 };
 
 exports.create = function(req, res){

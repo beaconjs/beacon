@@ -46,6 +46,7 @@ app.get('/stories', stories.list);
 app.post('/stories/create', stories.create);
 app.post('/projects', projects.create);
 app.get('/projects', projects.list);
+app.get('/projects/:id/notes', notes.list);
 app.post('/notes', notes.create);
 
 http.createServer(app).listen(app.get('port'), function(){
