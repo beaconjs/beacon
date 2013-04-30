@@ -63,7 +63,7 @@ angular.module('webApp')
         }
      
         // open connection
-        connection = new WebSocket('ws://127.0.0.1:1337', channel);
+        connection = new WebSocket($rootScope.appconfig.chatServer, channel);
 
         connection.onopen = function () {
             //channel

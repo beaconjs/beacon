@@ -5,7 +5,7 @@ angular.module('webApp')
     $scope.note_id = null;
 
     $scope.$watch('notedetails', function(){
-        $http.post('http://localhost:3000/notes', {
+        $http.post($rootScope.appconfig.server + '/notes', {
             id: $scope.note_id,
             title: $scope.notetitle,
             details: $('#notedetails').val(),

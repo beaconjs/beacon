@@ -4,7 +4,7 @@ angular.module('webApp')
   .controller('HomeCtrl', function ($rootScope, $scope, $http) {
     $scope.projects = [];
 
-    $http.get("http://localhost:3000/projects").success(function(res){
+    $http.get($rootScope.appconfig.server + "/projects").success(function(res){
         $scope.projects = res;
         if (res && res.length > 0) {
             $scope.select(res[0].id);

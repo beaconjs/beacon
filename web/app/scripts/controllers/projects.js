@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('webApp')
-  .controller('ProjectsCtrl', function ($scope, $http, $location) {
+  .controller('ProjectsCtrl', function ($rootScope, $scope, $http, $location) {
     $scope.addProject = function() {
-        $http.post('http://localhost:3000/projects', { 
+        $http.post($rootScope.appconfig.server + '/projects', { 
             name: $scope.project.name, 
             description: $scope.project.description 
         }).success(function() {

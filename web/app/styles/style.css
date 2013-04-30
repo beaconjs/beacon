@@ -64,7 +64,7 @@ select { width: 30%; font-size: 2em;}
 
 .chat-box {
 border: #CCC solid 1px;
-height: 80em;
+height: 50em;
 width: 95%;padding: 0 2em;
 color: #444;
 overflow: auto;

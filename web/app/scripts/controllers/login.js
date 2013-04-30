@@ -6,7 +6,7 @@ angular.module('webApp')
     $scope.password = "";
 
     $scope.authenticate = function() {
-        $http.post('http://localhost:3000/authenticate', { 
+        $http.post($rootScope.appconfig.server + '/authenticate', { 
             username: $scope.username, 
             password: $scope.password 
         }).success(function(response) {
