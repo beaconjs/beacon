@@ -1,4 +1,4 @@
 {
-    "server": "http://157.191.240.27:3000",
-    "chatServer": "ws://157.191.240.27:1337"
+    "server": "http://localhost:3000",
+    "chatServer": "ws://localhost:1337"
 }
