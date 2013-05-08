@@ -1,9 +1,9 @@
 body {
-    background-color: #88B0D7;
+    background-color: #E3E7EB;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-#page { width: 90%; padding: 10px; margin: 24px auto; border: 2px #EEE solid; height: 800px; box-shadow: 5px 5px 5px #CCC; background: #FFF; overflow: auto;}
+#page { width: 90%; padding: 2em; margin: 24px auto; border: 2px #EEE solid; height: 800px; box-shadow: 5px 5px 5px #CCC; background: #FFF; overflow: auto;}
 
 textarea { min-height: 100px;}
 select { width: 30%; font-size: 2em;}
@@ -81,4 +81,8 @@ padding: 5px 0;
 .nav-v span.online { color: #329532; }
 .nav-v span.offline { color: #a43739; }
 
-.login-form {margin: 20em; padding: 2em; border: #eee solid 1px;}
+.login-form {margin: 20em; padding: 2em; border: #eee solid 1px; background-color: #E3E7EB;}
+.login-form-inner { margin: 1em; border: #AAA 1px dashed; padding: 3em; }
+input { width: 60%; height: 3em !important; }
+input[type="submit"], button { width: 10em !important; border: 0px; background-color: #FFB94B; height: 4em; color: #FFF; }
+

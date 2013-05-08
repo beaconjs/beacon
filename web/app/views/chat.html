@@ -28,7 +28,9 @@
 </div>
 <div class="row">
     <div class="twothird">
-        <input type="text" class="width-100" id="chatMsg">
+        <form ng-submit="sendChat()">
+            <input type="text" class="width-100" id="chatMsg">
+        </form>
     </div>
     <div class="onesixth">
         <span id="status"></span>

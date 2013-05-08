@@ -12,10 +12,12 @@
             <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th></th>
             </tr>
             <tr ng-repeat="project in projects" ng-click="select(project.id)">
                 <td>{{project.name}}</td>
                 <td>{{project.description}}</td>
+                <td><a ng-click="edit(project.id)">Edit</a></td>
             </tr>
         </table>
     </div>

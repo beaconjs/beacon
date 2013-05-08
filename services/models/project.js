@@ -37,3 +37,7 @@ Project.prototype.save=function(onSuccess, onError) {
 Project.all=function(onSuccess, onError) {
     projects_table.all().success(onSuccess).error(onError);
 };
+
+Project.get=function(id, onSuccess, onError) {
+    projects_table.find(id).success(onSuccess).error(onError);
+};

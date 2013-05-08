@@ -11,6 +11,6 @@ var data = fs.readFileSync(dbConfigFile, 'utf8');
 
 var dbConfig = JSON.parse(data)[env];
 var password = dbConfig.password ? dbConfig.password : null;
-var sequelize = new Sequelize(dbConfig.database, dbConfig.user, password, { logging: false });
+var sequelize = new Sequelize(dbConfig.database, dbConfig.user, password, { logging: true });
 
 exports.sequelize = sequelize

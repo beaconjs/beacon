@@ -21,8 +21,10 @@ var webApp = angular.module('webApp', [])
       }).when('/projects/new', {
         templateUrl: 'views/projects/add.html',
         controller: 'ProjectsCtrl'
-      })
-      .otherwise({
+      }).when('/projects/edit', {
+        templateUrl: 'views/projects/edit.html',
+        controller: 'EditProjectsCtrl'
+      }).otherwise({
         redirectTo: '/'
       });
   });

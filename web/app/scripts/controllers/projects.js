@@ -14,3 +14,28 @@ angular.module('webApp')
         });
     };
   });
+
+angular.module('webApp')
+  .controller('EditProjectsCtrl', function ($rootScope, $scope, $http, $location) {
+
+    $scope.members = [];
+
+    $http.get($rootScope.appconfig.server + '/projects/' + $rootScope.project_id + '/members', {}).success(function(res) {
+        $scope.members = res || [];
+        console.log(res);
+    }).error(function() {
+        console.log("error");
+    });
+
+    $scope.addMember = function() {
+        var member = { 
+            role_id: $scope.member.role_id, 
+            user_id: $scope.member.user_id 
+        };
+        $http.post($rootScope.appconfig.server + '/projects/' + $rootScope.project_id + '/members', member).success(function() {
+            $scope.members.push(member);
+        }).error(function() {
+            console.log("error");
+        });
+    };
+  });

@@ -12,6 +12,14 @@ exports.list = function(req, res){
   });
 };
 
+exports.get = function(req, res){
+  Project.get(req.params.id, function(o){
+    res.json(o);
+  }, function(err){
+    res.send(err);
+  });
+};
+
 exports.create = function(req, res){
     var p = req.body;
     var project = new Project(p.name, p.description, null, 1);

@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><span>Projects</span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <table>
+        <tr ng-repeat="member in members">
+            <td>{{member.user_id}}</td>
+            <td>{{member.role_id}}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="row">
+    <form ng-submit="addMember()">
+        <br>User:<br> <input type="text" ng-model="member.user_id" class="width-33">
+        <br>Role:<br> <input type="text" ng-model="member.role_id" class="width-33">
+        <br><input type="submit" value="Save"/>
+    </form>
+</div>

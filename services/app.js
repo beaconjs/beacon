@@ -9,6 +9,7 @@ var express = require('express')
   , stories = require('./routes/card_wall/stories')
   , projects = require('./routes/projects')
   , notes = require('./routes/notes')
+  , projectusers = require('./routes/projectusers')
   , cardModels = require('./models/card_wall')
   , http = require('http')
   , db = require("./db")
@@ -46,7 +47,10 @@ app.get('/stories', stories.list);
 app.post('/stories/create', stories.create);
 app.post('/projects', projects.create);
 app.get('/projects', projects.list);
+app.get('/projects/:id', projects.get);
 app.get('/projects/:id/notes', notes.list);
+app.get('/projects/:id/members', projectusers.list);
+app.post('/projects/:id/members', projectusers.create);
 app.post('/notes', notes.create);
 
 http.createServer(app).listen(app.get('port'), function(){
