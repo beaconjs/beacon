@@ -49,5 +49,5 @@ function closeDropZone() {
         scope.$apply();
     }
 
-    window.setTimeout(setTextValue, 30000);
+    window.setTimeout(setTextValue, 10000);
 })();

@@ -49,6 +49,7 @@ select { width: 30%; font-size: 2em;}
 .menu ul li { cursor: hand; cursor: pointer; }
 
 .richtextbuttons ul li select { width: 40px;}
+.richtextbuttons button { width: auto !important; height: auto !important; background: #AAA; border: #888 1px solid; border-radius: 5px; font-size: 0.8em; }
 
 .richtextbuttons .richbtn { padding: 0.2em; }
 .richtextbuttons .seperator { border-right: 1px solid #ccc;}

@@ -12,6 +12,14 @@ exports.list = function(req, res){
   });
 };
 
+exports.get = function(req, res){
+  Note.get(req.params.id, req.params.noteId, function(o){
+    res.json(o);
+  }, function(err){
+    res.send(err);
+  });
+};
+
 exports.create = function(req, res){
     var o = req.body;
     var note = new Note(o.title, o.details, o.project, o.user);

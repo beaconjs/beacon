@@ -11,8 +11,12 @@ angular.module('webApp')
         console.log(error);
     });
 
+    function isBlank(str) {
+        return (!str || /^\s*$/.test(str));
+    }
+
     $scope.$watch('notedetails', function(){
-        if ((!$scope.note_id && $scope.notedetails) || $scope.note_id) {
+        if ((!$scope.note_id && !isBlank($scope.notedetails)) || $scope.note_id) {
             $http.post($rootScope.appconfig.server + '/notes', {
                 id: $scope.note_id,
                 title: $scope.notetitle,
@@ -24,4 +28,17 @@ angular.module('webApp')
             });
         }
     });
+
+    $scope.load = function(id) {
+        $http.get($rootScope.appconfig.server + '/projects/' + $rootScope.project_id + '/notes/' + id, {}).success(function(res) {
+            $scope.note_id = id;
+            if (res) {
+                $('#notedetails_div').html(res.details);
+                $scope.notetitle = res.title;
+                $('#notedetails').val(res.details);
+            }
+        }).error(function() {
+            console.log("error");
+        });
+    }
   });

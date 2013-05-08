@@ -42,3 +42,7 @@ Note.prototype.save=function(onSuccess, onError) {
 Note.all=function(projectId, onSuccess, onError) {
     notes_table.findAll({ where: { project_id: projectId } }).success(onSuccess).error(onError);
 };
+
+Note.get=function(projectId, noteId, onSuccess, onError) {
+    notes_table.find({ where: { id: noteId, project_id: projectId } }).success(onSuccess).error(onError);
+};

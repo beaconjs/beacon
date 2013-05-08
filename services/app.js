@@ -49,6 +49,7 @@ app.post('/projects', projects.create);
 app.get('/projects', projects.list);
 app.get('/projects/:id', projects.get);
 app.get('/projects/:id/notes', notes.list);
+app.get('/projects/:id/notes/:noteId', notes.get);
 app.get('/projects/:id/members', projectusers.list);
 app.post('/projects/:id/members', projectusers.create);
 app.post('/notes', notes.create);
