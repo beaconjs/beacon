@@ -24,7 +24,13 @@ angular.module('webApp')
                 project: $rootScope.project_id,
                 user: $rootScope.loggedInUser.id
             }).success(function(o){
-                if (o.id) $scope.note_id = o.id;
+                if (o.id) { 
+                    $scope.note_id = o.id; 
+                    $scope.notes.push({
+                        id: $scope.note_id,
+                        title: $scope.notetitle
+                    });
+                }
             });
         }
     });
