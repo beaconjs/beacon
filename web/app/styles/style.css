@@ -62,27 +62,21 @@ select { width: 30%; font-size: 2em;}
 .drawer ul li { padding: 0; margin: 0; }
 .drawer a { text-decoration: none; }
 
-.chat-box {
-border: #CCC solid 1px;
-height: 50em;
-width: 95%;padding: 0 2em;
-color: #444;
-overflow: auto;
-font-size: 0.9em;
-}
+.chat-box { border: #CCC solid 1px; height: 50em; width: 95%;padding: 0 2em; color: #444; overflow: auto; font-size: 0.9em; }
 
-.chat-box .chat-row {
-border-bottom: #eee solid 1px;
-padding: 5px 0;
-}
+.chat-box .chat-row { border-bottom: #eee solid 1px; padding: 5px 0; }
 
 .chat-box span { color: #888; float: right; font-size: 0.8em;}
 
 .nav-v span.online { color: #329532; }
 .nav-v span.offline { color: #a43739; }
 
-.login-form {margin: 20em; padding: 2em; border: #eee solid 1px; background-color: #E3E7EB;}
+.login-form {margin: 10em; padding: 2em; border: #eee solid 1px; background-color: #E3E7EB; -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, .2), 0 3px 0 #FFF, 0 4px 0 rgba(0, 0, 0, .2), 0 6px 0 #FFF, 0 7px 0 rgba(0, 0, 0, .2); -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 1px 1px 0 rgba(0, 0, 0, .1), 3px 3px 0 rgba(255, 255, 255, 1), 4px 4px 0 rgba(0, 0, 0, .1), 6px 6px 0 rgba(255, 255, 255, 1), 7px 7px 0 rgba(0, 0, 0, .1); box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, .2), 0 3px 0 #FFF, 0 4px 0 rgba(0, 0, 0, .2), 0 6px 0 #FFF, 0 7px 0 rgba(0, 0, 0, .2); -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}
 .login-form-inner { margin: 1em; border: #AAA 1px dashed; padding: 3em; }
 input { width: 60%; height: 3em !important; }
 input[type="submit"], button { width: 10em !important; border: 0px; background-color: #FFB94B; height: 4em; color: #FFF; }
+
+.login-form input[type="text"], .login-form input[type="password"] { padding: 0 2em; background: #F1F1F1 url(../images/sprite.png) no-repeat; }
+.login-form input#password { background-position: 5px -52px !important; }
+.login-form input#username { background-position: 5px -2px !important; }
 
