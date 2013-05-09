@@ -12,6 +12,8 @@ exports.up = function(db, callback) {
         created_by: 'int',
         modified_by: 'int'
       }, callback);
+
+    db.runSql("ALTER TABLE notes ADD CONSTRAINT `fk_notes_project` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`)");
 };
 
 exports.down = function(db, callback) {
