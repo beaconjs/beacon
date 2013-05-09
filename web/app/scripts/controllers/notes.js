@@ -44,9 +44,33 @@ angular.module('webApp')
                 $('#notedetails_div').html(res.details);
                 $scope.notetitle = res.title;
                 $('#notedetails').val(res.details);
+                $scope.loadComments();
+                $scope.comment = {};
             }
         }).error(function() {
             console.log("error");
+        });
+    }
+
+    $scope.loadComments = function() {
+        if ($scope.note_id) {
+            $http.get($rootScope.appconfig.server + '/notes/' + $scope.note_id + '/comments', {}).success(function(res) {
+                $scope.comments = [];
+                if (res) $scope.comments = res;
+            }).error(function() {
+                console.log("error");
+            });
+        }
+    };
+
+    $scope.addComment = function() {
+        $http.post($rootScope.appconfig.server + '/notes/' + $scope.note_id + '/comments', {
+            details: $scope.comment.details,
+            user: $rootScope.loggedInUser.id
+        }).success(function(o){
+            console.log("saved");
+            $scope.comments.push({ details: $scope.comment.details, user: { name: $rootScope.loggedInUser.name }, created_at: new Date() });
+            $scope.comment = {};
         });
     }
   });

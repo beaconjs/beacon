@@ -16,44 +16,52 @@
                 </div>   
             </div>
             <div class="fivesixth notes">
-                <input type="text" ng-model="notetitle" class="width-100" placeholder="Please enter a title"/><br>
-                <div id="notedetails-msg" class="richtext-auto-save"></div>
-                <div id="notedetails-dropzone-container" class="richtext-dropzone">
-                    <div id="notedetails-dropzone" class="richtext-dropzone-inner">
-                        <form action="/test" method="post" enctype="multipart/form-data" class="dropzone clickable" id="notedetails-dropzone-form">
-                        </form>
-                        <button onclick="closeDropZone()">OK</button>
+                <div class="notes-box">
+                    <input type="text" ng-model="notetitle" class="width-100" placeholder="Please enter a title"/><br>
+                    <div id="notedetails-msg" class="richtext-auto-save"></div>
+                    <div id="notedetails-dropzone-container" class="richtext-dropzone">
+                        <div id="notedetails-dropzone" class="richtext-dropzone-inner">
+                            <form action="/test" method="post" enctype="multipart/form-data" class="dropzone clickable" id="notedetails-dropzone-form">
+                            </form>
+                            <button onclick="closeDropZone()">OK</button>
+                        </div>
                     </div>
+                    <div class="richtextbuttons">
+                        <ul>
+                            <li class="richbtn"><button onclick="formatText('bold');">B</button></li>
+                            <li class="richbtn"><button onclick="formatText('italic');">I</button></li>
+                            <li class="richbtn seperator"><button onclick="formatText('underline');">U</button></li>
+                            <li class="richbtn">Font Size</li>
+                            <li class="richbtn">
+                                <select onchange="formatText('FontSize',this.selectedIndex + 1);" name="fontSize">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                </select>
+                            </li>
+                            <li class="richbtn seperator"><button onclick="var color=prompt('Please enter font color (full hash)');formatText('ForeColor',color);">Color</button></li>
+                            <li class="richbtn"><button onclick="var url=prompt('Please enter the URL');formatText('CreateLink',url);">Link</button></li>
+                            <li class="richbtn seperator"><button onclick="formatText('Unlink');">Unlink</button></li>
+                            <li class="richbtn"><button onclick="formatText('InsertUnorderedList');">UL</button></li>
+                            <li class="richbtn seperator"><button onclick="formatText('InsertOrderedList');">OL</button></li>
+                            <li class="richbtn"><button onclick="attachFile(false);">Attach File</button></li>
+                            <li class="richbtn seperator"><button onclick="attachFile(true);">Image</button></li>
+                            <li class="richbtn"><button onclick="insertTable();">Table</button></li>
+                        </ul>
+                    </div>
+                    <div class="richtext" id="notedetails_div" contenteditable>
+                    </div>
+                    <textarea id="notedetails" class="richtextarea" ng-model="notedetails"></textarea>
                 </div>
-                <div class="richtextbuttons">
-                    <ul>
-                        <li class="richbtn"><button onclick="formatText('bold');">B</button></li>
-                        <li class="richbtn"><button onclick="formatText('italic');">I</button></li>
-                        <li class="richbtn seperator"><button onclick="formatText('underline');">U</button></li>
-                        <li class="richbtn">Font Size</li>
-                        <li class="richbtn">
-                            <select onchange="formatText('FontSize',this.selectedIndex + 1);" name="fontSize">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3" selected>3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                            </select>
-                        </li>
-                        <li class="richbtn seperator"><button onclick="var color=prompt('Please enter font color (full hash)');formatText('ForeColor',color);">Color</button></li>
-                        <li class="richbtn"><button onclick="var url=prompt('Please enter the URL');formatText('CreateLink',url);">Link</button></li>
-                        <li class="richbtn seperator"><button onclick="formatText('Unlink');">Unlink</button></li>
-                        <li class="richbtn"><button onclick="formatText('InsertUnorderedList');">UL</button></li>
-                        <li class="richbtn seperator"><button onclick="formatText('InsertOrderedList');">OL</button></li>
-                        <li class="richbtn"><button onclick="attachFile(false);">Attach File</button></li>
-                        <li class="richbtn seperator"><button onclick="attachFile(true);">Image</button></li>
-                        <li class="richbtn"><button onclick="insertTable();">Table</button></li>
+                <div class="comments-box" ng-show="note_id">
+                    <ul class="comments">
+                        <li ng-repeat="c in comments"><span>{{c.user.name}} {{c.created_at | date:short}}</span> {{c.details}}</li>
+                        <li><button ng-click="addComment()">Save</button><textarea ng-model="comment.details" rows="10"></textarea></li>
                     </ul>
                 </div>
-                <div class="richtext" id="notedetails_div" contenteditable>
-                </div>
-                <textarea id="notedetails" class="richtextarea" ng-model="notedetails"></textarea>
             </div>
         </div>

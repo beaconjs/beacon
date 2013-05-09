@@ -1,8 +1,8 @@
 var db = require("../db.js").sequelize;
 var DataTypes = require("sequelize");
+var User = require('./users').table;
 
-var Comment = function(title, details, user_id, source_id, source_type) {
- this.title = title, 
+var Comment = function(details, user_id, source_id, source_type) {
  this.details = details, 
  this.user_id = user_id,
  this.source_id = source_id,
@@ -11,7 +11,6 @@ var Comment = function(title, details, user_id, source_id, source_type) {
 };
 
 var comments_table = db.define('comments', {
-      title: DataTypes.STRING,
       details: DataTypes.STRING,
       user_id: DataTypes.INTEGER,
       source_id: DataTypes.INTEGER,
@@ -22,6 +21,9 @@ var comments_table = db.define('comments', {
       underscored: true
     });
 
+comments_table.belongsTo(User);
+User.hasMany(comments_table);
+
 exports.get=Comment;
 exports.table=comments_table;
 
@@ -30,7 +32,7 @@ Comment.prototype.save=function(onSuccess, onError) {
 };
 
 Comment.forNote=function(noteId, onSuccess, onError) {
-    comments_table.findAll({ where: { source_id: noteId, source_type: 'note' } }).success(onSuccess).error(onError);
+    comments_table.findAll({ include: [ User ], where: { source_id: noteId, source_type: 'note' } }).success(onSuccess).error(onError);
 };
 
 Comment.get=function(id, onSuccess, onError) {

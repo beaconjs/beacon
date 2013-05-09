@@ -85,3 +85,14 @@ input[type="submit"], button { width: 10em !important; border: 0px; background-c
 .login-form input#password { background-position: 5px -52px !important; }
 .login-form input#username { background-position: 5px -2px !important; }
 
+.comments { list-style: none; margin-top: 2em;}
+.comments button { float: right;}
+.comments textarea { display: block; width: 80%; height: 10em; }
+.comments li { border-bottom: 1px solid #eee; padding: 2px; margin-bottom: 5px; font-size: 0.9em; }
+.comments li span { color: #888; }
+.notes-box {float: right; width: 95%;}
+.comments-box {float: left; width: 10px; display: block; position: absolute; height: 40em; background-color: #E3E7EB; z-index: 2; padding: 0 1em 0 0;}
+.comments-box .comments { display: none; }
+.comments-box:hover {float: left; width: 45%; display: block; position: absolute; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear;-ms-transition: all 0.2s linear; transition: all 0.2s linear;}
+.comments-box:hover .comments { display: block; }
+

@@ -22,7 +22,7 @@ exports.get = function(req, res){
 
 exports.createForNote = function(req, res){
     var o = req.body;
-    var comment = new Comment(o.title, o.details, o.user, o.note_id, 'note');
+    var comment = new Comment(o.details, o.user, req.params.id, 'note');
     if (o.id) comment.id = o.id;
     
     comment.save(function(obj){
