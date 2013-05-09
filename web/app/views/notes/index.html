@@ -9,14 +9,14 @@
         </div>
         <div class="row">
             <div class="sixth">
-                <div class="nav-v">
+                <div class="nav-v notes-list">
                     <ul>
                         <li ng-repeat="note in notes"><a ng-show="note.title" ng-click="load(note.id)">{{note.title}}</a><a href="#" ng-hide="note.title">(no name)</a></li>
                     </ul>
                 </div>   
             </div>
-            <div class="fivesixth">
-                <input type="text" ng-model="notetitle" class="width-100"/><br>
+            <div class="fivesixth notes">
+                <input type="text" ng-model="notetitle" class="width-100" placeholder="Please enter a title"/><br>
                 <div id="notedetails-msg" class="richtext-auto-save"></div>
                 <div id="notedetails-dropzone-container" class="richtext-dropzone">
                     <div id="notedetails-dropzone" class="richtext-dropzone-inner">

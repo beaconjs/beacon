@@ -17,4 +17,28 @@ describe('Project', function(){
         });
     })
   })
+
+  describe('#all()', function(){
+    it('should list all projects', function(done){
+        Project.all(function(o){
+            expect(o.length).to.not.equal(0);
+            done();
+        }, function(error){
+            done();
+            if (error) throw error;
+        });
+    })
+  })
+
+  describe('#get()', function(){
+    it('should fetch a project', function(done){
+        Project.get(1, function(o){
+            expect(o.id).to.not.equal(null);
+            done();
+        }, function(error){
+            done();
+            if (error) throw error;
+        });
+    })
+  })
 })

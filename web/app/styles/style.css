@@ -37,8 +37,10 @@ select { width: 30%; font-size: 2em;}
 .lane { width: 20%; border-right: 3px #EEE solid; padding: 10px; float: left; height: 50em; overflow: auto;}
 .lane .heading { background: #FFF; border-bottom: 3px #8C8 solid; font-size: 1.3em; text-transform: capitalize; padding: 3px; }
 
+.notes input:focus { outline: none; }
+.notes input {border: 0px; box-shadow: 0 0; border-bottom: 1px solid #ccc; margin-bottom: 1em;}
 .richtext-auto-save {float: right; margin: 1em; height: 1em; color: #888; font-size: 0.8em;}
-.richtext { border: #ccc solid 1px; min-height: 20em; padding: 1em; }
+.richtext { border: #eee solid 1px; min-height: 40em; padding: 1em; }
 .richtext table { border: #ccc solid 1px; }
 .richtext table td { border: #ccc solid 1px; min-width: 4em; }
 
@@ -57,6 +59,8 @@ select { width: 30%; font-size: 2em;}
 
 .richtext-dropzone { display: none; padding: 2em; position: absolute; z-index: 10; background-color: #f0f0f0; }
 .richtext-dropzone-inner { border: 2px dashed #888; min-height: 3em; min-width: 40em; padding: 6em;}
+
+.notes-list { background-color: #E3E7EB; padding: 0.5em; border: #E3E7EB 1px solid; border-radius: 0.5em; }
 
 .drawer { float: left; text-align: left; width: 100%;}
 .drawer ul { list-style: none; color: #AAA; float: right; }
