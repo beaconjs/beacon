@@ -3,7 +3,7 @@ var DataTypes = require("sequelize");
 
 var User = function(name, username, password) {
  this.name = name, 
- this.userName = username, 
+ this.user_name = username, 
  this.password = password
 };
 
