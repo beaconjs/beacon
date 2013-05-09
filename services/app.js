@@ -9,6 +9,7 @@ var express = require('express')
   , stories = require('./routes/card_wall/stories')
   , projects = require('./routes/projects')
   , notes = require('./routes/notes')
+  , comments = require('./routes/comments')
   , projectusers = require('./routes/projectusers')
   , cardModels = require('./models/card_wall')
   , http = require('http')
@@ -53,6 +54,9 @@ app.get('/projects/:id/notes/:noteId', notes.get);
 app.get('/projects/:id/members', projectusers.list);
 app.post('/projects/:id/members', projectusers.create);
 app.post('/notes', notes.create);
+app.post('/notes/:id/comments', comments.createForNote);
+app.get('/notes/:id/comments', comments.forNote);
+app.get('/comments', comments.get);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
