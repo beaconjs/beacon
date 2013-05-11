@@ -7,7 +7,7 @@ var assert = require("assert")
 describe('Comment', function(){
   describe('#save()', function(){
     it('should save a comment', function(done){
-        var comment = new Comment('test comment', 'this is a test comment', 1, 1, 'note');
+        var comment = new Comment('this is a test comment', 1, 1, 'note');
         comment.save(function(o){
             expect(o.id).to.not.equal(null);
             done();
