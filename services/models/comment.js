@@ -1,6 +1,7 @@
 var db = require("../db.js").sequelize;
 var DataTypes = require("sequelize");
-var User = require('./users').table;
+
+//var User = require('./users').table;
 
 var Comment = function(details, user_id, source_id, source_type) {
  this.details = details, 
@@ -21,8 +22,8 @@ var comments_table = db.define('comments', {
       underscored: true
     });
 
-comments_table.belongsTo(User);
-User.hasMany(comments_table);
+//comments_table.belongsTo(User);
+//User.hasMany(comments_table);
 
 exports.get=Comment;
 exports.table=comments_table;
@@ -32,7 +33,9 @@ Comment.prototype.save=function(onSuccess, onError) {
 };
 
 Comment.forNote=function(noteId, onSuccess, onError) {
-    comments_table.findAll({ include: [ User ], where: { source_id: noteId, source_type: 'note' } }).success(onSuccess).error(onError);
+    // ISSUE: Unable to model the user relationship at multiple places and so doing that manually...
+    //comments_table.findAll({ include: [ User ], where: { source_id: noteId, source_type: 'note' } }).success(onSuccess).error(onError);
+    db.query("select c.*, u.name as 'user.name' from comments c, users u where c.user_id=u.id and c.source_id=" + noteId + " and c.source_type='note' ").success(onSuccess).error(onError);
 };
 
 Comment.get=function(id, onSuccess, onError) {
