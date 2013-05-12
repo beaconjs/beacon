@@ -24,6 +24,10 @@ User.find=function(username, password, onSuccess, onError) {
     users_table.find({ where: {user_name: username, password: password}, attributes: ['id', 'name', 'user_name'] }).success(onSuccess).error(onError);
 };
 
+User.lookup=function(name, onSuccess, onError) {
+    db.query("select id, name, user_name from users where name like '%" + name + "%' ").success(onSuccess).error(onError);
+};
+
 
 exports.get=User;
 exports.table=users_table;

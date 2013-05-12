@@ -60,7 +60,8 @@ select { width: 30%; font-size: 2em;}
 .richtext-dropzone { display: none; padding: 2em; position: absolute; z-index: 10; background-color: #f0f0f0; }
 .richtext-dropzone-inner { border: 2px dashed #888; min-height: 3em; min-width: 40em; padding: 6em;}
 
-.notes-list { background-color: #E3E7EB; padding: 0.5em; border: #E3E7EB 1px solid; border-radius: 0.5em; }
+.notes-list { background-color: #fff; padding: 0.5em; border: #D895C6 1px solid; border-bottom: #D895C6 3px solid; border-radius: 0.5em; }
+.notes-list a { color: #D895C6 !important;}
 
 .drawer { float: left; text-align: left; width: 100%;}
 .drawer ul { list-style: none; color: #AAA; float: right; }
@@ -88,11 +89,11 @@ input[type="submit"], button { width: 10em !important; border: 0px; background-c
 .comments { list-style: none; margin-top: 2em;}
 .comments button { float: right;}
 .comments textarea { display: block; width: 80%; height: 10em; }
-.comments li { border-bottom: 1px solid #eee; padding: 2px; margin-bottom: 5px; font-size: 0.9em; }
+.comments li { padding: 1em; margin-bottom: 5px; font-size: 0.9em; background-color: #FDCD49;border-radius: 10px;}
 .comments li span { color: #888; }
 .notes-box {float: right; width: 95%;}
-.comments-box {float: left; width: 0.5em; display: block; position: absolute; height: 40em; background-color: #FDCD49; z-index: 2; padding: 0 0.25em 0 0;}
+.comments-box {float: left; width: 2em; height: 2em; display: block; position: absolute; background-color: #EEE; z-index: 2; padding: 0 0.25em 0 0;}
 .comments-box .comments { display: none; }
-.comments-box:hover {float: left; width: 45%; display: block; padding: 0 1em 0 0;position: absolute; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear;-ms-transition: all 0.2s linear; transition: all 0.2s linear;}
+.comments-box:hover {float: left; width: 45%; height: 50em; display: block; padding: 0 1em 0 0;position: absolute; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear;-ms-transition: all 0.2s linear; transition: all 0.2s linear;}
 .comments-box:hover .comments { display: block; }
 

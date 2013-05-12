@@ -30,5 +30,17 @@ describe('User', function(){
     });
   });
 
+  describe('#lookup()', function(){
+    it('should find a user', function(done){
+        User.lookup('test', function(o){
+            expect(o.length).to.not.equal(0);
+            done();
+        }, function(error){
+            done();
+            if (error) throw error;
+        });
+    });
+  });
+
 
 })
