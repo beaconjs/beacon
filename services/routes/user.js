@@ -16,3 +16,11 @@ exports.authenticate = function(req, res) {
     res.send("Auth failed");
   });
 };
+
+exports.lookup = function(req, res){
+  User.lookup(req.params.name, function(o){
+    res.json(o);
+  }, function(err){
+    res.send(err);
+  });
+};
