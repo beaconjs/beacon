@@ -7,7 +7,7 @@ angular.module('webApp')
     $http.get($rootScope.appconfig.server + "/projects").success(function(res){
         $scope.projects = res;
         if (res && res.length > 0) {
-            $scope.select(res[0].id);
+            $rootScope.project_id = res[0].id;
         }
     }).error(function(error){
         console.log(error);
@@ -15,6 +15,7 @@ angular.module('webApp')
 
     $scope.select = function(id) {
         $rootScope.project_id = id;
+        $location.path('notes');
     };
 
     $scope.edit = function(id) {
