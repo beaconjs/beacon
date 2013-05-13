@@ -1,3 +1,5 @@
+var fs = require('fs');
+var mkdirp = require('mkdirp');
 var Note = require('../models/note').get;
 
 /*
@@ -32,3 +34,20 @@ exports.create = function(req, res){
         res.send(500, "error: " + error);
     });
 };
+
+exports.upload = function(req, res) {
+  var path = __dirname + '/../public/uploads/' + req.params.id;
+  mkdirp(path, function (err) {
+    if (err) console.error(err)
+    else {
+      fs.readFile(req.files.file.path, function (err, data) {
+        path += ("/" + req.files.file.name);
+        fs.writeFile(path, data, function (err) {
+          console.log('done!');
+        });
+      });
+    }
+  });
+
+  res.send('done');
+}

@@ -9,7 +9,7 @@ var _filePath = null;
 function attachFile(insert) {
     _fileTypeImage = insert;
     $('#notedetails-dropzone-container').show();
-    var notesDropzone = Dropzone.forElement("#notedetails-dropzone-form");
+    var notesDropzone = new Dropzone('form#notedetails-dropzone-form'); //Dropzone.forElement("#notedetails-dropzone-form");
     notesDropzone.on("addedfile", function(file) {
       _filePath = '/uploaded/' + file.name;
     });

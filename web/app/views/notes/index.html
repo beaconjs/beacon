@@ -21,7 +21,7 @@
                     <div id="notedetails-msg" class="richtext-auto-save"></div>
                     <div id="notedetails-dropzone-container" class="richtext-dropzone">
                         <div id="notedetails-dropzone" class="richtext-dropzone-inner">
-                            <form action="/test" method="post" enctype="multipart/form-data" class="dropzone clickable" id="notedetails-dropzone-form">
+                            <form action="{{appconfig.server}}/projects/{{project_id}}/upload" method="post" enctype="multipart/form-data" class="dropzone clickable" id="notedetails-dropzone-form">
                             </form>
                             <button onclick="closeDropZone()">OK</button>
                         </div>
@@ -49,7 +49,7 @@
                             <li class="richbtn"><button onclick="formatText('InsertUnorderedList');">UL</button></li>
                             <li class="richbtn seperator"><button onclick="formatText('InsertOrderedList');">OL</button></li>
                             <li class="richbtn"><button onclick="attachFile(false);">Attach File</button></li>
-                            <li class="richbtn seperator"><button onclick="attachFile(true);">Image</button></li>
+                            <li class="richbtn seperator"><button onclick="attachFile(false);">Image</button></li>
                             <li class="richbtn"><button onclick="insertTable();">Table</button></li>
                         </ul>
                     </div>

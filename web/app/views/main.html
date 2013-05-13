@@ -1,14 +1,16 @@
-<h1>Welcome to Beacon</h1>
-<div class="row">
-    <div class="breadcrumbs">
-        <ul>
-            <li><a href="#">Home</a></li>
-        </ul>
+<div class="projects-home">
+    <h1>Welcome to Beacon</h1>
+    <div class="row">
+        <div class="breadcrumbs">
+            <ul>
+                <li><a href="#">Home</a></li>
+            </ul>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="project_tile" ng-repeat="project in projects">
-        <h1><a ng-click="select(project.id)">{{project.name}}</a></h1>
-        <p ng-click="edit(project.id)">{{project.description}} (Edit)</p>
+    <div class="row">
+        <div class="project_tile" ng-repeat="project in projects">
+            <h1><a ng-click="select(project.id)">{{project.name}}</a></h1>
+            <p ng-click="edit(project.id)">{{project.description}} (Edit)</p>
+        </div>
     </div>
 </div>
