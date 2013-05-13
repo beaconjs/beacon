@@ -1,2 +1,3 @@
 services/node_modules/*
+services/public/uploads/*
 .DS_Store
