@@ -3,6 +3,7 @@ var DataTypes = require("sequelize");
 
 var Project = require('./project').table;
 var User = require('./users').table;
+var Role = require('./roles').table;
 
 var ProjectUser = function(project_id, user_id, role_id) {
  this.project_id = project_id, 
@@ -21,7 +22,9 @@ var pusers_table = db.define('project_users', {
 
 pusers_table.belongsTo(User);
 pusers_table.belongsTo(Project);
+pusers_table.belongsTo(Role);
 
+Role.hasMany(pusers_table);
 Project.hasMany(pusers_table);
 User.hasMany(pusers_table);
 
@@ -30,7 +33,7 @@ ProjectUser.prototype.save=function(onSuccess, onError) {
 };
 
 ProjectUser.list=function(project_id, onSuccess, onError) {
-    pusers_table.all({ include: [ Project, User ], where: {project_id: project_id } }).success(onSuccess).error(onError);
+    pusers_table.all({ include: [ Project, User, Role ], where: {project_id: project_id } }).success(onSuccess).error(onError);
 };
 
 

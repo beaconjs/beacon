@@ -6,6 +6,7 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , roles = require('./routes/roles')
   , stories = require('./routes/card_wall/stories')
   , projects = require('./routes/projects')
   , notes = require('./routes/notes')
@@ -45,6 +46,7 @@ app.get('/', routes.index);
 app.post('/authenticate', user.authenticate);
 app.get('/users', user.list);
 app.get('/users/search/:name', user.lookup);
+app.get('/roles', roles.list);
 app.get('/stories', stories.list);
 app.post('/stories/create', stories.create);
 app.post('/projects', projects.create);

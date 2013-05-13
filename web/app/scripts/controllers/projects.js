@@ -19,6 +19,8 @@ angular.module('webApp')
   .controller('EditProjectsCtrl', function ($rootScope, $scope, $http, $location) {
 
     $scope.members = [];
+    $scope.member = { };
+    $scope.roles = [];
     $scope.searchResults = [];
 
     $scope.$watch('member.name', function() {
@@ -29,6 +31,13 @@ angular.module('webApp')
                 console.log("error");
             });
         } 
+    });
+
+    $http.get($rootScope.appconfig.server + '/roles', {}).success(function(res) {
+        $scope.roles = res || [];
+        if ($scope.roles.length > 0) $scope.member.role = $scope.roles[0];
+    }).error(function() {
+        console.log("error");
     });
 
     $scope.selectUser = function(id, name) {
@@ -45,13 +54,14 @@ angular.module('webApp')
 
     $scope.addMember = function() {
         var member = { 
-            role_id: $scope.member.role_id, 
+            role_id: $scope.member.role.id, 
             user_id: $scope.member.user_id,
             user: { name: $scope.member.name }
         };
         $http.post($rootScope.appconfig.server + '/projects/' + $rootScope.project_id + '/members', member).success(function() {
             $scope.members.push(member);
-            member = { };
+            $scope.member = { };
+            if ($scope.roles.length > 0) $scope.member.role = $scope.roles[0];
         }).error(function() {
             console.log("error");
         });
