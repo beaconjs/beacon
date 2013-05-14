@@ -32,11 +32,6 @@ function htmlEntities(str) {
                       .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-// Array with some colors
-var colors = [ 'red', 'green', 'blue', 'magenta', 'purple', 'plum', 'orange' ];
-// ... in random order
-colors.sort(function(a,b) { return Math.random() > 0.5; } );
-
 /**
  * HTTP server
  */
@@ -73,7 +68,6 @@ wsServer.on('request', function(request) {
     // we need to know client index to remove them on 'close' event
     var index = channels[channel].clients.push(connection) - 1;
     var userName = false;
-    var userColor = false;
 
     console.log((new Date()) + ' Connection accepted.');
 
@@ -88,11 +82,7 @@ wsServer.on('request', function(request) {
             if (userName === false) { // first message sent by user is their name
                 // remember user name
                 userName = htmlEntities(message.utf8Data);
-                // get random color and send it back to the user
-                userColor = colors.shift();
-                connection.sendUTF(JSON.stringify({ type:'color', data: userColor }));
-                console.log((new Date()) + ' User is known as: ' + userName
-                            + ' with ' + userColor + ' color.');
+                console.log((new Date()) + ' User is known as: ' + userName);
 
             } else { // log and broadcast the message
                 //console.log((new Date()) + ' Received Message from '
@@ -103,7 +93,6 @@ wsServer.on('request', function(request) {
                     time: (new Date()).getTime(),
                     text: htmlEntities(message.utf8Data),
                     author: userName,
-                    color: userColor,
                     channel: channel
                 };
                 history.push(obj);
@@ -120,13 +109,11 @@ wsServer.on('request', function(request) {
 
     // user disconnected
     connection.on('close', function(connection) {
-        if (userName !== false && userColor !== false) {
+        if (userName !== false) {
             console.log((new Date()) + " Peer "
                 + userName + "(" + connection.remoteAddress + ") disconnected.");
             // remove user from the list of connected clients
             channels[channel].clients.splice(index, 1);
-            // push back user's color to be reused by another user
-            colors.push(userColor);
         }
     });
 

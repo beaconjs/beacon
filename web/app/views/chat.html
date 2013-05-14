@@ -15,13 +15,7 @@
     <div class="sixth">
         <div class="nav-v">
             <ul>
-                <li><span class="online">Note 2</span></li>
-                <li><span class="offline">Note 2</span></li>
-                <li><span class="online">Note 2</span></li>
-                <li><span class="offline">Note 2</span></li>
-                <li><span class="offline">Note 2</span></li>
-                <li><span class="online">Note 2</span></li>
-                <li><span class="offline">Note 2</span></li>
+                <li ng-repeat="member in members"><span id="{{replace(member.user.name)}}">{{member.user.name}}</span></li>
             </ul>
         </div>  
     </div>

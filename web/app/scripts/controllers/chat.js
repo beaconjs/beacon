@@ -15,10 +15,21 @@ angular.module('webApp')
     }
 
     var channel = 'project_' + $rootScope.project_id;
+    $scope.members = [];
+    $http.get($rootScope.appconfig.server + '/projects/' + $rootScope.project_id + '/members', {}).success(function(res) {
+        $scope.members = res || [];
+    }).error(function() {
+        console.log("error");
+    });
+
     var connection = null;
 
     var chat_initiated = false;
     var myName = $rootScope.loggedInUser.name;
+
+    $scope.replace = function(name) {
+        return name.replace(/ /g, '_');
+    }
 
     $scope.sendChat = function() {
         if (!chat_initiated) { 
@@ -46,8 +57,6 @@ angular.module('webApp')
         var input = $('#chatMsg');
         var status = $('#status');
      
-        // my color assigned by the server
-        var myColor = false;
         // my name sent to the server
      
         // if user is running mozilla then use it's built-in WebSocket
@@ -92,24 +101,22 @@ angular.module('webApp')
                 return;
             }
 
-            if (json.data.channel !== channel) return;
+            if (json.data.channel && json.data.channel !== channel) return;
      
             // NOTE: if you're not sure about the JSON structure
             // check the server source code above
-            if (json.type === 'color') { // first response from the server with user's color
-                myColor = json.data;
-                input.removeAttr('disabled').focus();
-                // from now user can start sending messages
-            } else if (json.type === 'history') { // entire message history
+            if (json.type === 'history') { // entire message history
                 // insert every single message to the chat window
                 for (var i=0; i < json.data.length; i++) {
-                    addMessage(json.data[i].author, json.data[i].text,
-                               json.data[i].color, new Date(json.data[i].time));
+                    addMessage(json.data[i].author, json.data[i].text, new Date(json.data[i].time));
                 }
             } else if (json.type === 'message') { // it's a single message
                 input.removeAttr('disabled'); // let the user write another message
-                addMessage(json.data.author, json.data.text,
-                           json.data.color, new Date(json.data.time));
+                addMessage(json.data.author, json.data.text, new Date(json.data.time));
+            } else if (json.type === 'connection') { 
+                $('#' + json.data.author.replace(/ /g, '_')).addClass("online");
+            } else if (json.type === 'disconnection') { 
+                $('#' + json.data.author.replace(/ /g, '_')).removeClass("online");
             } else {
                 console.log('Hmm..., I\'ve never seen JSON like this: ', json);
             }
@@ -140,7 +147,7 @@ angular.module('webApp')
         /**
          * Add message to the chat window
          */
-        function addMessage(author, message, color, dt) {
+        function addMessage(author, message, dt) {
             chat(author, message);
         }
     };
