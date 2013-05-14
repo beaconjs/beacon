@@ -44,7 +44,6 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.post('/authenticate', user.authenticate);
-app.get('/users', user.list);
 app.get('/users/search/:name', user.lookup);
 app.get('/roles', roles.list);
 app.get('/stories', stories.list);
@@ -54,13 +53,14 @@ app.get('/projects', projects.list);
 app.get('/projects/:id', projects.get);
 app.get('/projects/:id/notes', notes.list);
 app.get('/projects/:id/notes/:noteId', notes.get);
-app.post('/projects/:id/upload', notes.upload);
+app.post('/projects/:id/:noteId/upload', notes.upload);
 
 app.get('/projects/:id/members', projectusers.list);
 app.post('/projects/:id/members', projectusers.create);
 app.post('/notes', notes.create);
 app.post('/notes/:id/comments', comments.createForNote);
 app.get('/notes/:id/comments', comments.forNote);
+app.get('/notes/:id/attachments', notes.attachments);
 app.get('/comments', comments.get);
 
 http.createServer(app).listen(app.get('port'), function(){

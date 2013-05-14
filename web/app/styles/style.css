@@ -86,16 +86,23 @@ input[type="submit"], button { width: 10em !important; border: 0px; background-c
 .login-form input#password { background-position: 5px -52px !important; }
 .login-form input#username { background-position: 5px -2px !important; }
 
-.comments { list-style: none; margin-top: 2em;}
+.left-icon { height: 5em; }
+
+.comments, .attachments { list-style: none; margin-top: 2em;}
 .comments button { float: right;}
 .comments textarea { display: block; width: 80%; height: 10em; }
-.comments li { padding: 1em; margin-bottom: 5px; font-size: 0.9em; background-color: #FDCD49;border-radius: 10px;}
+.comments li, .attachments li { padding: 1em; margin-bottom: 5px; font-size: 0.9em; background-color: #FDCD49;border-radius: 10px;}
 .comments li span { color: #888; }
 .notes-box {float: right; width: 95%;}
 .comments-box {float: left; width: 3em; height: 3em; display: block; position: absolute; z-index: 2; padding: 0 0.25em 0 0; background: url(../images/comments.png) #fff no-repeat;}
 .comments-box .comments { display: none; }
 .comments-box:hover {float: left; width: 45%; height: 50em; display: block; border: 1px solid #eee;padding: 0 1em 0 0;position: absolute; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear;-ms-transition: all 0.2s linear; transition: all 0.2s linear;}
 .comments-box:hover .comments { display: block; }
+
+.attachments-box {float: left; width: 3em; height: 3em; display: block; position: absolute; z-index: 2; padding: 0 0.25em 0 0; background: url(../images/attachments.png) #fff no-repeat;}
+.attachments-box .attachments { display: none; }
+.attachments-box:hover {float: left; width: 45%; height: 50em; display: block; border: 1px solid #eee;padding: 0 1em 0 0;position: absolute; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear;-ms-transition: all 0.2s linear; transition: all 0.2s linear;}
+.attachments-box:hover .attachments { display: block; }
 
 .projects-home { background-color: #EFEFEB; padding: 1em; height: 95%; }
 .project_tile { background-color: #fff; height: 15em; width: 15em; border: #DDD 1px solid; padding: 1em; border-bottom: #88BBDE 5px solid; float: left; color: #88BBDE; cursor: pointer;}

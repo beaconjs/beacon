@@ -41,8 +41,7 @@ angular.module('webApp')
         $('#notedetails-dropzone-container').show();
         var notesDropzone = new Dropzone('form#notedetails-dropzone-form'); //Dropzone.forElement("#notedetails-dropzone-form");
         notesDropzone.on("addedfile", function(file) {
-          _filePath = $rootScope.appconfig.server + '/uploads/' + $rootScope.project_id + '/' + file.name;
-          console.log(_filePath);
+          $scope.loadAttachments();
         });
     }
 
@@ -55,6 +54,7 @@ angular.module('webApp')
                 $scope.notetitle = res.title;
                 $('#notedetails').val(res.details);
                 $scope.loadComments();
+                $scope.loadAttachments();
                 $scope.comment = {};
             }
         }).error(function() {
@@ -65,8 +65,17 @@ angular.module('webApp')
     $scope.loadComments = function() {
         if ($scope.note_id) {
             $http.get($rootScope.appconfig.server + '/notes/' + $scope.note_id + '/comments', {}).success(function(res) {
-                $scope.comments = [];
-                if (res) $scope.comments = res;
+                $scope.comments = res || [];
+            }).error(function() {
+                console.log("error");
+            });
+        }
+    };
+
+    $scope.loadAttachments = function() {
+        if ($scope.note_id) {
+            $http.get($rootScope.appconfig.server + '/notes/' + $scope.note_id + '/attachments', {}).success(function(res) {
+                $scope.attachments = res || [];
             }).error(function() {
                 console.log("error");
             });
