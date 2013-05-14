@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('webApp')
-  .controller('NotesCtrl', function ($rootScope, $scope, $http) {
+  .controller('NotesCtrl', function ($rootScope, $scope, sync) {
     $scope.note_id = null;
     $scope.notes = [];
 
-    $http.get($rootScope.appconfig.server + "/projects/" + $rootScope.project_id + "/notes").success(function(res){
+    sync.get("/projects/" + $rootScope.project_id + "/notes").success(function(res){
         $scope.notes = res;
     }).error(function(error){
         console.log(error);
@@ -17,7 +17,7 @@ angular.module('webApp')
 
     $scope.$watch('notedetails', function(){
         if ((!$scope.note_id && !isBlank($scope.notedetails)) || $scope.note_id) {
-            $http.post($rootScope.appconfig.server + '/notes', {
+            sync.post('/notes', {
                 id: $scope.note_id,
                 title: $scope.notetitle,
                 details: $('#notedetails').val(),
@@ -47,7 +47,7 @@ angular.module('webApp')
 
 
     $scope.load = function(id) {
-        $http.get($rootScope.appconfig.server + '/projects/' + $rootScope.project_id + '/notes/' + id, {}).success(function(res) {
+        sync.get('/projects/' + $rootScope.project_id + '/notes/' + id, {}).success(function(res) {
             $scope.note_id = id;
             if (res) {
                 $('#notedetails_div').html(res.details);
@@ -64,7 +64,7 @@ angular.module('webApp')
 
     $scope.loadComments = function() {
         if ($scope.note_id) {
-            $http.get($rootScope.appconfig.server + '/notes/' + $scope.note_id + '/comments', {}).success(function(res) {
+            sync.get('/notes/' + $scope.note_id + '/comments', {}).success(function(res) {
                 $scope.comments = res || [];
             }).error(function() {
                 console.log("error");
@@ -74,7 +74,7 @@ angular.module('webApp')
 
     $scope.loadAttachments = function() {
         if ($scope.note_id) {
-            $http.get($rootScope.appconfig.server + '/notes/' + $scope.note_id + '/attachments', {}).success(function(res) {
+            sync.get('/notes/' + $scope.note_id + '/attachments', {}).success(function(res) {
                 $scope.attachments = res || [];
             }).error(function() {
                 console.log("error");
@@ -83,7 +83,7 @@ angular.module('webApp')
     };
 
     $scope.addComment = function() {
-        $http.post($rootScope.appconfig.server + '/notes/' + $scope.note_id + '/comments', {
+        sync.post('/notes/' + $scope.note_id + '/comments', {
             details: $scope.comment.details,
             user: $rootScope.loggedInUser.id
         }).success(function(o){

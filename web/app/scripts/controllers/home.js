@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('webApp')
-  .controller('HomeCtrl', function ($rootScope, $scope, $http, $location) {
+  .controller('HomeCtrl', function ($rootScope, $scope, sync, $location) {
     $scope.projects = [];
 
-    $http.get($rootScope.appconfig.server + "/projects").success(function(res){
+    sync.get("/projects").success(function(res){
         $scope.projects = res;
         if (res && res.length > 0) {
             $rootScope.project_id = res[0].id;

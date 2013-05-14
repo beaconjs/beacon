@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('webApp')
-  .controller('LoginCtrl', function ($rootScope, $scope, $http, $location) {
+  .controller('LoginCtrl', function ($rootScope, $scope, sync, $location) {
     $scope.username = "";
     $scope.password = "";
 
     $scope.authenticate = function() {
-        $http.post($rootScope.appconfig.server + '/authenticate', { 
+        sync.post('/authenticate', { 
             username: $scope.username, 
             password: $scope.password 
         }).success(function(response) {

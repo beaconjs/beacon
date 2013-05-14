@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('webApp')
-  .controller('ProjectsCtrl', function ($rootScope, $scope, $http, $location) {
+  .controller('ProjectsCtrl', function ($rootScope, $scope, sync, $location) {
     $scope.addProject = function() {
-        $http.post($rootScope.appconfig.server + '/projects', { 
+        sync.post('/projects', { 
             name: $scope.project.name, 
             description: $scope.project.description 
         }).success(function() {
@@ -16,7 +16,7 @@ angular.module('webApp')
   });
 
 angular.module('webApp')
-  .controller('EditProjectsCtrl', function ($rootScope, $scope, $http, $location) {
+  .controller('EditProjectsCtrl', function ($rootScope, $scope, sync, $location) {
 
     $scope.members = [];
     $scope.member = { };
@@ -25,7 +25,7 @@ angular.module('webApp')
 
     $scope.$watch('member.name', function() {
         if ($scope.member && $scope.member.name && $scope.member.name.length > 2 && !$scope.member.user_id) {
-            $http.get($rootScope.appconfig.server + '/users/search/' + $scope.member.name , {}).success(function(res) {
+            sync.get('/users/search/' + $scope.member.name , {}).success(function(res) {
                 $scope.searchResults = res || [];
             }).error(function() {
                 console.log("error");
@@ -33,7 +33,7 @@ angular.module('webApp')
         } 
     });
 
-    $http.get($rootScope.appconfig.server + '/roles', {}).success(function(res) {
+    sync.get('/roles', {}).success(function(res) {
         $scope.roles = res || [];
         if ($scope.roles.length > 0) $scope.member.role = $scope.roles[0];
     }).error(function() {
@@ -46,7 +46,7 @@ angular.module('webApp')
         $scope.searchResults = [];
     }
 
-    $http.get($rootScope.appconfig.server + '/projects/' + $rootScope.project_id + '/members', {}).success(function(res) {
+    sync.get('/projects/' + $rootScope.project_id + '/members', {}).success(function(res) {
         $scope.members = res || [];
     }).error(function() {
         console.log("error");
@@ -58,7 +58,7 @@ angular.module('webApp')
             user_id: $scope.member.user_id,
             user: { name: $scope.member.name }
         };
-        $http.post($rootScope.appconfig.server + '/projects/' + $rootScope.project_id + '/members', member).success(function() {
+        sync.post('/projects/' + $rootScope.project_id + '/members', member).success(function() {
             $scope.members.push(member);
             $scope.member = { };
             if ($scope.roles.length > 0) $scope.member.role = $scope.roles[0];

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('webApp')
-  .controller('ChatCtrl', function ($rootScope, $scope, $http) {
+  .controller('ChatCtrl', function ($rootScope, $scope, sync) {
 
     var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -16,7 +16,7 @@ angular.module('webApp')
 
     var channel = 'project_' + $rootScope.project_id;
     $scope.members = [];
-    $http.get($rootScope.appconfig.server + '/projects/' + $rootScope.project_id + '/members', {}).success(function(res) {
+    sync.get('/projects/' + $rootScope.project_id + '/members').success(function(res) {
         $scope.members = res || [];
     }).error(function() {
         console.log("error");
