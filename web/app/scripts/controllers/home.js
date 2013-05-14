@@ -8,6 +8,7 @@ angular.module('webApp')
         $scope.projects = res;
         if (res && res.length > 0) {
             $rootScope.project_id = res[0].id;
+            $rootScope.project_name = res[0].name;
         }
     }).error(function(error){
         console.log(error);

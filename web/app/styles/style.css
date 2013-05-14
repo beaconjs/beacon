@@ -5,6 +5,8 @@ body {
 
 #page { width: 90%; padding: 2em; margin: 24px auto; border: 2px #EEE solid; height: 800px; box-shadow: 5px 5px 5px #CCC; background: #FFF; overflow: auto;}
 
+#page .nav-project-name { color: #aaa; font-size: 0.9em; float: right;margin-top: -1em; height: 2em;}
+
 textarea { min-height: 100px;}
 select { width: 30%; font-size: 2em;}
 .left { float: left; }
@@ -94,7 +96,7 @@ input[type="submit"], button { width: 10em !important; border: 0px; background-c
 .comments li, .attachments li { padding: 1em; margin-bottom: 5px; font-size: 0.9em; background-color: #FDCD49;border-radius: 10px;}
 .comments li span { color: #888; }
 .notes-box {float: right; width: 95%;}
-.comments-box {float: left; width: 3em; height: 3em; display: block; position: absolute; z-index: 2; padding: 0 0.25em 0 0; background: url(../images/comments.png) #fff no-repeat;}
+.comments-box {float: left; width: 3em; height: 3em; display: block; position: absolute; z-index: 3; padding: 0 0.25em 0 0; background: url(../images/comments.png) #fff no-repeat;}
 .comments-box .comments { display: none; }
 .comments-box:hover {float: left; width: 45%; height: 50em; display: block; border: 1px solid #eee;padding: 0 1em 0 0;position: absolute; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear;-ms-transition: all 0.2s linear; transition: all 0.2s linear;}
 .comments-box:hover .comments { display: block; }
