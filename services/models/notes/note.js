@@ -1,4 +1,4 @@
-var db = require("../db.js").sequelize;
+var db = require("../../db.js").sequelize;
 var DataTypes = require("sequelize");
 
 var Note = function(title, details, project_id, created_by) {

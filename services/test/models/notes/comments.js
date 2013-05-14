@@ -1,17 +1,15 @@
 var expect = require('chai').expect,
     should = require('chai').should();
 
-var Note = require('../../models/note').get;
-var noteId = 1;
+var Comment = require('../../../models/notes/comment').get;
 
 var assert = require("assert")
-describe('Note', function(){
+describe('Comment', function(){
   describe('#save()', function(){
-    it('should save a note', function(done){
-        var note = new Note('test note', 'this is a test note', 1);
-        note.save(function(o){
+    it('should save a comment', function(done){
+        var comment = new Comment('this is a test comment', 1, 1, 'note');
+        comment.save(function(o){
             expect(o.id).to.not.equal(null);
-            noteId = o.id;
             done();
         }, function(error){
             done();
@@ -20,9 +18,9 @@ describe('Note', function(){
     })
   })
 
-  describe('#list()', function(){
-    it('should list notes for a project', function(done){
-        Note.all(1, function(o){
+  describe('#forNote()', function(){
+    it('should get comments for note', function(done){
+        Comment.forNote(1, function(o){
             expect(o.length).to.not.equal(0);
             done();
         }, function(error){
@@ -33,9 +31,9 @@ describe('Note', function(){
   })
 
   describe('#get()', function(){
-    it('should get note details for a project', function(done){
-        Note.get(1, noteId, function(o){
-            expect(o.length).to.not.equal(0);
+    it('should fetch a comment', function(done){
+        Comment.get(1, function(o){
+            expect(o.id).to.not.equal(null);
             done();
         }, function(error){
             done();
@@ -43,5 +41,4 @@ describe('Note', function(){
         });
     })
   })
-
 })

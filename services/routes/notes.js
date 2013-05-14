@@ -1,6 +1,6 @@
 var fs = require('fs');
 var mkdirp = require('mkdirp');
-var Note = require('../models/note').get;
+var Note = require('../models/notes/note').get;
 
 /*
  * GET notes listing.

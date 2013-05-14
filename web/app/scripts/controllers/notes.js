@@ -37,6 +37,16 @@ angular.module('webApp')
         }
     });
 
+    $scope.attachFile = function(insert) {
+        $('#notedetails-dropzone-container').show();
+        var notesDropzone = new Dropzone('form#notedetails-dropzone-form'); //Dropzone.forElement("#notedetails-dropzone-form");
+        notesDropzone.on("addedfile", function(file) {
+          _filePath = $rootScope.appconfig.server + '/uploads/' + $rootScope.project_id + '/' + file.name;
+          console.log(_filePath);
+        });
+    }
+
+
     $scope.load = function(id) {
         $http.get($rootScope.appconfig.server + '/projects/' + $rootScope.project_id + '/notes/' + id, {}).success(function(res) {
             $scope.note_id = id;

@@ -1,7 +1,7 @@
-var db = require("../db.js").sequelize;
+var db = require("../../db.js").sequelize;
 var DataTypes = require("sequelize");
 
-var User = require('./users').table;
+var User = require('../users').table;
 
 var Comment = function(details, user_id, source_id, source_type) {
  this.details = details, 

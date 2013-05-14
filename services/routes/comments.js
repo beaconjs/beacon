@@ -1,4 +1,4 @@
-var Comment = require('../models/comment').get;
+var Comment = require('../models/notes/comment').get;
 
 /*
  * GET comments for a note.
