@@ -2,7 +2,11 @@ var User = require('../models/users').get;
 
 exports.authenticate = function(req, res) {
   User.find(req.body.username, req.body.password, function(o) {
-    res.json(o.selectedValues);
+    if (o) { 
+      res.json(o.selectedValues); 
+    } else {
+      res.send(401, "Auth failed");
+    }
   }, function(error) {
     console.log(error);
     res.send("Auth failed");
