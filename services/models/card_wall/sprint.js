@@ -1,11 +1,13 @@
 var db = require("../../db.js").sequelize;
 var DataTypes = require("sequelize");
 
-var Sprint = function(title, project_id, startDate, endDate) {
+var Sprint = function(title, project_id, startDate, endDate, created_by) {
  this.title = title, 
  this.project_id = project_id,
  this.start_date = startDate, 
  this.end_date = endDate,
+ this.created_by = created_by,
+ this.modified_by = created_by,
  this.created_at = new Date(),
  this.modified_at = new Date();
 };

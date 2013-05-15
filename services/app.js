@@ -64,7 +64,9 @@ app.get('/projects/:id/sprints', cardModels.sprints.list);
 app.get('/projects/:id/lanes', cardModels.lanes.list);
 app.get('/projects/:id/stories', cardModels.stories.list);
 app.get('/epics/:id/stories', cardModels.stories.forEpic);
-app.post('/epics/:id/stories/create', cardModels.stories.create);
+app.post('/projects/:id/sprints', cardModels.sprints.create);
+app.post('/projects/:id/lanes', cardModels.lanes.create);
+app.post('/epics/:id/stories', cardModels.stories.create);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -14,7 +14,7 @@ exports.list = function(req, res){
 
 exports.create = function(req, res){
     var e = req.body;
-    var sprint = new Sprint(e.title, e.project_id, e.startDate, e.endDate);
+    var sprint = new Sprint(e.title, req.params.id, e.startDate, e.endDate, e.user_id);
     sprint.save(function(){
         res.send("done");
     }, function(error){

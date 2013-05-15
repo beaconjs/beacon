@@ -14,7 +14,7 @@ exports.list = function(req, res){
 
 exports.create = function(req, res){
     var e = req.body;
-    var lane = new Lane(e.title, e.project_id, e.max_stories, e.status);
+    var lane = new Lane(e.title, req.params.id, e.max_stories, e.status);
     lane.save(function(){
         res.send("done");
     }, function(error){
