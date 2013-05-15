@@ -17,6 +17,8 @@ body {
 .edit-project table th { font-weight: bold; background-color: #eee;}
 .edit-project table { border: 1px #eee solid; font-size: 0.9em; width: 100%;}
 .edit-project table td, .edit-project table th { border: 1px #eee solid;}
+.edit-project .help-text { font-size: 0.9em; color: #aaa; min-width: 33%; width: 33%; float: left;}
+.edit-project .inner-row { margin: 0.25em 0 0 0;}
 
 textarea { min-height: 100px;}
 select { width: 30%; font-size: 2em;}
