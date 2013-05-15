@@ -4,11 +4,16 @@ angular.module('webApp')
   .controller('HomeCtrl', function ($rootScope, $scope, sync, $location) {
     $scope.projects = [];
 
+    $scope.projectNames = {};
+
     sync.get("/projects").success(function(res){
         $scope.projects = res;
         if (res && res.length > 0) {
             $rootScope.project_id = res[0].id;
             $rootScope.project_name = res[0].name;
+            res.forEach(function(p){
+                $scope.projectNames[p.id] = p.name;
+            });
         }
     }).error(function(error){
         console.log(error);
@@ -16,6 +21,7 @@ angular.module('webApp')
 
     $scope.select = function(id) {
         $rootScope.project_id = id;
+        $rootScope.project_name = $scope.projectNames[id];
         $location.path('notes');
     };
 

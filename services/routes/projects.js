@@ -1,4 +1,6 @@
 var Project = require('../models/project').get;
+var ProjectUsers = require('../models/projectusers').get;
+var Role = require('../models/roles').get;
 
 /*
  * GET project listing.
@@ -22,8 +24,13 @@ exports.get = function(req, res){
 
 exports.create = function(req, res){
     var p = req.body;
-    var project = new Project(p.name, p.description, null, 1);
-    project.save(function(){}, function(){});
+    var project = new Project(p.name, p.description, null, p.created_by);
+    project.save(function(o){
+      Role.findByName('Owner', function(r) {
+        var user = new ProjectUsers(o.id, p.created_by, r.id);
+        user.save(function(){}, function(){});
+      }, function(){});
+    }, function(){});
 
     res.send({msg: "done"});
 };
