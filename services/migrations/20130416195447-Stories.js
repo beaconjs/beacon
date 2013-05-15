@@ -7,7 +7,7 @@ exports.up = function(db, callback) {
         title: 'string',
         details: 'string',
         points: 'int',
-        owner: 'int',
+        owner_id: 'int',
         status: 'string',
         created_at: 'datetime',
         modified_at: 'datetime',

@@ -46,8 +46,6 @@ app.get('/', routes.index);
 app.post('/authenticate', user.authenticate);
 app.get('/users/search/:name', user.lookup);
 app.get('/roles', roles.list);
-app.get('/stories', stories.list);
-app.post('/stories/create', stories.create);
 app.post('/projects', projects.create);
 app.get('/projects', projects.list);
 app.get('/projects/:id', projects.get);
@@ -62,6 +60,10 @@ app.post('/notes/:id/comments', comments.createForNote);
 app.get('/notes/:id/comments', comments.forNote);
 app.get('/notes/:id/attachments', notes.attachments);
 app.get('/comments', comments.get);
+
+app.get('/projects/:id/stories', stories.list);
+app.get('/epics/:id/stories', stories.forEpic);
+app.post('/epics/:id/stories/create', stories.create);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

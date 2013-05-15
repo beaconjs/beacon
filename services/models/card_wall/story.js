@@ -1,12 +1,13 @@
 var db = require("../../db.js").sequelize;
 var DataTypes = require("sequelize");
 
+var User = require('../users').table
 var Epic = require('./epic').table
 
-var Story = function(title, details, owner, points, epic_id, sprint_id) {
+var Story = function(title, details, owner_id, points, epic_id, sprint_id) {
     this.title = title, 
     this.details = details, 
-    this.owner = owner, 
+    this.owner_id = owner_id, 
     this.points = points, 
     this.epic_id = epic_id, 
     this.sprint_id = sprint_id || -1, 
@@ -18,7 +19,7 @@ var Story = function(title, details, owner, points, epic_id, sprint_id) {
 var stories_table = db.define('stories', {
       title: DataTypes.STRING,
       details: DataTypes.STRING,
-      owner: DataTypes.INTEGER,
+      owner_id: DataTypes.INTEGER,
       points: DataTypes.INTEGER,
       sprint_id: DataTypes.INTEGER,
       epic_id: DataTypes.INTEGER,
@@ -34,6 +35,9 @@ var stories_table = db.define('stories', {
 
 stories_table.belongsTo(Epic);
 Epic.hasMany(stories_table);
+
+stories_table.belongsTo(User, { foreignKey: 'owner_id' });
+User.hasMany(stories_table, { as: 'owners', foreignKey: 'owner_id' });
 
 exports.get=Story;
 exports.table=stories_table;
