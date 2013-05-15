@@ -7,9 +7,10 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row edit-project">
     <div class="third">
         <div class="row">
+            <h3>Members</h3>
             <table>
                 <tr>
                     <th>Name</th>
@@ -36,52 +37,51 @@
 
     <div class="third">
         <div class="row">
+            <h3>Sprints</h3>
             <table>
                 <tr>
                     <th>Name</th>
-                    <th>Role</th>
+                    <th>Start</th>
+                    <th>End</th>
                 </tr>
-                <tr ng-repeat="member in members">
-                    <td>{{member.user.name}}</td>
-                    <td>{{member.role.name}}</td>
+                <tr ng-repeat="sprint in sprints">
+                    <td>{{sprint.title}}</td>
+                    <td>{{sprint.start_date | date}}</td>
+                    <td>{{sprint.end_date | date}}</td>
                 </tr>
             </table>
         </div>
 
         <div class="row">
-            <form ng-submit="addMember()">
-                <input type="text" ng-model="member.name" class="width-33" placeholder="Enter the users name"/> 
-                <select ng-model="member.role" ng-options="c.name for c in roles" ng-required>Please select a role</select>
-                <br><ul ng-show="searchResults" class="search-results">
-                    <li ng-repeat="u in searchResults" ng-click="selectUser(u.id, u.name)">{{u.name}}</li>
-                </ul>
-                <br><input type="submit" value="Save"/>
+            <form ng-submit="addSprint()">
+                <input type="text" ng-model="sprint.title" class="width-33" placeholder="Enter the story's name"/> 
+                <input type="date" ng-model="sprint.startDate" class="width-33" placeholder="Enter the story's name"/> 
+                <input type="date" ng-model="sprint.endDate" class="width-33" placeholder="Enter the story's name"/> 
+                <br><br><input type="submit" value="Save"/>
             </form>
         </div>
     </div>
 
     <div class="third">
         <div class="row">
+            <h3>Lanes</h3>
             <table>
                 <tr>
                     <th>Name</th>
-                    <th>Role</th>
+                    <th>Max Stories</th>
                 </tr>
-                <tr ng-repeat="member in members">
-                    <td>{{member.user.name}}</td>
-                    <td>{{member.role.name}}</td>
+                <tr ng-repeat="lane in lanes">
+                    <td>{{lane.title}}</td>
+                    <td>{{lane.max_stories}}</td>
                 </tr>
             </table>
         </div>
 
         <div class="row">
-            <form ng-submit="addMember()">
-                <input type="text" ng-model="member.name" class="width-33" placeholder="Enter the users name"/> 
-                <select ng-model="member.role" ng-options="c.name for c in roles" ng-required>Please select a role</select>
-                <br><ul ng-show="searchResults" class="search-results">
-                    <li ng-repeat="u in searchResults" ng-click="selectUser(u.id, u.name)">{{u.name}}</li>
-                </ul>
-                <br><input type="submit" value="Save"/>
+            <form ng-submit="addLane()">
+                <input type="text" ng-model="lane.title" class="width-33" placeholder="Enter the lanes name"/> 
+                <input type="number" ng-model="lane.max_stories" class="width-33" placeholder="Enter the max stories"/> 
+                <br><br><input type="submit" value="Save"/>
             </form>
         </div>
     </div>

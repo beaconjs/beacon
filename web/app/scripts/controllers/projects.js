@@ -66,9 +66,28 @@ angular.module('webApp')
             user: { name: $scope.member.name }
         };
         sync.post('/projects/' + $rootScope.project_id + '/members', member).success(function() {
-            $scope.members.push(member);
             $scope.member = { };
             if ($scope.roles.length > 0) $scope.member.role = $scope.roles[0];
+            get('/members', 'members');
+        }).error(function() {
+            console.log("error");
+        });
+    };
+
+    $scope.addSprint = function() {
+        $scope.sprint.user_id = $rootScope.loggedInUser.id;
+        sync.post('/projects/' + $rootScope.project_id + '/sprints', $scope.sprint).success(function() {
+            $scope.sprint = { };
+            get('/sprints', 'sprints');
+        }).error(function() {
+            console.log("error");
+        });
+    };
+
+    $scope.addLane = function() {
+        sync.post('/projects/' + $rootScope.project_id + '/lanes', $scope.lane).success(function() {
+            $scope.lane = { };
+            get('/lanes', 'lanes');
         }).error(function() {
             console.log("error");
         });

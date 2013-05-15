@@ -7,6 +7,17 @@ body {
 
 #page .nav-project-name { color: #aaa; font-size: 0.9em; float: right;margin-top: -1em; height: 2em;}
 
+#page form input::-webkit-outer-spin-button,
+#page form input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.edit-project form input { width: 30%; } 
+.edit-project table th { font-weight: bold; background-color: #eee;}
+.edit-project table { border: 1px #eee solid; font-size: 0.9em; width: 100%;}
+.edit-project table td, .edit-project table th { border: 1px #eee solid;}
+
 textarea { min-height: 100px;}
 select { width: 30%; font-size: 2em;}
 .left { float: left; }
