@@ -20,6 +20,8 @@ angular.module('webApp')
   .controller('EditProjectsCtrl', function ($rootScope, $scope, sync, $location) {
 
     $scope.members = [];
+    $scope.sprints = [];
+    $scope.lanes = [];
     $scope.member = { };
     $scope.roles = [];
     $scope.searchResults = [];
@@ -47,11 +49,15 @@ angular.module('webApp')
         $scope.searchResults = [];
     }
 
-    sync.get('/projects/' + $rootScope.project_id + '/members', {}).success(function(res) {
-        $scope.members = res || [];
-    }).error(function() {
-        console.log("error");
-    });
+    var get = function(path, arr) {
+        sync.get('/projects/' + $rootScope.project_id + path, {}).success(function(res) { $scope[arr] = res || []; }).error(function() {
+            console.log("error");
+        });
+    }
+
+    get('/members', 'members');
+    get('/sprints', 'sprints');
+    get('/lanes', 'lanes');
 
     $scope.addMember = function() {
         var member = { 

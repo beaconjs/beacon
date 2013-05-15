@@ -7,12 +7,11 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , roles = require('./routes/roles')
-  , stories = require('./routes/card_wall/stories')
   , projects = require('./routes/projects')
   , notes = require('./routes/notes')
   , comments = require('./routes/comments')
   , projectusers = require('./routes/projectusers')
-  , cardModels = require('./models/card_wall')
+  , cardModels = require('./routes/card_wall')
   , http = require('http')
   , db = require("./db")
   , path = require('path');
@@ -61,9 +60,11 @@ app.get('/notes/:id/comments', comments.forNote);
 app.get('/notes/:id/attachments', notes.attachments);
 app.get('/comments', comments.get);
 
-app.get('/projects/:id/stories', stories.list);
-app.get('/epics/:id/stories', stories.forEpic);
-app.post('/epics/:id/stories/create', stories.create);
+app.get('/projects/:id/sprints', cardModels.sprints.list);
+app.get('/projects/:id/lanes', cardModels.lanes.list);
+app.get('/projects/:id/stories', cardModels.stories.list);
+app.get('/epics/:id/stories', cardModels.stories.forEpic);
+app.post('/epics/:id/stories/create', cardModels.stories.create);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

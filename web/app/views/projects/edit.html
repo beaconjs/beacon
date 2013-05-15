@@ -2,31 +2,87 @@
     <div class="breadcrumbs">
         <ul>
             <li><a href="#">Home</a></li>
-            <li><span>Projects</span></li>
+            <li><span>{{project_name}}</span></li>
         </ul>
     </div>
 </div>
 
 <div class="row">
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Role</th>
-        </tr>
-        <tr ng-repeat="member in members">
-            <td>{{member.user.name}}</td>
-            <td>{{member.role.name}}</td>
-        </tr>
-    </table>
-</div>
+    <div class="third">
+        <div class="row">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                </tr>
+                <tr ng-repeat="member in members">
+                    <td>{{member.user.name}}</td>
+                    <td>{{member.role.name}}</td>
+                </tr>
+            </table>
+        </div>
 
-<div class="row">
-    <form ng-submit="addMember()">
-        <input type="text" ng-model="member.name" class="width-33" placeholder="Enter the users name"/> 
-        <select ng-model="member.role" ng-options="c.name for c in roles" ng-required>Please select a role</select>
-        <br><ul ng-show="searchResults" class="search-results">
-            <li ng-repeat="u in searchResults" ng-click="selectUser(u.id, u.name)">{{u.name}}</li>
-        </ul>
-        <br><input type="submit" value="Save"/>
-    </form>
+        <div class="row">
+            <form ng-submit="addMember()">
+                <input type="text" ng-model="member.name" class="width-33" placeholder="Enter the users name"/> 
+                <select ng-model="member.role" ng-options="c.name for c in roles" ng-required>Please select a role</select>
+                <br><ul ng-show="searchResults" class="search-results">
+                    <li ng-repeat="u in searchResults" ng-click="selectUser(u.id, u.name)">{{u.name}}</li>
+                </ul>
+                <br><input type="submit" value="Save"/>
+            </form>
+        </div>
+    </div>
+
+    <div class="third">
+        <div class="row">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                </tr>
+                <tr ng-repeat="member in members">
+                    <td>{{member.user.name}}</td>
+                    <td>{{member.role.name}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row">
+            <form ng-submit="addMember()">
+                <input type="text" ng-model="member.name" class="width-33" placeholder="Enter the users name"/> 
+                <select ng-model="member.role" ng-options="c.name for c in roles" ng-required>Please select a role</select>
+                <br><ul ng-show="searchResults" class="search-results">
+                    <li ng-repeat="u in searchResults" ng-click="selectUser(u.id, u.name)">{{u.name}}</li>
+                </ul>
+                <br><input type="submit" value="Save"/>
+            </form>
+        </div>
+    </div>
+
+    <div class="third">
+        <div class="row">
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                </tr>
+                <tr ng-repeat="member in members">
+                    <td>{{member.user.name}}</td>
+                    <td>{{member.role.name}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row">
+            <form ng-submit="addMember()">
+                <input type="text" ng-model="member.name" class="width-33" placeholder="Enter the users name"/> 
+                <select ng-model="member.role" ng-options="c.name for c in roles" ng-required>Please select a role</select>
+                <br><ul ng-show="searchResults" class="search-results">
+                    <li ng-repeat="u in searchResults" ng-click="selectUser(u.id, u.name)">{{u.name}}</li>
+                </ul>
+                <br><input type="submit" value="Save"/>
+            </form>
+        </div>
+    </div>
 </div>
