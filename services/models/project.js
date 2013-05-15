@@ -1,8 +1,6 @@
 var db = require("../db.js").sequelize;
 var DataTypes = require("sequelize");
 
-var epics = require('./card_wall/epic').table
-
 var Project = function(name, description, epics, created_by) {
  this.name = name, 
  this.description = description, 
@@ -24,8 +22,6 @@ var projects_table = db.define('projects', {
       timestamps: false,
       underscored: true
     });
-
-projects_table.hasMany(epics);
 
 exports.get=Project;
 exports.table=projects_table;

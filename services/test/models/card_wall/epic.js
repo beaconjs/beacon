@@ -7,7 +7,7 @@ var assert = require("assert")
 describe('Epic', function(){
   describe('#save()', function(){
     it('should save a epic', function(done){
-        var epic = new Epic('test epic', 'this is a test epic', 'not_started');
+        var epic = new Epic('test epic', 'this is a test epic', 1, 'not_started');
         epic.save(function(o){
             expect(o.id).to.not.equal(null);
             done();

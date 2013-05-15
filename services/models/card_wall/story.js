@@ -1,15 +1,16 @@
 var db = require("../../db.js").sequelize;
 var DataTypes = require("sequelize");
 
-var Story = function(title, details, owner, points, sprint, tasks, comments) {
+var Epic = require('./epic').table
+
+var Story = function(title, details, owner, points, epic_id, sprint_id) {
     this.title = title, 
     this.details = details, 
     this.owner = owner, 
     this.points = points, 
-    this.sprint = sprint || -1, 
-    this.status = 'not_started', 
-    this.tasks = tasks, 
-    this.comments = comments,
+    this.epic_id = epic_id, 
+    this.sprint_id = sprint_id || -1, 
+    this.status = 'not_started',
     this.created_at = new Date(), 
     this.modified_at = new Date();
 };
@@ -31,6 +32,9 @@ var stories_table = db.define('stories', {
       underscored: true
     });
 
+stories_table.belongsTo(Epic);
+Epic.hasMany(stories_table);
+
 exports.get=Story;
 exports.table=stories_table;
 
@@ -38,6 +42,19 @@ Story.prototype.save=function(onSuccess, onError) {
     stories_table.build(this).save().success(onSuccess).error(onError);
 };
 
-Story.all=function(onSuccess, onError) {
-    stories_table.all().success(onSuccess).error(onError);
+Story.prototype.update=function(onSuccess, onError) {
+    this.created_at = undefined;
+    this.created_by = undefined;
+
+    stories_table.find(this.id).success(function(o) { 
+      o.updateAttributes().success(onSuccess).error(onError); 
+    });
 };
+
+Story.forEpic = function(epic_id, onSuccess, onError) {
+    stories_table.findAll({where: { epic_id: epic_id } }).success(onSuccess).error(onError);
+}
+
+Story.list = function(project_id, onSuccess, onError) {
+    stories_table.findAll({include: [Epic], where: { "epics.project_id": project_id } }).success(onSuccess).error(onError);
+}
