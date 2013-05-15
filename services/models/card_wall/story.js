@@ -3,6 +3,7 @@ var DataTypes = require("sequelize");
 
 var User = require('../users').table
 var Epic = require('./epic').table
+var Sprint = require('./sprint').table
 
 var Story = function(title, details, owner_id, points, epic_id, sprint_id) {
     this.title = title, 
@@ -36,6 +37,9 @@ var stories_table = db.define('stories', {
 stories_table.belongsTo(Epic);
 Epic.hasMany(stories_table);
 
+stories_table.belongsTo(Sprint);
+Sprint.hasMany(stories_table);
+
 stories_table.belongsTo(User, { foreignKey: 'owner_id' });
 User.hasMany(stories_table, { as: 'owners', foreignKey: 'owner_id' });
 
@@ -56,7 +60,7 @@ Story.prototype.update=function(onSuccess, onError) {
 };
 
 Story.forEpic = function(epic_id, onSuccess, onError) {
-    stories_table.findAll({where: { epic_id: epic_id } }).success(onSuccess).error(onError);
+    stories_table.findAll({include: [User, Sprint], where: { epic_id: epic_id }, order: 'sprint_id' }).success(onSuccess).error(onError);
 }
 
 Story.forSprint = function(sprint_id, onSuccess, onError) {

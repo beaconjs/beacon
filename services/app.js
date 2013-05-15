@@ -63,6 +63,7 @@ app.get('/comments', comments.get);
 app.get('/projects/:id/sprints', cardModels.sprints.list);
 app.get('/projects/:id/sprints/current', cardModels.sprints.current);
 app.get('/projects/:id/lanes', cardModels.lanes.list);
+app.get('/projects/:id/epics', cardModels.epics.list);
 app.get('/projects/:id/stories', cardModels.stories.list);
 app.get('/epics/:id/stories', cardModels.stories.forEpic);
 app.get('/sprints/:id/stories', cardModels.stories.forSprint);

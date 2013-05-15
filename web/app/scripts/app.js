@@ -12,6 +12,9 @@ var webApp = angular.module('webApp', [])
       }).when('/plan', {
         templateUrl: 'views/wall.html',
         controller: 'PlanCtrl'
+      }).when('/backlog', {
+        templateUrl: 'views/backlog.html',
+        controller: 'BacklogCtrl'
       }).when('/notes', {
         templateUrl: 'views/notes/index.html',
         controller: 'NotesCtrl'
