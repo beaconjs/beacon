@@ -7,12 +7,13 @@
         </ul>
     </div>
 </div>
-<div class="row">
+<div class="row backlog">
     <ul>
-        <li ng-repeat="epic in epics"><a ng-click="getStories(epic.id)">+</a> {{epic.title}} ({{epic.num_of_stories}} stories) ({{epic.points}} points)
+        <li ng-repeat="epic in epics"><a ng-click="getStories(epic.id)">+</a> {{epic.title}} ({{epic.num_of_stories}} stories) ({{epic.points}} points) <a ng-show="stories[epic.id]" ng-click="epic.newstory=!epic.newstory">Add a Story</a>
             <table ng-show="stories[epic.id]">
                 <tr><th>Sprint</th><th>Name</th><th>Owner</th><th>Points</th><th>Status</th></tr>
                 <tr ng-repeat="story in stories[epic.id]"><td>{{story.sprint.title}}</td><td>{{story.title}}</td><td>{{story.user.name}}</td><td>{{story.points}}</td><td>{{story.status}}</td></tr>
+                <tr ng-show="epic.newstory"><td><select ng-model="story.sprint" ng-options="s.title for s in sprints"><option></option><</select></td><td><input type="text" ng-model="story.title"/></td><td><select ng-model="story.owner" ng-options="u.user.name for u in members"><option></option></select></td><td><select ng-model="story.points" ng-options="p for p in points"><option></option></select></td><td><a ng-click="addStory(epic.id)" class="btn">Save</a></td></tr>
             </table>
         </li>
     </ul>

@@ -125,3 +125,6 @@ input[type="submit"], button { width: 10em !important; border: 0px; background-c
 .project_tile h1 { font-size: 1.4em; }
 .project_tile h1 a { font-size: inherit; color: inherit; text-decoration: none; }
 ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; background-color: #eee; padding: 1em; width: 20em; font-size: 0.9em; margin-top: 0.5em; margin-left: 0;}
+
+.backlog input { height: 23px !important; width: auto !important;}
+.backlog select { height: 23px !important; width: auto !important;}
