@@ -59,6 +59,10 @@ Story.forEpic = function(epic_id, onSuccess, onError) {
     stories_table.findAll({where: { epic_id: epic_id } }).success(onSuccess).error(onError);
 }
 
+Story.forSprint = function(sprint_id, onSuccess, onError) {
+    stories_table.findAll({where: { sprint_id: sprint_id } }).success(onSuccess).error(onError);
+}
+
 Story.list = function(project_id, onSuccess, onError) {
     stories_table.findAll({include: [Epic], where: { "epics.project_id": project_id } }).success(onSuccess).error(onError);
 }

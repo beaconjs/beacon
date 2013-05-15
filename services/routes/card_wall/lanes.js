@@ -14,6 +14,7 @@ exports.list = function(req, res){
 
 exports.create = function(req, res){
     var e = req.body;
+    e.status = e.status || e.title.toLowerCase().replace(/ /g, "_");
     var lane = new Lane(e.title, req.params.id, e.max_stories, e.status);
     lane.save(function(){
         res.send("done");

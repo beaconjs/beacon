@@ -20,6 +20,14 @@ exports.forEpic = function(req, res){
     });
 };
 
+exports.forSprint = function(req, res){
+  Story.forSprint( req.params.id, function(o){
+        res.json(o);
+    }, function(error) { 
+        console.log(error); 
+    });
+};
+
 exports.create = function(req, res){
     var s = req.body;
     var story = new Story(s.title, s.details, s.owner_id, s.points, req.params.id, s.sprint_id);

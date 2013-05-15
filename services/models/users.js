@@ -30,7 +30,7 @@ User.find=function(username, password, onSuccess, onError) {
 };
 
 User.lookup=function(name, onSuccess, onError) {
-    db.query("select id, name, user_name from users where name like '%" + name + "%' ").success(onSuccess).error(onError);
+    users_table.findAll( { where : [ "name like ?", '%' + name + '%' ] } ).success(onSuccess).error(onError);
 };
 
 

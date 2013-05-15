@@ -12,6 +12,14 @@ exports.list = function(req, res){
     });
 };
 
+exports.current = function(req, res){
+  Sprint.current( req.params.id, function(o){
+        res.json(o);
+    }, function(error) { 
+        console.log(error); 
+    });
+};
+
 exports.create = function(req, res){
     var e = req.body;
     var sprint = new Sprint(e.title, req.params.id, e.startDate, e.endDate, e.user_id);

@@ -36,3 +36,7 @@ Sprint.prototype.save=function(onSuccess, onError) {
 Sprint.list=function(project_id, onSuccess, onError) {
     sprints_table.findAll( { where: { project_id: project_id } } ).success(onSuccess).error(onError);
 };
+
+Sprint.current=function(project_id, onSuccess, onError) {
+    sprints_table.find( { where: ['start_date <= ? and end_date >= ? and project_id = ?', new Date(), new Date(), project_id ] } ).success(onSuccess).error(onError);
+};
