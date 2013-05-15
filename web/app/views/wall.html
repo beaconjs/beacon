@@ -1,61 +1,58 @@
-<h1>Card Wall</h1>
-<a onclick="addStory()" class="add_link">Add</a>
-    <div class="lane">
-        <div class="heading">TO DO</div>
-        <div class="story" draggable="true">
-            <div class="left">
-                <div class="title"> <a onclick="openStory(1)" >test</a></div>
-                <div class="text">jksfkjhs jksfkjhs jksfkjhs</div>
-            </div>
-            <div class="right">
-                <div class="points">2</div>
-                <div class="assigned">Aishwarya</div>
+<div class="row">
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a ng-click="gotoPage('/projects/edit')">{{project_name}}</a></li>
+            <li><span>Card Wall</span></li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <a ng-click="addStory()" class="add_link">Add</a>
+        <div class="card-wall">
+            <div class="lane" ng-repeat="lane in lanes">
+                <div class="heading">{{lane.title}}</div>
+                <div class="story" draggable="true" ng-repeat="story in stories | filter: { status: lane.status }">
+                    <div class="left">
+                        <div class="title"> <a ng-click="openStory(story.id)" >{{story.title}}</a></div>
+                        <div class="text">{{story.details}}</div>
+                    </div>
+                    <div class="right">
+                        <div class="points">{{story.points}}</div>
+                        <div class="assigned" ng-show="story.owner">{{story.owner.name}}</div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="story" draggable="true"><div class="title"> <a href="/story/2">another</a></div><div class="text">jsfjjhg</div></div>
-    </div>
-    <div class="lane">
-        <div class="heading">In progress</div>
-        <div class="story" draggable="true"><div class="title"> <a href="/story/1">test</a></div><div class="text">jksfkjhs</div></div>
-        <div class="story" draggable="true"><div class="title"> <a href="/story/2">another</a></div><div class="text">jsfjjhg</div></div>
-    </div>
-    <div class="lane">
-        <div class="heading">Done</div>
-        <div class="story" draggable="true"><div class="title"> <a href="/story/1">test</a></div><div class="text">jksfkjhs</div></div>
-        <div class="story" draggable="true"><div class="title"> <a href="/story/2">another</a></div><div class="text">jsfjjhg</div></div>
-    </div>
 
-    <div id="newStory">
-        <div class="close" onclick="closePopup()"></div>
-    <form action="/stories/create" method="POST" class="forms columnar">
-        <fieldset>
-            <ul>
-                <li><input type="text" name="title" id="storyTitle" class="width-100" placeholder="Story name">
-                    <div contenteditable="true" id="storyTitleDiv" class="textFieldDiv">test test</div></li>
-                <li>
-                    <select id="storyOwner" name="owner">
-                        <option value="1">Aishwarya</option>
-                        <option value="2">Amit</option>
-                    </select>
-                    <div class="right">
-                        <label>Points</label>
-                        <div class="storypoints">
-                            <input id="storyPoints" type="radio" name="points" value="1"><label>1</label>
-                            <input id="storyPoints" type="radio" name="points" value="2"><label>2</label>
-                            <input id="storyPoints" type="radio" name="points" value="3"><label class="selected">3</label>
-                            <input id="storyPoints" type="radio" name="points" value="5"><label>5</label>
-                            <input id="storyPoints" type="radio" name="points" value="8"><label>8</label>
-                            <input id="storyPoints" type="radio" name="points" value="13"><label>13</label>
-                            <input id="storyPoints" type="radio" name="points" value="21"><label>21</label>
-                            <input id="storyPoints" type="radio" name="points" value="34"><label>34</label>
+        <div id="newStory">
+            <div class="close" ng-click="closePopup()"></div>
+        <form method="POST" class="forms columnar" ng-submit="saveStory()">
+            <fieldset>
+                <ul>
+                    <li><input type="text" ng-model="story.title" class="width-100" placeholder="Story name"/></li>
+                    <li>
+                        <select ng-model="story.owner" ng-options="u.user.name for u in members">
+                        </select>
+                        <div class="right">
+                            <label>Points</label>
+                            <div class="storypoints">
+                                <input ng-model="story.points" type="radio" value="1" /><label>1</label>
+                                <input ng-model="story.points" type="radio" value="2" /><label>2</label>
+                                <input ng-model="story.points" type="radio" value="3" /><label class="selected">3</label>
+                                <input ng-model="story.points" type="radio" value="5" /><label>5</label>
+                                <input ng-model="story.points" type="radio" value="8" /><label>8</label>
+                                <input ng-model="story.points" type="radio" value="13" /><label>13</label>
+                                <input ng-model="story.points" type="radio" value="21" /><label>21</label>
+                                <input ng-model="story.points" type="radio" value="34" /><label>34</label>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li><textarea name="body" id="storyDetails" class="width-100" placeholder="Story Details"></textarea>
-                    <div contenteditable="true" id="storyDetailsDiv" class="textAreaDiv"></div></li>
-                <li><input type="submit" class="btn"><a onclick="closePopup()" class="btn">Close</a></li>
-            </ul>
-        </fieldset>
-    </form>
+                    </li>
+                    <li><textarea ng-model="story.details" class="width-100" placeholder="Story Details"></textarea></li>
+                    <li><input type="submit" /><button ng-click="closePopup()" >Close</button></li>
+                </ul>
+            </fieldset>
+        </form>
+    </div>
+    <div id="fade"></div>
 </div>
-<div id="fade"></div>

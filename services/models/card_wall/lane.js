@@ -28,3 +28,7 @@ Lane.prototype.save=function(onSuccess, onError) {
 Lane.list=function(project_id, onSuccess, onError) {
     lanes_table.findAll( { where: { project_id: project_id } } ).success(onSuccess).error(onError);
 };
+
+Lane.getDefaultLane=function(project_id, onSuccess, onError) {
+  lanes_table.find({ where: { status: 'not_started', project_id: project_id } }).success(onSuccess).error(onError);
+}

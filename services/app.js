@@ -66,6 +66,7 @@ app.get('/projects/:id/lanes', cardModels.lanes.list);
 app.get('/projects/:id/stories', cardModels.stories.list);
 app.get('/epics/:id/stories', cardModels.stories.forEpic);
 app.get('/sprints/:id/stories', cardModels.stories.forSprint);
+app.post('/projects/:id/epics', cardModels.epics.create);
 app.post('/projects/:id/sprints', cardModels.sprints.create);
 app.post('/projects/:id/lanes', cardModels.lanes.create);
 app.post('/epics/:id/stories', cardModels.stories.create);

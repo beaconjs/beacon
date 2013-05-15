@@ -1,6 +1,7 @@
 var Project = require('../models/project').get;
 var ProjectUsers = require('../models/projectusers').get;
 var Role = require('../models/roles').get;
+var Lane = require('../models/card_wall/lane').get;
 
 /*
  * GET project listing.
@@ -30,6 +31,9 @@ exports.create = function(req, res){
         var user = new ProjectUsers(o.id, p.created_by, r.id);
         user.save(function(){}, function(){});
       }, function(){});
+
+      var lane = new Lane('Not Started', o.id, 1000, 'not_started');
+      lane.save(function(){}, function(){});
     }, function(){});
 
     res.send({msg: "done"});
