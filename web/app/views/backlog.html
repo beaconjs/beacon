@@ -9,7 +9,7 @@
 </div>
 <div class="row">
     <ul>
-        <li ng-repeat="epic in epics"><a ng-click="getStories(epic.id)">+</a> {{epic.title}}
+        <li ng-repeat="epic in epics"><a ng-click="getStories(epic.id)">+</a> {{epic.title}} ({{epic.num_of_stories}} stories) ({{epic.points}} points)
             <table ng-show="stories[epic.id]">
                 <tr><th>Sprint</th><th>Name</th><th>Owner</th><th>Points</th><th>Status</th></tr>
                 <tr ng-repeat="story in stories[epic.id]"><td>{{story.sprint.title}}</td><td>{{story.title}}</td><td>{{story.user.name}}</td><td>{{story.points}}</td><td>{{story.status}}</td></tr>
