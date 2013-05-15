@@ -1,4 +1,5 @@
 var db = require("../db.js").sequelize;
+var crypto = require('crypto');
 var DataTypes = require("sequelize");
 
 var User = function(name, username, password) {
@@ -17,6 +18,10 @@ var users_table = db.define('users', {
     });
 
 User.prototype.save=function(onSuccess, onError) {
+    var shasum = crypto.createHash('sha512');
+    shasum.update(this.password);
+    this.password = shasum.digest('hex');
+
     users_table.build(this).save().success(onSuccess).error(onError);
 };
 

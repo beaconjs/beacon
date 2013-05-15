@@ -15,6 +15,7 @@
     "sequelize": "*",
     "requireindex": "*",
     "mocha": "*",
+    "crypto": "*",
     "chai": "*",
     "jade": "*",
     "websocket": "*",

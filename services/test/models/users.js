@@ -1,5 +1,6 @@
 var expect = require('chai').expect,
     should = require('chai').should();
+var crypto = require('crypto');
 
 var User = require('../../models/users').get;
 
@@ -20,7 +21,11 @@ describe('User', function(){
 
   describe('#find()', function(){
     it('should find a user', function(done){
-        User.find('username', 'password', function(o){
+        var shasum = crypto.createHash('sha512');
+        shasum.update('password');
+        var password = shasum.digest('hex');
+
+        User.find('username', password, function(o){
             expect(o.id).to.not.equal(null);
             done();
         }, function(error){
