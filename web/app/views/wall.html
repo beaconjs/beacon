@@ -10,9 +10,9 @@
 <div class="row">
     <a ng-click="addStory()" class="add_link">Add</a>
         <div class="card-wall">
-            <div class="lane" ng-repeat="lane in lanes">
+            <div class="lane" ng-repeat="lane in lanes" id="lane_{{lane.id}}" drag-drop data-status="{{lane.status}}">
                 <div class="heading">{{lane.title}}</div>
-                <div class="story" draggable="true" ng-repeat="story in stories | filter: { status: lane.status }">
+                <div class="story" draggable="true" drag-drop data-id="{{story.id}}" id="story_{{story.id}}" ng-repeat="story in stories | filter: { status: lane.status }">
                     <div class="left">
                         <div class="title"> <a ng-click="openStory(story.id)" >{{story.title}}</a></div>
                         <div class="text">{{story.details}}</div>

@@ -5,15 +5,17 @@ var User = require('../users').table
 var Epic = require('./epic').table
 var Sprint = require('./sprint').table
 
-var Story = function(title, details, owner_id, points, epic_id, sprint_id) {
+var Story = function(title, details, owner_id, points, epic_id, sprint_id, created_by, status, created_at, modified_by) {
     this.title = title, 
     this.details = details, 
     this.owner_id = owner_id, 
     this.points = points, 
     this.epic_id = epic_id, 
     this.sprint_id = sprint_id, 
-    this.status = 'not_started',
-    this.created_at = new Date(), 
+    this.status = status || 'not_started',
+    this.created_by = created_by,
+    this.modified_by = modified_by || created_by,
+    this.created_at = created_at || new Date(), 
     this.modified_at = new Date();
 };
 
@@ -51,8 +53,6 @@ Story.prototype.save=function(onSuccess, onError) {
 };
 
 Story.prototype.update=function(onSuccess, onError) {
-    this.created_at = undefined;
-    this.created_by = undefined;
     obj = this;
 
     stories_table.find(this.id).success(function(o) { 

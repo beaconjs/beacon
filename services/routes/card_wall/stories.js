@@ -38,7 +38,7 @@ exports.forSprint = function(req, res){
 
 exports.create = function(req, res){
     var s = req.body;
-    var story = new Story(s.title, s.details, s.owner_id, s.points, req.params.id, s.sprint_id);
+    var story = new Story(s.title, s.details, s.owner_id, s.points, req.params.id, s.sprint_id, s.created_by);
     story.save(function(){
         res.send("done");
     }, function(error){
@@ -48,7 +48,7 @@ exports.create = function(req, res){
 
 exports.update = function(req, res){
     var s = req.body;
-    var story = new Story(s.title, s.details, s.owner_id, s.points, s.epic_id, s.sprint_id);
+    var story = new Story(s.title, s.details, s.owner_id, s.points, s.epic_id, s.sprint_id, s.created_by, s.status, s.created_at, s.modified_by);
     story.id = req.params.id;
     story.update(function(){
         res.send("done");

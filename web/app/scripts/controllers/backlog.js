@@ -39,6 +39,7 @@ angular.module('webApp')
     $scope.addStory = function(epicId) {
         if ($scope.story.owner) $scope.story.owner_id = $scope.story.owner.id;
         if ($scope.story.sprint) $scope.story.sprint_id = $scope.story.sprint.id;
+        $scope.story.created_by = $rootScope.loggedInUser.id;
         sync.post('/epics/' + epicId + '/stories', $scope.story).success(function() { $scope.getStories(epicId); }).error(function(e) { console.log(e); } );
     }
 
