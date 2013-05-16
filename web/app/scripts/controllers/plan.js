@@ -38,13 +38,21 @@ angular.module('webApp')
     }
 
     $scope.openStory = function(id) {
-      //TODO
+        sync.get('/stories/' + id).success(function(s) { 
+          $scope.story = s || {}; 
+          $scope.story.owner = (s && s.owner_id) ? _.find($scope.members, function(m) { return m.id === s.owner_id; }) : null;
+        }).error(function() {
+            console.log("error");
+        });
         $("#fade").show();
         $("#newStory").show();
     }
 
     $scope.saveStory = function() {
-      
+        sync.post('/stories/' + $scope.story.id, $scope.story).success(function(res) { console.log("updated"); }).error(function() {
+            console.log("error");
+        });
+        $scope.closePopup();
     }
 
     var dragSrcEl = null;

@@ -53,14 +53,19 @@ Story.prototype.save=function(onSuccess, onError) {
 Story.prototype.update=function(onSuccess, onError) {
     this.created_at = undefined;
     this.created_by = undefined;
+    obj = this;
 
     stories_table.find(this.id).success(function(o) { 
-      o.updateAttributes().success(onSuccess).error(onError); 
+      o.updateAttributes(obj).success(onSuccess).error(onError); 
     });
 };
 
 Story.forEpic = function(epic_id, onSuccess, onError) {
     stories_table.findAll({include: [User, Sprint], where: { epic_id: epic_id }, order: 'sprint_id' }).success(onSuccess).error(onError);
+}
+
+Story.get = function(id, onSuccess, onError) {
+    stories_table.find({include: [User, Sprint], where: { id: id }}).success(onSuccess).error(onError);
 }
 
 Story.forSprint = function(sprint_id, onSuccess, onError) {

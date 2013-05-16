@@ -67,10 +67,12 @@ app.get('/projects/:id/epics', cardModels.epics.list);
 app.get('/projects/:id/stories', cardModels.stories.list);
 app.get('/epics/:id/stories', cardModels.stories.forEpic);
 app.get('/sprints/:id/stories', cardModels.stories.forSprint);
+app.get('/stories/:id', cardModels.stories.get);
 app.post('/projects/:id/epics', cardModels.epics.create);
 app.post('/projects/:id/sprints', cardModels.sprints.create);
 app.post('/projects/:id/lanes', cardModels.lanes.create);
 app.post('/epics/:id/stories', cardModels.stories.create);
+app.post('/stories/:id', cardModels.stories.update);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

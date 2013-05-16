@@ -37,14 +37,14 @@
                         <div class="right">
                             <label>Points</label>
                             <div class="storypoints">
-                                <input ng-model="story.points" type="radio" value="1" /><label>1</label>
-                                <input ng-model="story.points" type="radio" value="2" /><label>2</label>
-                                <input ng-model="story.points" type="radio" value="3" /><label class="selected">3</label>
-                                <input ng-model="story.points" type="radio" value="5" /><label>5</label>
-                                <input ng-model="story.points" type="radio" value="8" /><label>8</label>
-                                <input ng-model="story.points" type="radio" value="13" /><label>13</label>
-                                <input ng-model="story.points" type="radio" value="21" /><label>21</label>
-                                <input ng-model="story.points" type="radio" value="34" /><label>34</label>
+                                <input ng-model="story.points" type="radio" value="1"/><label ng-class="{'selected': story.points == 1}" ng-click="story.points=1;">1</label>
+                                <input ng-model="story.points" type="radio" value="2"/><label ng-class="{'selected': story.points == 2}" ng-click="story.points=2;" >2</label>
+                                <input ng-model="story.points" type="radio" value="3"/><label ng-class="{'selected': story.points == 3}" ng-click="story.points=3;" >3</label>
+                                <input ng-model="story.points" type="radio" value="5"/><label ng-class="{'selected': story.points == 5}" ng-click="story.points=5;" >5</label>
+                                <input ng-model="story.points" type="radio" value="8"/><label ng-class="{'selected': story.points == 8}" ng-click="story.points=8;" >8</label>
+                                <input ng-model="story.points" type="radio" value="13"/><label ng-class="{'selected': story.points == 13}" ng-click="story.points=13;" >13</label>
+                                <input ng-model="story.points" type="radio" value="21"/><label ng-class="{'selected': story.points == 21}" ng-click="story.points=21;" >21</label>
+                                <input ng-model="story.points" type="radio" value="34"/><label ng-class="{'selected': story.points == 34}" ng-click="story.points=34;" >34</label>
                             </div>
                         </div>
                     </li>
