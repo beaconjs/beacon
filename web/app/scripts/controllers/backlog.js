@@ -18,15 +18,19 @@ angular.module('webApp')
     get('/members', 'members');
     get('/sprints', 'sprints');
 
-    sync.get('/projects/' + $rootScope.project_id + '/epics').success(function(res) { $scope.epics = res || []; }).error(function() {
-        console.log("error");
-    });
+    var getEpics = function() {
+        sync.get('/projects/' + $rootScope.project_id + '/epics').success(function(res) { $scope.epics = res || []; }).error(function() {
+            console.log("error");
+        });
+    };
+
+    getEpics();
 
     $scope.getStories = function(epicId) {
         if ($scope.stories[epicId]) {
             $scope.stories[epicId] = null;
         } else {
-            sync.get('/epics/' + $rootScope.project_id + '/stories').success(function(res) { $scope.stories[epicId] = res || []; }).error(function() {
+            sync.get('/epics/' + epicId + '/stories').success(function(res) { $scope.stories[epicId] = res || []; }).error(function() {
                 console.log("error");
             });
         }
@@ -35,11 +39,12 @@ angular.module('webApp')
     $scope.addStory = function(epicId) {
         if ($scope.story.owner) $scope.story.owner_id = $scope.story.owner.id;
         if ($scope.story.sprint) $scope.story.sprint_id = $scope.story.sprint.id;
-        sync.post('/epics/' + epicId + '/stories', $scope.story).success(function() { console.log('done'); }).error(function(e) { console.log(e); } );
+        sync.post('/epics/' + epicId + '/stories', $scope.story).success(function() { $scope.getStories(epicId); }).error(function(e) { console.log(e); } );
     }
 
     $scope.addEpic = function() {
-        sync.post('/projects/' + $rootScope.project_id + '/epics', $scope.epic).success(function() { console.log('done'); }).error(function(e) { console.log(e); } );
+        $scope.epic.status = "not_started";
+        sync.post('/projects/' + $rootScope.project_id + '/epics', $scope.epic).success(function() { getEpics(); }).error(function(e) { console.log(e); } );
     }
 
   });

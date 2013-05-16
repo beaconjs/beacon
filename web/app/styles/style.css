@@ -1,6 +1,12 @@
+
+@font-face {
+    font-family: SourceSansProRegular;
+    src: url(SourceSansPro-Regular.ttf);
+}
+
 body {
     background-color: #E3E7EB;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    font: 15px "SourceSansProRegular", Helvetica, Arial, sans-serif;
 }
 
 #page { width: 90%; padding: 2em; margin: 24px auto; border: 2px #EEE solid; height: 800px; box-shadow: 5px 5px 5px #CCC; background: #FFF; overflow: auto;}
@@ -14,9 +20,9 @@ body {
 }
 
 .edit-project form input { width: 30%; } 
-.edit-project table th { font-weight: bold; background-color: #eee;}
-.edit-project table { border: 1px #eee solid; font-size: 0.9em; width: 100%;}
-.edit-project table td, .edit-project table th { border: 1px #eee solid;}
+.edit-project table th, .backlog table th { font-weight: bold; background-color: #eee;}
+.edit-project table, .backlog table { border: 1px #eee solid; font-size: 0.9em; width: 100%; background-color: #fff;}
+.edit-project table td, .edit-project table th, .backlog table td, .backlog table th { border: 1px #eee solid;}
 .edit-project .help-text { font-size: 0.9em; color: #aaa; min-width: 33%; width: 33%; float: left;}
 .edit-project .inner-row { margin: 0.25em 0 0 0;}
 
@@ -128,3 +134,5 @@ ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; backgr
 
 .backlog input { height: 23px !important; width: auto !important;}
 .backlog select { height: 23px !important; width: auto !important;}
+.backlog .epic { background-color: #CCC; padding: 10px 0 0 0; }
+.backlog ul { list-style: none; }

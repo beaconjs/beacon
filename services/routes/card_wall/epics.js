@@ -14,7 +14,7 @@ exports.list = function(req, res){
 
 exports.create = function(req, res){
     var e = req.body;
-    var epic = new Epic(e.title, e.details, e.project_id, e.status);
+    var epic = new Epic(e.title, e.details, req.params.id, e.status);
     epic.save(function(){
         res.send("done");
     }, function(error){
