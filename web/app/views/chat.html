@@ -1,13 +1,4 @@
 <div class="row">
-    <div class="breadcrumbs">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a ng-click="gotoPage('/projects/edit')">{{project_name}}</a></li>
-            <li><span>Chat</span></li>
-        </ul>
-    </div>
-</div>
-<div class="row">
     <div class="fivesixth">
         <div class="chat-box">
         </div>
@@ -29,5 +20,6 @@
     <div class="onesixth">
         <span id="status"></span>
         <button ng-click="sendChat()">Send</button>
+        <a ng-click="showChat=false;">Close</a>
     </div>
 </div>

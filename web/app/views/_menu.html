@@ -5,7 +5,7 @@
         <li><a ng-click="gotoPage('notes')" title="Notes"><img src="images/notes.png"/></a></li>
         <li><a ng-click="gotoPage('backlog')" title="Requirements"><img src="images/requirements.png"/></a></li>
         <li><a ng-click="gotoPage('plan')" title="Plan"><img src="images/plan.png"/></a></li>
-        <li><a ng-click="gotoPage('chat')" title="Chat"><img src="images/chat.png"/></a></li>
+        <li><a ng-click="showChat=!showChat;" title="Chat"><img src="images/chat.png"/></a></li>
         <li><a ng-click="" title="Bugs"><img src="images/bugs.png"/></a></li>
         <li><a ng-click="" title="Reports"><img src="images/reports.png"/></a></li>
         <li><a ng-click="gotoPage('projects/edit')" title="Users"><img src="images/users.png"/></a></li>
@@ -13,3 +13,5 @@
         <li><a ng-click="" title="Notifications"><img src="images/notifications.png"/></a></li>
     </ul>
 </div>
+<chat ng-show="showChat"></chat>
+<div class="chat-overlay" ng-show="showChat"></div>
