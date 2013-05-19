@@ -41,17 +41,6 @@ select { width: 30%; font-size: 2em;}
 
 .story .points { color: #FC0; width: 2em; font-size: 1.5em; margin: -0.5em -0.5em 0.5em 0; float: right; padding: 2px 5px; }
 
-#newStory { display: none; width: 60%; background-color: #eee; position: absolute; top: 25%; left: 15%; padding: 10px; z-index: 100;}
-#newStory .close { float: right; height: 70px; width: 70px; margin: -50px;}
-
-#newStory .right { width: 50%; }
-#newStory input[type=submit], #newStory button { height: 3em !important; margin-right: 0.5em;}
-.storypoints label { width: auto !important; background: #FFD; padding: 5px 4px; font-size: 0.8em;}
-.storypoints label.selected { background: #AA0 !important; }
-.storypoints input[type="radio"] { display: none;}
-.textFieldDiv, .textAreaDiv {padding: 0 5px; background-color: #fff; border-bottom: #CCC 1px solid;}
-.textAreaDiv {min-height: 10em; }
-
 #fade { display: none; position: absolute; left: 0%; top: 0%; background-color: black; -moz-opacity: 0.7; opacity: .70; 
     filter: alpha(opacity=70); width: 100%; height: 100%; z-index: 90; }
 
@@ -90,7 +79,7 @@ select { width: 30%; font-size: 2em;}
 .drawer ul li { padding: 0; margin: 0; }
 .drawer a { text-decoration: none; }
 
-.chat-box { border: #CCC solid 1px; height: 40em; width: 95%;padding: 0 2em; color: #444; overflow: auto; font-size: 0.9em; }
+.chat-box { border: #CCC solid 1px; height: 45em; width: 95%;padding: 0 2em; color: #444; overflow: auto; font-size: 0.9em; }
 
 .chat-box .chat-row { border-bottom: #eee solid 1px; padding: 5px 0; }
 
@@ -132,10 +121,24 @@ input[type="submit"], button { width: 10em !important; border: 0px; background-c
 .project_tile h1 a { font-size: inherit; color: inherit; text-decoration: none; }
 ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; background-color: #eee; padding: 1em; width: 20em; font-size: 0.9em; margin-top: 0.5em; margin-left: 0;}
 
+.backlog { overflow: auto; }
 .backlog input { height: 23px !important; width: auto !important;}
 .backlog select { height: 23px !important; width: auto !important;}
 .backlog .epic { background-color: #CCC; padding: 10px 0 0 0; }
-.backlog ul { list-style: none; }
-chat { position: absolute; width: 80%; height: 80%; top: 15%; left: 5%; margin: 0 1em; z-index: 100;}
+.backlog ul { list-style: none; float: left; width: 70%;}
+chat { position: absolute; width: 80%; height: 80%; top: 5%; left: 5%; margin: 0 1em; z-index: 100;}
 chat .row { background-color: #FFF !important; padding: 1em 0.5em; margin: 0;}
 .chat-overlay { position: absolute; left: 0; top: 0; background-color: rgba(0, 0, 0, 0.5); height: 100%; width: 100%;z-index: 99;}
+
+
+#newStory { display: none; width: 60%; background-color: #eee; position: absolute; top: 25%; left: 15%; padding: 10px; z-index: 90;}
+.story-pane { width: 25%; background-color: #eee; padding: 10px; float: right; }
+#newStory .close, .story-pane .close { float: right; height: 70px; width: 70px; margin: -50px;}
+
+#newStory .right, .story-pane .right { width: 50%; }
+#newStory input[type=submit], #newStory button , .story-pane input[type=submit], .story-pane button { height: 3em !important; margin-right: 0.5em;}
+.storypoints label { width: auto !important; background: #FFD; padding: 5px 4px; font-size: 0.8em;}
+.storypoints label.selected { background: #AA0 !important; }
+.storypoints input[type="radio"] { display: none;}
+.textFieldDiv, .textAreaDiv {padding: 0 5px; background-color: #fff; border-bottom: #CCC 1px solid;}
+.textAreaDiv {min-height: 10em; }

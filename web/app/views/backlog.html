@@ -16,12 +16,43 @@
     </div>
     <br>
     <ul>
-        <li ng-repeat="epic in epics" class="epic"><a ng-click="getStories(epic.id)">+</a> {{epic.title}} ({{epic.num_of_stories}} stories) ({{epic.points}} points) <a ng-click="epic.newstory=!epic.newstory">Add a Story</a>
+        <li ng-repeat="epic in epics" class="epic"><a ng-click="getStories(epic.id)">+ {{epic.title}} ({{epic.num_of_stories}} stories) ({{epic.points}} points)</a> <a ng-click="epic.newstory=!epic.newstory">Add a Story</a>
             <table>
                 <tr ng-show="epic.newstory || stories[epic.id]"><th>Sprint</th><th>Name</th><th>Owner</th><th>Points</th><th>Status</th></tr>
-                <tr ng-repeat="story in stories[epic.id]" ng-show="stories[epic.id]"><td>{{story.sprint.title}}</td><td>{{story.title}}</td><td>{{story.user.name}}</td><td>{{story.points}}</td><td>{{story.status}}</td></tr>
+                <tr ng-repeat="story in stories[epic.id]" ng-show="stories[epic.id]" ng-click="loadStory(epic.id, story.id)"><td>{{story.sprint.title}}</td><td>{{story.title}}</td><td>{{story.user.name}}</td><td>{{story.points}}</td><td>{{story.status}}</td></tr>
                 <tr ng-show="epic.newstory"><td><select ng-model="story.sprint" ng-options="s.title for s in sprints"><option></option><</select></td><td><input type="text" ng-model="story.title"/></td><td><select ng-model="story.owner" ng-options="u.user.name for u in members"><option></option></select></td><td><select ng-model="story.points" ng-options="p for p in points"><option></option></select></td><td><a ng-click="addStory(epic.id)" class="btn">Save</a></td></tr>
             </table>
         </li>
     </ul>
+    <div class="story-pane" ng-show="showStory">
+        <div class="close" ng-click="closeStoryPane()"></div>
+        <form method="POST" class="forms columnar" ng-submit="saveStory()">
+            <fieldset>
+                <ul>
+                    <li><input type="text" ng-model="storyDetails.title" class="width-100" placeholder="Story name"/></li>
+                    <li>
+                        <select ng-model="storyDetails.owner" ng-options="u.user.name for u in members">
+                        </select>
+                    </li>
+                    <li>
+                        <div>
+                            <label>Points</label>
+                            <div class="storypoints">
+                                <input ng-model="storyDetails.points" type="radio" value="1"/><label ng-class="{'selected': storyDetails.points == 1}" ng-click="storyDetails.points=1;">1</label>
+                                <input ng-model="storyDetails.points" type="radio" value="2"/><label ng-class="{'selected': storyDetails.points == 2}" ng-click="storyDetails.points=2;" >2</label>
+                                <input ng-model="storyDetails.points" type="radio" value="3"/><label ng-class="{'selected': storyDetails.points == 3}" ng-click="storyDetails.points=3;" >3</label>
+                                <input ng-model="storyDetails.points" type="radio" value="5"/><label ng-class="{'selected': storyDetails.points == 5}" ng-click="storyDetails.points=5;" >5</label>
+                                <input ng-model="storyDetails.points" type="radio" value="8"/><label ng-class="{'selected': storyDetails.points == 8}" ng-click="storyDetails.points=8;" >8</label>
+                                <input ng-model="storyDetails.points" type="radio" value="13"/><label ng-class="{'selected': storyDetails.points == 13}" ng-click="storyDetails.points=13;" >13</label>
+                                <input ng-model="storyDetails.points" type="radio" value="21"/><label ng-class="{'selected': storyDetails.points == 21}" ng-click="storyDetails.points=21;" >21</label>
+                                <input ng-model="storyDetails.points" type="radio" value="34"/><label ng-class="{'selected': storyDetails.points == 34}" ng-click="storyDetails.points=34;" >34</label>
+                            </div>
+                        </div>
+                    </li>
+                    <li><textarea ng-model="storyDetails.details" class="width-100" placeholder="Story Details"></textarea></li>
+                    <li><input type="submit" /><button ng-click="closeStoryPane()" >Close</button></li>
+                </ul>
+            </fieldset>
+        </form>
+    </div>
 </div>

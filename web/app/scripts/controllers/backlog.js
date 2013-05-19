@@ -43,6 +43,25 @@ angular.module('webApp')
         sync.post('/epics/' + epicId + '/stories', $scope.story).success(function() { $scope.getStories(epicId); }).error(function(e) { console.log(e); } );
     }
 
+    $scope.saveStory = function() {
+        $scope.storyDetails.modified_by = $rootScope.loggedInUser.id;
+        sync.post('/stories/' + $scope.storyDetails.id, $scope.storyDetails).success(function(res) { console.log("updated"); }).error(function() {
+            console.log("error");
+        });
+    }
+
+    $scope.loadStory = function(epicId, storyId) {
+        $scope.storyDetails = _.find($scope.stories[epicId], function(s){
+            return s.id === storyId;
+        })
+        $scope.showStory = true;
+    }
+
+    $scope.closeStoryPane = function() {
+        $scope.storyDetails = {};
+        $scope.showStory = false;
+    }
+
     $scope.addEpic = function() {
         $scope.epic.status = "not_started";
         sync.post('/projects/' + $rootScope.project_id + '/epics', $scope.epic).success(function() { getEpics(); }).error(function(e) { console.log(e); } );
