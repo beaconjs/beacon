@@ -36,6 +36,9 @@ ProjectUser.list=function(project_id, onSuccess, onError) {
     pusers_table.all({ include: [ Project, User, Role ], where: {project_id: project_id } }).success(onSuccess).error(onError);
 };
 
+ProjectUser.forUser=function(user_id, onSuccess, onError) {
+    pusers_table.all({ include: [ Project ], where: {user_id: user_id } }).success(onSuccess).error(onError);
+};
 
 exports.get=ProjectUser;
 exports.table=pusers_table;

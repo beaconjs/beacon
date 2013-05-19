@@ -6,8 +6,14 @@ angular.module('webApp')
 
     $scope.projectNames = {};
 
-    sync.get("/projects").success(function(res){
-        $scope.projects = res;
+    sync.get("/users/"+ $rootScope.loggedInUser.id + "/projects").success(function(res){
+        var projects = [];
+        if (res) {
+            _.each(res, function(o){
+                projects.push(o.project);
+            });
+        }
+        $scope.projects = projects;
         if (res && res.length > 0) {
             $rootScope.project_id = res[0].id;
             $rootScope.project_name = res[0].name;

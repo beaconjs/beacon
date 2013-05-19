@@ -55,6 +55,7 @@ app.post('/projects/:id/:noteId/upload', notes.upload);
 
 app.get('/projects/:id/members', projectusers.list);
 app.post('/projects/:id/members', projectusers.create);
+app.get('/users/:userId/projects', projectusers.forUser);
 app.post('/notes', notes.create);
 app.post('/notes/:id/comments', comments.createForNote);
 app.get('/notes/:id/comments', comments.forNote);

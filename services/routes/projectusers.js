@@ -13,6 +13,15 @@ exports.list = function(req, res){
   });
 };
 
+exports.forUser = function(req, res){
+  ProjectUsers.forUser(req.params.userId, function(o){
+    o = o || [];
+    res.json(o);
+  }, function(err){
+    res.send(err);
+  });
+};
+
 exports.create = function(req, res){
     var p = req.body;
     if (!Array.isArray(p)) {
