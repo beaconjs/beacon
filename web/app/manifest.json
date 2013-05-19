@@ -1,0 +1,11 @@
+{
+  "name": "Beacon",
+  "description": "Agile toolkit",
+  "version": "0.1",
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "icons": { }
+}
