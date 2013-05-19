@@ -7,9 +7,11 @@ angular.module('webApp')
             name: $scope.project.name, 
             description: $scope.project.description,
             created_by: $rootScope.loggedInUser.id
-        }).success(function() {
+        }).success(function(r) {
+            $rootScope.project_id = r.project.id;
+            $rootScope.project_name = r.project.name;
             console.log("done");
-            $location.path("/");
+            $location.path("/projects/edit");
         }).error(function() {
             console.log("error");
         });

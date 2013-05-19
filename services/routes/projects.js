@@ -11,7 +11,7 @@ exports.list = function(req, res){
   Project.all(function(o){
     res.json(o);
   }, function(err){
-    res.send(err);
+    res.send(500, err);
   });
 };
 
@@ -19,7 +19,7 @@ exports.get = function(req, res){
   Project.get(req.params.id, function(o){
     res.json(o);
   }, function(err){
-    res.send(err);
+    res.send(500, err);
   });
 };
 
@@ -34,7 +34,8 @@ exports.create = function(req, res){
 
       var lane = new Lane('Not Started', o.id, 1000, 'not_started');
       lane.save(function(){}, function(){});
-    }, function(){});
-
-    res.send({msg: "done"});
+      res.json({msg: "done", project: o});
+    }, function(err){
+      res.send(500, err);
+    });
 };
