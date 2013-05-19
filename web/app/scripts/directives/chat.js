@@ -162,6 +162,25 @@ angular.module('webApp')
 
             };
 
+            var addNote = function() {
+                var title = prompt('Enter title for note');
+                if (title) {
+                    var html = window.getSelection().toString();
+
+                    sync.post('/notes', {
+                        title: title,
+                        details: html,
+                        project: $rootScope.project_id,
+                        user: $rootScope.loggedInUser.id
+                    }).success(function(o){
+                        console.log("saved");
+                    });
+                }
+                return false;
+            }
+
+            $('.chat-box').bind('contextmenu', addNote);
+
             $rootScope.$watch('project_id', startChat);
         }
     }
