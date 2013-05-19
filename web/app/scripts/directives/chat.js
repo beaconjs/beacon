@@ -108,7 +108,6 @@ angular.module('webApp')
              
                 // most important part - incoming messages
                 connection.onmessage = function (message) {
-                    console.log(message);
                     // try to parse JSON message. Because we know that the server always returns
                     // JSON this should work without any problem but we should make sure that
                     // the massage is not chunked or otherwise damaged.
@@ -146,7 +145,7 @@ angular.module('webApp')
                  * something is wrong.
                  */
                 setInterval(function() {
-                    if (connection.readyState !== 1) {
+                    if (!connection || connection.readyState !== 1) {
                         status.text('Error : Unable to communicate ' + 'with the WebSocket server.');
                     }
                 }, 3000);

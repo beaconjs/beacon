@@ -17,6 +17,7 @@ var express = require('express')
   , path = require('path');
 
 require('./chat_server');
+require('./notifications');
 
 var app = express();
 
