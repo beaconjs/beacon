@@ -25,6 +25,11 @@ angular.module('webApp')
 
             var chat_initiated = connection != null;
             var myName = null;
+            var options = {
+                "cls": "notification-chat",
+                "speed": 1000, //Fade-in / out animation speed
+                "timeout": 10000 //Timeout before notification disappears
+            };
 
             $scope.replace = function(name) {
                 return name.replace(/ /g, '_');
@@ -130,6 +135,7 @@ angular.module('webApp')
                     } else if (json.type === 'message') { // it's a single message
                         input.removeAttr('disabled'); // let the user write another message
                         addMessage(json.data.author, json.data.text, new Date(json.data.time));
+                        $.Growl.show(json.data.author + ": " + json.data.text, options);
                     } else if (json.type === 'connection') { 
                         $('#' + json.data.author.replace(/ /g, '_')).addClass("online");
                     } else if (json.type === 'disconnection') { 

@@ -8,8 +8,9 @@ angular.module('webApp')
         link: function($scope, element, attrs) {
 
             var options = {
-                    "speed": 1000, //Fade-in / out animation speed
-                    "timeout": 10000 //Timeout before notification disappears
+                "cls": "notification-info",
+                "speed": 1000, //Fade-in / out animation speed
+                "timeout": 10000 //Timeout before notification disappears
             };
 
             var connect = function(channel) {

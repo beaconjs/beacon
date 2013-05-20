@@ -9,6 +9,9 @@ body {
     font: 15px "SourceSansProRegular", Helvetica, Arial, sans-serif;
 }
 
+.notification-info, .notification-info:hover { color: #3A87AD; background-color: #D9EDF7; border-color: #BCE8F1; font-size: 100%; }
+.notification-chat, .notification-chat:hover { color: #468847; background-color: #DFF0D8; border-color: #D6E9C6; font-size: 100%; }
+
 #page { width: 90%; padding: 2em; margin: 24px auto; border: 2px #EEE solid; height: 800px; box-shadow: 5px 5px 5px #CCC; background: #FFF; overflow: auto;}
 
 #page .nav-project-name { color: #aaa; font-size: 0.9em; float: right;margin-top: -1em; height: 2em;}
