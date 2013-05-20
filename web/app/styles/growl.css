@@ -34,7 +34,7 @@
   height:30px;
   cursor: pointer;
   display: none;
-  background: transparent url(images/growlclose.png) no-repeat;
+  background: transparent url(../images/growlclose.png) no-repeat;
 }
 .growlstatus:hover{
   background-color: rgba(0, 0, 0, 0.9);

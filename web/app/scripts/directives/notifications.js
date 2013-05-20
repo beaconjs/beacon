@@ -7,6 +7,11 @@ angular.module('webApp')
         template: '',
         link: function($scope, element, attrs) {
 
+            var options = {
+                    "speed": 1000, //Fade-in / out animation speed
+                    "timeout": 10000 //Timeout before notification disappears
+            };
+
             var connect = function(channel) {
                 window.WebSocket = window.WebSocket || window.MozWebSocket;
                 // open connection
@@ -16,7 +21,7 @@ angular.module('webApp')
                 connection.onmessage = function (message) {
                     try {
                         var json = JSON.parse(message.data);
-                        $.Growl.show(json.issuer.name + ": " + json.message);
+                        $.Growl.show(json.issuer.name + ": " + json.message, options);
                     } catch (e) {
                         console.log(e);
                         console.log('This doesn\'t look like a valid JSON: ', message.data);
