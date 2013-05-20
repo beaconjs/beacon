@@ -35,6 +35,14 @@
                         </select>
                     </li>
                     <li>
+                        <select ng-model="storyDetails.status" ng-options="u for u in statuses">
+                        </select>
+                    </li>
+                    <li>
+                        <select ng-model="storyDetails.sprint" ng-options="u.title for u in sprints">
+                        </select>
+                    </li>
+                    <li>
                         <div>
                             <label>Points</label>
                             <div class="storypoints">

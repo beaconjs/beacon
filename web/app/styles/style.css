@@ -136,10 +136,13 @@ chat .row { background-color: #FFF !important; padding: 1em 0.5em; margin: 0;}
 
 #newStory { display: none; width: 60%; background-color: #eee; position: absolute; top: 25%; left: 15%; padding: 10px; z-index: 90;}
 .story-pane { width: 25%; background-color: #eee; padding: 10px; float: right; }
+.story-pane ul { width: 100%; }
+.story-pane ul label { width: auto !important; margin-right: 10px !important;}
 #newStory .close, .story-pane .close { float: right; height: 70px; width: 70px; margin: -50px;}
 
 #newStory .right, .story-pane .right { width: 50%; }
 #newStory input[type=submit], #newStory button , .story-pane input[type=submit], .story-pane button { height: 3em !important; margin-right: 0.5em;}
+.storypoints { height: 35px; }
 .storypoints label { width: auto !important; background: #FFD; padding: 5px 4px; font-size: 0.8em;}
 .storypoints label.selected { background: #AA0 !important; }
 .storypoints input[type="radio"] { display: none;}
