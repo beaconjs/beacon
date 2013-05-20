@@ -1,4 +1,5 @@
 var ProjectUsers = require('../models/projectusers').get;
+var NotificationsService = require('../notifications');
 
 /*
  * GET project member listing.
@@ -29,7 +30,9 @@ exports.create = function(req, res){
     }
     p.forEach(function(e){
       var user = new ProjectUsers(req.params.id, e.user_id, e.role_id);
-      user.save(function(){}, function(){});
+      user.save(function(){
+        NotificationsService.send(e.issuer, req.params.id, " added user " + e.user.name + " to project " + e.project_name);
+      }, function(){});
     });
 
     res.send({msg: "done"});

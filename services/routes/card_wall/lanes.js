@@ -1,4 +1,5 @@
 var Lane = require('../../models/card_wall/lane').get;
+var NotificationsService = require('../../notifications');
 
 /*
  * GET lanes listing.
@@ -17,6 +18,7 @@ exports.create = function(req, res){
     e.status = e.status || e.title.toLowerCase().replace(/ /g, "_");
     var lane = new Lane(e.title, req.params.id, e.max_stories, e.status);
     lane.save(function(){
+        NotificationsService.send(e.issuer, req.params.id, " added lane " + e.title + " to project " + e.project_name);
         res.send("done");
     }, function(error){
         res.send(500, error);

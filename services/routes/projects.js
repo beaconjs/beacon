@@ -2,7 +2,6 @@ var Project = require('../models/project').get;
 var ProjectUsers = require('../models/projectusers').get;
 var Role = require('../models/roles').get;
 var Lane = require('../models/card_wall/lane').get;
-var NotificationsService = require('../notifications');
 
 /*
  * GET project listing.
@@ -35,7 +34,6 @@ exports.create = function(req, res){
 
       var lane = new Lane('Not Started', o.id, 1000, 'not_started');
       lane.save(function(){}, function(){});
-      NotificationsService.send(p.created_by, o.id, "added project " + o.name);
       res.json({msg: "done", project: o});
     }, function(err){
       res.send(500, err);

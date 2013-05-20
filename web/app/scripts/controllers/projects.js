@@ -10,6 +10,7 @@ angular.module('webApp')
         }).success(function(r) {
             $rootScope.project_id = r.project.id;
             $rootScope.project_name = r.project.name;
+            $rootScope.userProjects.push(r.project.id);
             console.log("done");
             $location.path("/projects/edit");
         }).error(function() {
@@ -65,7 +66,9 @@ angular.module('webApp')
         var member = { 
             role_id: $scope.member.role.id, 
             user_id: $scope.member.user_id,
-            user: { name: $scope.member.name }
+            user: { name: $scope.member.name },
+            project_name: $rootScope.project_name,
+            issuer: { id: $rootScope.loggedInUser.id, name: $rootScope.loggedInUser.name }
         };
         sync.post('/projects/' + $rootScope.project_id + '/members', member).success(function() {
             $scope.member = { };
@@ -76,8 +79,14 @@ angular.module('webApp')
         });
     };
 
+    var addNotificationFields = function(obj) {
+        obj.project_name = $rootScope.project_name;
+        obj.issuer = { id: $rootScope.loggedInUser.id, name: $rootScope.loggedInUser.name };
+    }
+
     $scope.addSprint = function() {
         $scope.sprint.user_id = $rootScope.loggedInUser.id;
+        addNotificationFields($scope.sprint);
         sync.post('/projects/' + $rootScope.project_id + '/sprints', $scope.sprint).success(function() {
             $scope.sprint = { };
             get('/sprints', 'sprints');
@@ -87,6 +96,7 @@ angular.module('webApp')
     };
 
     $scope.addLane = function() {
+        addNotificationFields($scope.lane);
         sync.post('/projects/' + $rootScope.project_id + '/lanes', $scope.lane).success(function() {
             $scope.lane = { };
             get('/lanes', 'lanes');

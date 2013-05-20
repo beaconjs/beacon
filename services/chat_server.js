@@ -39,7 +39,7 @@ var server = http.createServer(function(request, response) {
     // Not important for us. We're writing WebSocket server, not HTTP server
 });
 server.listen(webSocketsServerPort, function() {
-    console.log((new Date()) + " Server is listening on port " + webSocketsServerPort);
+    console.log((new Date()) + " Chat Server is listening on port " + webSocketsServerPort);
 });
 
 /**
