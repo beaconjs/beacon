@@ -56,3 +56,11 @@ exports.update = function(req, res){
         res.send(500, error);
     });
 };
+
+exports.progress = function(req, res) {
+    Story.progress(req.params.id, req.params.sprintId, function(o){
+        res.json(o);
+    }, function(error){
+        res.send(500, error);
+    });
+}

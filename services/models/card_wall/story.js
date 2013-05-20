@@ -4,6 +4,7 @@ var DataTypes = require("sequelize");
 var User = require('../users').table
 var Epic = require('./epic').table
 var Sprint = require('./sprint').table
+var Lane = require('./lane').table
 
 var Story = function(title, details, owner_id, points, epic_id, sprint_id, created_by, status, created_at, modified_by) {
     this.title = title, 
@@ -74,4 +75,34 @@ Story.forSprint = function(sprint_id, onSuccess, onError) {
 
 Story.list = function(project_id, onSuccess, onError) {
     stories_table.findAll({include: [Epic], where: { "epics.project_id": project_id } }).success(onSuccess).error(onError);
+}
+
+Story.progress = function(project_id, sprint_id, onSuccess, onError) {
+    var summary = { total: {}, completed: {} };
+
+    var base_query = "select count(s.id) as num_of_stories, sum(s.points) as points, s.sprint_id " + 
+        "from epics e, stories s where s.epic_id=e.id and e.project_id=" + project_id;
+    if (sprint_id) {
+        base_query += " and s.sprint_id=" + sprint_id;
+    }
+
+    db.query(base_query + " group by s.sprint_id").success(function(o){
+      o.forEach(function(x){
+        x.sprint_id = x.sprint_id || "none";
+        summary.total[x.sprint_id] = {};
+        summary.total[x.sprint_id].num_of_stories = x.num_of_stories;
+        summary.total[x.sprint_id].points = x.points || 0;
+      });
+
+      db.query(base_query + " and s.status in (select status from lanes where end_state=1 and project_id=" + project_id + ")" + " group by s.sprint_id").success(function(c){
+          c.forEach(function(x){
+            x.sprint_id = x.sprint_id || "none";
+            summary.completed[x.sprint_id] = {};
+            summary.completed[x.sprint_id].num_of_stories = x.num_of_stories;
+            summary.completed[x.sprint_id].points = x.points || 0;
+          });
+
+          onSuccess(summary);
+      }).error(onError);
+    }).error(onError);
 }
