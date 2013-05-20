@@ -27,7 +27,7 @@ angular.module('webApp')
                 if (o.id) { 
                     if (!$scope.note_id) {
                         $scope.notes.push({
-                            id: $scope.note_id,
+                            id: o.id,
                             title: $scope.notetitle
                         });
                     }
@@ -47,7 +47,7 @@ angular.module('webApp')
 
 
     $scope.load = function(id) {
-        sync.get('/projects/' + $rootScope.project_id + '/notes/' + id, {}).success(function(res) {
+        sync.get('/projects/' + $rootScope.project_id + '/notes/' + id).success(function(res) {
             $scope.note_id = id;
             if (res) {
                 $('#notedetails_div').html(res.details);
@@ -64,7 +64,7 @@ angular.module('webApp')
 
     $scope.loadComments = function() {
         if ($scope.note_id) {
-            sync.get('/notes/' + $scope.note_id + '/comments', {}).success(function(res) {
+            sync.get('/notes/' + $scope.note_id + '/comments').success(function(res) {
                 $scope.comments = res || [];
             }).error(function() {
                 console.log("error");
