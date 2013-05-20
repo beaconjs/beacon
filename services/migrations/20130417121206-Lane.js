@@ -7,6 +7,8 @@ exports.up = function(db, callback) {
         title: 'string',
         project_id: 'int',
         max_stories: 'int',
+        end_state: 'boolean',
+        position: 'int',
         status: 'string'
       }, callback);
     

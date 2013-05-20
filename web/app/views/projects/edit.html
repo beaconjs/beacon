@@ -76,18 +76,28 @@
                 <tr>
                     <th>Name</th>
                     <th>Max Stories</th>
+                    <th>Is End State?</th>
                 </tr>
                 <tr ng-repeat="lane in lanes">
                     <td>{{lane.title}}</td>
                     <td>{{lane.max_stories}}</td>
+                    <td>{{lane.end_state}}</td>
                 </tr>
             </table>
         </div>
 
         <div class="row">
             <form ng-submit="addLane()">
-                <input type="text" ng-model="lane.title" class="width-33" placeholder="Enter the lanes name"/> 
-                <input type="number" ng-model="lane.max_stories" class="width-33" placeholder="Enter the max stories"/> 
+                <div class="inner-row">
+                    <input type="text" ng-model="lane.title" class="width-33" placeholder="Enter the lanes name"/> 
+                    <input type="number" ng-model="lane.max_stories" class="width-33" placeholder="Enter the max stories"/> 
+                    <input type="checkbox" ng-model="lane.end_state"/>
+                </div>
+                <div class="inner-row">
+                    <span class="help-text">(name)</span>
+                    <span class="help-text">(max stories)</span>
+                    <span class="help-text">(is end state)</span>
+                </div>
                 <br><br><input type="submit" value="Save"/>
             </form>
         </div>

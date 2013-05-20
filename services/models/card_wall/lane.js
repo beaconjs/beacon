@@ -1,17 +1,21 @@
 var db = require("../../db.js").sequelize;
 var DataTypes = require("sequelize");
 
-var Lane = function(title, project_id, max_stories, status) {
+var Lane = function(title, project_id, position, max_stories, status, end_state) {
  this.title = title, 
  this.project_id = project_id,
+ this.position = position,
  this.max_stories = max_stories, 
+ this.end_state = end_state,
  this.status = status;
 };
 
 var lanes_table = db.define('lanes', {
       title: DataTypes.STRING,
       project_id: DataTypes.INTEGER,
+      position: DataTypes.INTEGER,
       max_stories: DataTypes.INTEGER,
+      end_state: DataTypes.BOOLEAN,
       status: DataTypes.STRING
     }, { 
       timestamps: false,

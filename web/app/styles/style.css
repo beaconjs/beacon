@@ -9,6 +9,15 @@ body {
     font: 15px "SourceSansProRegular", Helvetica, Arial, sans-serif;
 }
 
+input[type="date"], input[type="number"] {
+    position:relative;z-index:2;font-family:'Source Sans Pro','PT Sans',Arial,"Helvetica Neue",Helvetica,Tahoma,sans-serif;
+    height:23px;
+    font-size: 0.95em;
+    border:1px solid #ccc;margin:0;padding:1px 2px;background-color:white;color:#333;font-size:.95em;line-height:1;border-radius:1px;
+    box-shadow:0 1px 2px rgba(0,0,0,0.1) inset;-webkit-transition:border ease .5s;-moz-transition:border ease .5s;-ms-transition:border ease .5s;-o-transition:border ease .5s;
+    transition:border ease .5s
+}
+
 .notification-info, .notification-info:hover { color: #3A87AD; background-color: #D9EDF7; border-color: #BCE8F1; font-size: 100%; }
 .notification-chat, .notification-chat:hover { color: #468847; background-color: #DFF0D8; border-color: #D6E9C6; font-size: 100%; }
 
@@ -45,7 +54,7 @@ select { width: 30%; font-size: 2em;}
 .story .points { color: #FC0; width: 2em; font-size: 1.5em; margin: -0.5em -0.5em 0.5em 0; float: right; padding: 2px 5px; }
 
 #fade { display: none; position: absolute; left: 0%; top: 0%; background-color: black; -moz-opacity: 0.7; opacity: .70; 
-    filter: alpha(opacity=70); width: 100%; height: 100%; z-index: 90; }
+    filter: alpha(opacity=70); width: 100%; height: 100%; z-index: 85; }
 
 .card-wall { width: 100%; overflow: auto;}
 .lane { width: 18em; border-right: 3px #EEE solid; padding: 10px; float: left; height: 50em; overflow: auto;}

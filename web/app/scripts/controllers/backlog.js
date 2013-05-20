@@ -30,7 +30,7 @@ angular.module('webApp')
     sync.get('/projects/' + $rootScope.project_id + '/lanes').success(function(res) { 
         $scope.statuses = []; 
         _.each(res, function(o){
-            $scope.statuses.push(o.title);
+            $scope.statuses.push(o.status);
         });
     }).error(function() {
         console.log("error");

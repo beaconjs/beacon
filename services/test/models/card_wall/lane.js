@@ -7,7 +7,7 @@ var assert = require("assert")
 describe('Lane', function(){
   describe('#save()', function(){
     it('should save a lane', function(done){
-        var lane = new Lane('test lane', 1, 5, 'open');
+        var lane = new Lane('test lane', 1, 1, 5, 'open', false);
         lane.save(function(o){
             expect(o.id).to.not.equal(null);
             done();

@@ -16,7 +16,7 @@ exports.list = function(req, res){
 exports.create = function(req, res){
     var e = req.body;
     e.status = e.status || e.title.toLowerCase().replace(/ /g, "_");
-    var lane = new Lane(e.title, req.params.id, e.max_stories, e.status);
+    var lane = new Lane(e.title, req.params.id, e.position, e.max_stories, e.status, e.end_state);
     lane.save(function(){
         NotificationsService.send(e.issuer, req.params.id, " added lane " + e.title + " to project " + e.project_name);
         res.send("done");

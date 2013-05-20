@@ -32,7 +32,7 @@ exports.create = function(req, res){
         user.save(function(){}, function(){});
       }, function(){});
 
-      var lane = new Lane('Not Started', o.id, 1000, 'not_started');
+      var lane = new Lane('Not Started', 1, o.id, 1000, 'not_started', false);
       lane.save(function(){}, function(){});
       res.json({msg: "done", project: o});
     }, function(err){

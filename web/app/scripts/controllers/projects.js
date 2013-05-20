@@ -97,6 +97,7 @@ angular.module('webApp')
 
     $scope.addLane = function() {
         addNotificationFields($scope.lane);
+        $scope.lane.position = $scope.lanes.length + 1;
         sync.post('/projects/' + $rootScope.project_id + '/lanes', $scope.lane).success(function() {
             $scope.lane = { };
             get('/lanes', 'lanes');
