@@ -167,6 +167,57 @@ angular.module('webApp')
 
             };
 
+            var handleFileDrop = function(e) {
+                if (e.stopPropagation) e.stopPropagation(); // Stops some browsers from redirecting.
+                e.preventDefault();
+
+                var dataTransfer = e.dataTransfer || e.originalEvent.dataTransfer;
+                var files = dataTransfer.files;
+                var formdata = new FormData();
+                for (var i = 0, f; f = files[i]; i++) {
+                    var reader = new FileReader();
+                    reader.onloadend = function (e) {
+                        //console.log(e.target.result);
+                    };
+                    reader.readAsDataURL(f);
+                    formdata.append("file", f);
+                }
+
+                $.ajax({  
+                    url: $rootScope.appconfig.server + "/projects/" + $rootScope.project_id + "/upload",
+                    type: "POST",  
+                    data: formdata,  
+                    processData: false,  
+                    contentType: false,  
+                    success: function (res) {
+                        if (files && files.length > 0) {
+                            var file = files[0];
+                            if (!chat_initiated) { 
+                                chat_initiated = true;
+                                connection.send($rootScope.loggedInUser.name);
+                            }
+                            if (file.type.match(/image.*/)) {
+                                connection.send("<img src=\""+ $rootScope.appconfig.server + "/uploads/" + $rootScope.project_id + "/chat/" + file.name +"\" />");
+                            } else {
+                                connection.send("<a href=\""+ $rootScope.appconfig.server + "/uploads/" + $rootScope.project_id + "/chat/" + file.name +"\" target=\"_blank\">" +  file.name + "</a>");
+                            }
+                        }
+                    }
+                });
+                return false;
+            }
+
+            var handleFileDragOver = function(e) {
+                if (e.stopPropagation) e.stopPropagation();
+                e.preventDefault();
+                var dataTransfer = e.dataTransfer || e.originalEvent.dataTransfer;
+                dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+                return false;
+            }
+
+            $(".chat-box").bind("dragover", handleFileDragOver);
+            $(".chat-box").bind("drop", handleFileDrop);
+
             var addNote = function() {
                 var title = prompt('Enter title for note');
                 if (title) {

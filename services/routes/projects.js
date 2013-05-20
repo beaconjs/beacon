@@ -1,3 +1,5 @@
+var fs = require('fs');
+var mkdirp = require('mkdirp');
 var Project = require('../models/project').get;
 var ProjectUsers = require('../models/projectusers').get;
 var Role = require('../models/roles').get;
@@ -39,3 +41,19 @@ exports.create = function(req, res){
       res.send(500, err);
     });
 };
+
+exports.upload = function(req, res) {
+  var path = __dirname + '/../public/uploads/' + req.params.id + '/chat';
+  mkdirp(path, function (err) {
+    if (err) {
+      res.send(500, err);
+    } else {
+      fs.readFile(req.files.file.path, function (err, data) {
+        path += ("/" + req.files.file.name);
+        fs.writeFile(path, data, function (err) {
+          res.send("done");
+        });
+      });
+    }
+  });
+}

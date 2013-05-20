@@ -91,7 +91,7 @@ wsServer.on('request', function(request) {
                 // we want to keep history of all sent messages
                 var obj = {
                     time: (new Date()).getTime(),
-                    text: htmlEntities(message.utf8Data),
+                    text: message.utf8Data,
                     author: userName,
                     channel: channel
                 };
