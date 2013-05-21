@@ -58,18 +58,24 @@
                     <textarea id="notedetails" class="richtextarea" ng-model="notedetails"></textarea>
                 </div>
                 <div class="left-icon">
-                    <div class="row comments-box" ng-show="note_id">
-                        <ul class="comments">
-                            <li ng-repeat="c in comments"><span>{{c.user.name}} {{c.created_at | date:short}}</span> {{c.details}}</li>
-                            <li><button ng-click="addComment()">Save</button><textarea ng-model="comment.details" rows="10"></textarea></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="left-icon">
-                    <div class="row attachments-box" ng-show="note_id">
-                        <ul class="attachments">
-                            <li ng-repeat="a in attachments"><a href="{{appconfig.server}}/uploads/{{project_id}}/{{note_id}}/{{a.filename}}">{{a.filename}}</a></li>
-                        </ul>
+                    <div class="comments-box" ng-show="note_id">
+                        <div class="row">
+                            <h3><a ng-click="showComments=!showComments">Comments</a></h3>
+                            <div ng-show="showComments">
+                                <ul class="comments">
+                                    <li ng-repeat="c in comments"><span>{{c.user.name}} {{c.created_at | date:short}}</span> {{c.details}}</li>
+                                    <li><button ng-click="addComment()">Save</button><textarea ng-model="comment.details" rows="10"></textarea></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h3><a ng-click="showAttachments=!showAttachments">Attachments</a></h3>
+                            <div ng-show="showAttachments">
+                                <ul class="attachments">
+                                    <li ng-repeat="a in attachments"><a href="{{appconfig.server}}/uploads/{{project_id}}/{{note_id}}/{{a.filename}}">{{a.filename}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
