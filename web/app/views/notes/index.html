@@ -23,7 +23,7 @@
                         <div id="notedetails-dropzone" class="richtext-dropzone-inner">
                             <form action="{{appconfig.server}}/projects/{{project_id}}/{{note_id}}/upload" method="post" enctype="multipart/form-data" class="dropzone clickable" id="notedetails-dropzone-form">
                             </form>
-                            <button onclick="closeDropZone()">OK</button>
+                            <button ng-click="closeDropZone()">OK</button>
                         </div>
                     </div>
                     <div class="richtextbuttons">

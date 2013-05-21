@@ -39,10 +39,19 @@ angular.module('webApp')
 
     $scope.attachFile = function(insert) {
         $('#notedetails-dropzone-container').show();
-        var notesDropzone = new Dropzone('form#notedetails-dropzone-form'); //Dropzone.forElement("#notedetails-dropzone-form");
+        var notesDropzone = new Dropzone('form#notedetails-dropzone-form'); //;
         notesDropzone.on("addedfile", function(file) {
           $scope.loadAttachments();
         });
+        notesDropzone.on("complete", function(file) {
+          notesDropzone.removeFile(file);
+          $('#notedetails-dropzone-container').hide();
+          notesDropzone.disable();
+        });
+    }
+
+    $scope.closeDropZone = function() {
+        $('#notedetails-dropzone-container').hide();
     }
 
 

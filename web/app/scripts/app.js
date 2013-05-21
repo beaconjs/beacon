@@ -24,6 +24,9 @@ var webApp = angular.module('webApp', [])
       }).when('/projects/edit', {
         templateUrl: 'views/projects/edit.html',
         controller: 'EditProjectsCtrl'
+      }).when('/report', {
+        templateUrl: 'views/report.html',
+        controller: 'ReportsCtrl'
       }).otherwise({
         redirectTo: '/'
       });
