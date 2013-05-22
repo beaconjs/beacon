@@ -19,13 +19,14 @@ angular.module('webApp')
         $scope.projection.push({ x: i, y: remainingPoints});
         while (remainingPoints > 0) {
             remainingPoints = remainingPoints - lastSprintVelocity;
-            $scope.projection.push({ x: "sprint " + ++i, y: remainingPoints});
+            $scope.projection.push({ x: ++i, y: remainingPoints});
         }
 
         nv.addGraph(function() {  
          var chart = nv.models.lineChart();
          chart.xAxis
-             .axisLabel('Sprint');
+             .axisLabel('Sprint')
+             .tickFormat(d3.format('d'));
          chart.yAxis
              .axisLabel('Points')
              .tickFormat(d3.format('d'));
