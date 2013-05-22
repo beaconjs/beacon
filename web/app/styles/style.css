@@ -159,3 +159,5 @@ chat .row { background-color: #FFF !important; padding: 1em 0.5em; margin: 0;}
 
 #burndown_chart { width: 48%; float: left;}
 #trend_chart { width: 48%; float: right;}
+#velocity_chart { width: 48%; float: left;}
+#burndown_chart svg, #trend_chart svg, #velocity_chart svg { height: 50%;}

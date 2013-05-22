@@ -1,18 +1,20 @@
 'use strict';
 
 angular.module('webApp')
-  .controller('ReportsCtrl', function ($rootScope, $scope, $location, sync) {
+  .controller('ReportsCtrl', function ($rootScope, $scope, $location, sync, charts) {
 
     sync.get('/projects/' + $rootScope.project_id + '/progress').success(function(res) {
         $scope.reportData = res;
         $scope.totalPoints = _.reduce(res.total, function(memo, sprint){ return memo + sprint.points; }, 0);
         $scope.pendingPoints = $scope.totalPoints;
-        var h = Math.floor($("#page").height() * 0.45);
-        var w = Math.floor($("#page").width() * 0.45);
 
         var i = 0;
+        var j = 0;
         $scope.burnDown = _.map(res.completed, function(o, sprintId) { $scope.pendingPoints -= o.points; return { x: (++i), y: $scope.pendingPoints, sprintId: sprintId } });
         $scope.burnDown.splice(0,0, {x: 0, y: $scope.totalPoints});
+
+        $scope.velocityTrend = _.map(res.completed, function(o, sprintId) { return { x: (++j), y: o.points } });
+        $scope.velocityTrend.splice(0,0, {x: 0, y: 0});
 
         $scope.projection = [];
 
@@ -27,75 +29,29 @@ angular.module('webApp')
             $scope.projection.push({ x: ++i, y: remainingPoints});
         }
 
-        nv.addGraph(function() {  
-         var chart = nv.models.lineChart().width(w).height(h);
-         chart.xAxis
-             .axisLabel('Sprint')
-             .tickFormat(d3.format('d'));
-         chart.yAxis
-             .axisLabel('Points')
-             .tickFormat(d3.format('d'));
-         d3.select('#burndown_chart svg')
-             .datum([
-                     {values: $scope.burnDown, key: 'Trend', color: '#2ca02c'}, 
-                     {values: $scope.projection, key: 'Expected', color: '#ff7f0e'}
-                    ])
-           .transition().duration(500)
-             .call(chart);
-         nv.utils.windowResize(function() { d3.select('#burndown_chart svg').call(chart) });
-         d3.select('#burndown_chart svg')
-          .append("text")
-          .attr("x", Math.floor(w/2))
-          .attr("y", 10)
-          .attr("text-anchor", "middle")
-          .attr("fill", "gray")
-          .text("Effort Burndown");
-
-         return chart;
-       });
-
-
-       nv.addGraph(function() {  
-         var chart = nv.models.multiBarChart()
-         .x(function(d) { return d.label })
-         .y(function(d) { return d.value })
-         .width(w).height(h);
-
-         chart.xAxis
-             .axisLabel('Sprint');
-         chart.yAxis
-             .axisLabel('Points')
-             .tickFormat(d3.format('d'));
-
          var totalData = [];
          var completedData = [];
          var i = 0;
          _.each(res.total, function(o, sprintId){
             var sprint = (sprintId === "none") ? "Not Planned" : ("Sprint " + i++);
-            totalData.push({label: sprint, value: o.points || 0 });
+            totalData.push({x: sprint, y: o.points || 0 });
             var completed = res.completed[sprintId] || {};
-            completedData.push({label: sprint, value: completed.points || 0 });
+            completedData.push({x: sprint, y: completed.points || 0 });
          });
 
-         d3.select('#trend_chart svg')
-             .datum([
+        charts.line("#burndown_chart", "Effort Burndown", [
+                     {values: $scope.burnDown, key: 'Trend', color: '#2ca02c'}, 
+                     {values: $scope.projection, key: 'Expected', color: '#ff7f0e'}
+                    ], 'Sprint', 'Points');
+
+        charts.line("#velocity_chart", "Velocity Trend", [
+                     {values: $scope.velocityTrend, key: 'Trend', color: '#2ca02c'} 
+                    ], 'Sprint', 'Points');
+
+        charts.bar("#trend_chart", "Planned Vs Completed", [
                      {values: totalData, key: 'Planned', color: '#1F77B4'}, 
                      {values: completedData, key: 'Completed', color: '#2ca02c'}
-                    ])
-           .transition().duration(500)
-             .call(chart);
-
-         nv.utils.windowResize(function() { d3.select('#trend_chart svg').call(chart) });
-        d3.select('#trend_chart svg')
-          .append("text")
-          .attr("x", Math.floor(w/2))
-          .attr("y", 10)
-          .attr("text-anchor", "middle")
-          .attr("fill", "gray")
-          .text("Planned Vs Completed");
-         return chart;
-       });
-
+                    ], 'Sprint', 'Points');
     });
 
   });
