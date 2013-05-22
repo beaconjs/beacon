@@ -6,8 +6,9 @@ angular.module('webApp')
     sync.get('/projects/' + $rootScope.project_id + '/progress').success(function(res) {
         $scope.reportData = res;
         $scope.totalPoints = _.reduce(res.total, function(memo, sprint){ return memo + sprint.points; }, 0);
+        $scope.pendingPoints = $scope.totalPoints;
         var i = 0;
-        $scope.burnDown = _.map(res.completed, function(o, sprintId) { return { x: (++i), y: ($scope.totalPoints - o.points), sprintId: sprintId } });
+        $scope.burnDown = _.map(res.completed, function(o, sprintId) { $scope.pendingPoints -= o.points; return { x: (++i), y: $scope.pendingPoints, sprintId: sprintId } });
         $scope.burnDown.splice(0,0, {x: 0, y: $scope.totalPoints});
 
         $scope.projection = [];
