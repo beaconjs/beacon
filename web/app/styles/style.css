@@ -135,8 +135,15 @@ ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; backgr
 .backlog { overflow: auto; }
 .backlog input { height: 23px !important; width: auto !important;}
 .backlog select { height: 23px !important; width: auto !important;}
-.backlog .epic { background-color: #CCC; padding: 10px 0 0 0; }
+.backlog .epic { background-color: #CCC; padding: 10px 0 0 0; clear: both; min-height: 1.5em;}
+.backlog .epic-header { background-color: #aaa; padding: 10px 0 0 0; clear: both; min-height: 1.5em; font-size: 1em; font-weight: bold;}
 .backlog ul { list-style: none; float: left; width: 70%;}
+.backlog ul .cell1 { float: left; width: 5%; padding: 0 0.5em; border-right: #333 1px dashed; }
+.backlog ul .cell2 { float: left; width: 40%; padding: 0 0.5em; border-right: #333 1px dashed; }
+.backlog ul .cell3 { float: left; width: 15%; padding: 0 0.5em; border-right: #333 1px dashed; }
+.backlog ul .cell4 { float: left; width: 15%; padding: 0 0.5em; border-right: #333 1px dashed; }
+.backlog ul .cell5 { float: left; width: 15%; padding: 0 0.5em;}
+
 chat { position: absolute; width: 80%; height: 80%; top: 5%; left: 5%; margin: 0 1em; z-index: 100;}
 chat .row { background-color: #FFF !important; padding: 1em 0.5em; margin: 0;}
 .chat-overlay { position: absolute; left: 0; top: 0; background-color: rgba(0, 0, 0, 0.5); height: 100%; width: 100%;z-index: 99;}
