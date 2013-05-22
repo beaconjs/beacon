@@ -20,3 +20,14 @@ exports.lookup = function(req, res){
     res.send(err);
   });
 };
+
+exports.create = function(req, res){
+  var u = req.body;
+  var user = new User(u.name, u.username, u.password);
+  user.save(function(o){
+      o.password = null;
+      res.json(o);
+  }, function(error){
+      res.send(500, error);
+  });
+};

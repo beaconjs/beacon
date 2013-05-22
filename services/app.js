@@ -57,6 +57,7 @@ app.options("*", function(req,res,next){res.send(200);});
 
 app.get('/', routes.index);
 app.post('/authenticate', user.authenticate);
+app.post('/users', user.create);
 app.get('/users/search/:name', user.lookup);
 app.get('/roles', roles.list);
 app.post('/projects', projects.create);

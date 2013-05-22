@@ -17,5 +17,15 @@ angular.module('webApp')
         }).error(function(error) {
             console.log("error: " + error);
         });
-    }
+    };
+
+    $scope.signup = function() {
+        sync.post('/users', $scope.user).success(function(response) {
+            $scope.user = {};
+            $scope.showSignup = false;
+        }).error(function(error) {
+            console.log("error: " + error);
+        });
+    };
+
   });
