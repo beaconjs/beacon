@@ -4,6 +4,8 @@ angular.module('webApp')
   .controller('ReportsCtrl', function ($rootScope, $scope, $location, sync, charts) {
 
     sync.get('/projects/' + $rootScope.project_id + '/progress').success(function(res) {
+        if (!res || jQuery.isEmptyObject(res.total)) return;
+
         $scope.reportData = res;
         $scope.totalPoints = _.reduce(res.total, function(memo, sprint){ return memo + sprint.points; }, 0);
         $scope.pendingPoints = $scope.totalPoints;
