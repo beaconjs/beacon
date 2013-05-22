@@ -23,6 +23,7 @@ angular.module('webApp')
         $scope.projection.push({ x: i, y: remainingPoints});
         while (remainingPoints > 0) {
             remainingPoints = remainingPoints - lastSprintVelocity;
+            if (remainingPoints < 0) remainingPoints = 0;
             $scope.projection.push({ x: ++i, y: remainingPoints});
         }
 
