@@ -7,6 +7,9 @@ angular.module('webApp')
         $scope.reportData = res;
         $scope.totalPoints = _.reduce(res.total, function(memo, sprint){ return memo + sprint.points; }, 0);
         $scope.pendingPoints = $scope.totalPoints;
+        var h = Math.floor($("#page").height() * 0.45);
+        var w = Math.floor($("#page").width() * 0.45);
+
         var i = 0;
         $scope.burnDown = _.map(res.completed, function(o, sprintId) { $scope.pendingPoints -= o.points; return { x: (++i), y: $scope.pendingPoints, sprintId: sprintId } });
         $scope.burnDown.splice(0,0, {x: 0, y: $scope.totalPoints});
@@ -24,7 +27,7 @@ angular.module('webApp')
         }
 
         nv.addGraph(function() {  
-         var chart = nv.models.lineChart();
+         var chart = nv.models.lineChart().width(w).height(h);
          chart.xAxis
              .axisLabel('Sprint')
              .tickFormat(d3.format('d'));
@@ -33,12 +36,20 @@ angular.module('webApp')
              .tickFormat(d3.format('d'));
          d3.select('#burndown_chart svg')
              .datum([
-                     {values: $scope.burnDown, key: 'Trend', color: '#ff7f0e'}, 
-                     {values: $scope.projection, key: 'Expected', color: '#2ca02c'}
+                     {values: $scope.burnDown, key: 'Trend', color: '#2ca02c'}, 
+                     {values: $scope.projection, key: 'Expected', color: '#ff7f0e'}
                     ])
            .transition().duration(500)
              .call(chart);
          nv.utils.windowResize(function() { d3.select('#burndown_chart svg').call(chart) });
+         d3.select('#burndown_chart svg')
+          .append("text")
+          .attr("x", Math.floor(w/2))
+          .attr("y", 10)
+          .attr("text-anchor", "middle")
+          .attr("fill", "gray")
+          .text("Effort Burndown");
+
          return chart;
        });
 
@@ -46,7 +57,8 @@ angular.module('webApp')
        nv.addGraph(function() {  
          var chart = nv.models.multiBarChart()
          .x(function(d) { return d.label })
-         .y(function(d) { return d.value });
+         .y(function(d) { return d.value })
+         .width(w).height(h);
 
          chart.xAxis
              .axisLabel('Sprint');
@@ -71,7 +83,15 @@ angular.module('webApp')
                     ])
            .transition().duration(500)
              .call(chart);
+
          nv.utils.windowResize(function() { d3.select('#trend_chart svg').call(chart) });
+        d3.select('#trend_chart svg')
+          .append("text")
+          .attr("x", Math.floor(w/2))
+          .attr("y", 10)
+          .attr("text-anchor", "middle")
+          .attr("fill", "gray")
+          .text("Planned Vs Completed");
          return chart;
        });
 

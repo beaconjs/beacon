@@ -157,5 +157,5 @@ chat .row { background-color: #FFF !important; padding: 1em 0.5em; margin: 0;}
 .textFieldDiv, .textAreaDiv {padding: 0 5px; background-color: #fff; border-bottom: #CCC 1px solid;}
 .textAreaDiv {min-height: 10em; }
 
-#burndown_chart { width: 45%; float: left;}
-#trend_chart { width: 45%; float: right;}
+#burndown_chart { width: 48%; float: left;}
+#trend_chart { width: 48%; float: right;}
