@@ -27,6 +27,11 @@ angular.module('webApp').factory('sync', function ($rootScope, $http, $location)
 
             return promise;
         }
+
+        return {
+                success: function(f) { return this; }, 
+                error: function(f) { console.error("There was an error processing the request. Do you have an active internet connection?"); return this; }
+            };
     };
 
     var getHeaders = function () {
