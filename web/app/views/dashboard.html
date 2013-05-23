@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a ng-click="gotoPage('/projects/edit')">{{project_name}}</a></li>
+            <li><span>Charts</span></li>
+        </ul>
+    </div>
+</div>
+<div class="row dashboard">
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Status <a ng-click="showStatusFilter=!showStatusFilter">+</a></th>
+            <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">+</a></th>
+            <th>Sprint <a ng-click="showSprintFilter=!showSprintFilter">+</a></th>
+            <th>Points</th>
+        </tr>
+        <tr ng-repeat="s in stories">
+            <td>{{s.title}}</td>
+            <td>{{s.status}}</td>
+            <td>{{s.user.name}}</td>
+            <td>{{s.sprint.title}}</td>
+            <td>{{s.points}}</td>
+        </tr>
+    </table>
+    
+</div>
+
+<div ng-show="showStatusFilter" class="story-filter">
+    <a ng-click="showStatusFilter=!showStatusFilter">Close</a>
+    <ul>
+        <li ng-repeat="s in statuses"><input type="checkbox" value="{{s}}" ng-click="statusFilter(s)" ng-checked="status.indexOf(s) != -1"/><label>{{s}}</label></li>
+    </ul>
+</div>
+
+<div ng-show="showOwnerFilter" class="story-filter">
+    <a ng-click="showOwnerFilter=!showOwnerFilter">Close</a>
+    <ul>
+        <li ng-repeat="s in owners"><input type="checkbox" value="{{s.id}}" ng-click="ownerFilter(s.id)" ng-checked="owner.indexOf(s.id) != -1"/><label>{{s.name}}</label></li>
+    </ul>
+</div>
+
+<div ng-show="showSprintFilter" class="story-filter">
+    <a ng-click="showSprintFilter=!showSprintFilter">Close</a>
+    <ul>
+        <li ng-repeat="s in sprints"><input type="checkbox" value="{{s.id}}" ng-click="sprintFilter(s.id)" ng-checked="sprint.indexOf(s.id) != -1"/><label>{{s.title}}</label></li>
+    </ul>
+</div>
+<div class="chat-overlay" ng-show="showStatusFilter || showOwnerFilter || showSprintFilter"></div>

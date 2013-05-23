@@ -31,7 +31,7 @@ angular.module('webApp')
     $scope.select = function(id) {
         $rootScope.project_id = id;
         $rootScope.project_name = $scope.projectNames[id];
-        $location.path('notes');
+        $location.path('dashboard');
     };
 
     $scope.edit = function(id) {

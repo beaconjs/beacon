@@ -44,6 +44,18 @@ describe('Story', function(){
     })
   })
 
+  describe('#forUser()', function(){
+    it('should get all stories for epic', function(done){
+        Story.forUser(1, 1, function(o){
+            expect(o.length).to.not.equal(0);
+            done();
+        }, function(error){
+            done();
+            if (error) throw error;
+        });
+    })
+  })
+
   describe('#list()', function(){
     it('should all stories for project', function(done){
         Story.list(1, function(o){

@@ -73,8 +73,12 @@ Story.forSprint = function(sprint_id, onSuccess, onError) {
     stories_table.findAll({where: { sprint_id: sprint_id } }).success(onSuccess).error(onError);
 }
 
+Story.forUser = function(user_id, project_id, onSuccess, onError) {
+    stories_table.findAll({include: [Epic], where: { owner_id: user_id, "epics.project_id": project_id } }).success(onSuccess).error(onError);
+}
+
 Story.list = function(project_id, onSuccess, onError) {
-    stories_table.findAll({include: [Epic], where: { "epics.project_id": project_id } }).success(onSuccess).error(onError);
+    stories_table.findAll({include: [Epic, User, Sprint], where: { "epics.project_id": project_id } }).success(onSuccess).error(onError);
 }
 
 Story.progress = function(project_id, sprint_id, onSuccess, onError) {

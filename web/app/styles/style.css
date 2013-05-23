@@ -170,3 +170,10 @@ chat .row { background-color: #FFF !important; padding: 1em 0.5em; margin: 0;}
 #burndown_chart svg, #trend_chart svg, #velocity_chart svg { height: auto !important;}
 
 .signup { position: absolute; width: 50%; height: 60%; top: 20%; left: 25%; margin: 0 1em; z-index: 100; background-color: #eee; padding: 2em; }
+.dashboard table { width: 80%;}
+.dashboard table td, .dashboard table th { border: 1px solid #eee !important;}
+.dashboard table th { background-color: #eee !important;}
+.story-filter { width: 20em; background-color: #eee; padding: 1em; position: absolute; z-index: 100; top: 20%; left: 10%;}
+.story-filter ul { list-style: none; }
+.story-filter ul li label { float: left; }
+.story-filter ul li input { float: left; }

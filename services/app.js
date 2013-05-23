@@ -92,6 +92,7 @@ app.post('/epics/:id/stories', cardModels.stories.create);
 app.post('/stories/:id', cardModels.stories.update);
 
 app.get('/projects/:id/progress', cardModels.stories.progress);
+app.get('/users/:userId/projects/:projectId/stories', cardModels.stories.forUser);
 app.get('/projects/:id/:sprintId/progress', cardModels.stories.progress);
 
 http.createServer(app).listen(app.get('port'), function(){

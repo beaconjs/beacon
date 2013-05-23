@@ -20,6 +20,14 @@ exports.forEpic = function(req, res){
     });
 };
 
+exports.forUser = function(req, res) {
+  Story.forUser( req.params.userId, req.params.projectId, function(o){
+        res.json(o);
+    }, function(error) { 
+        console.log(error); 
+    });
+}
+
 exports.get = function(req, res){
   Story.get( req.params.id, function(o){
         res.json(o);

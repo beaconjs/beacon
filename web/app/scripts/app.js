@@ -27,6 +27,9 @@ var webApp = angular.module('webApp', [])
       }).when('/report', {
         templateUrl: 'views/report.html',
         controller: 'ReportsCtrl'
+      }).when('/dashboard', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl'
       }).otherwise({
         redirectTo: '/'
       });
