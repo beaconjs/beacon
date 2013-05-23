@@ -48,7 +48,7 @@ angular.module('webApp')
 
         charts.line("#velocity_chart", "Velocity Trend", [
                      {values: $scope.velocityTrend, key: 'Trend', color: '#2ca02c'} 
-                    ], 'Sprint', 'Points');
+                    ], 'Sprint', 'Points', true);
 
         charts.bar("#trend_chart", "Planned Vs Completed", [
                      {values: totalData, key: 'Planned', color: '#1F77B4'}, 

@@ -2,7 +2,7 @@
 
 angular.module('webApp').factory('charts', function ($rootScope, $http, $location) {
 
-    var addChart = function(type, id, title, data, xAxisLabel, yAxisLabel) {
+    var addChart = function(type, id, title, data, xAxisLabel, yAxisLabel, isXAxisNumeric) {
         var h = Math.floor($("#page").height() * 0.45);
         var w = Math.floor($("#page").width() * 0.45);
 
@@ -17,6 +17,9 @@ angular.module('webApp').factory('charts', function ($rootScope, $http, $locatio
          
          chart.xAxis
              .axisLabel(xAxisLabel);
+         if (isXAxisNumeric) {
+            chart.xAxis.tickFormat(d3.format('d'));
+         }
          chart.yAxis
              .axisLabel(yAxisLabel)
              .tickFormat(d3.format('d'));
@@ -39,12 +42,12 @@ angular.module('webApp').factory('charts', function ($rootScope, $http, $locatio
        });
     };
 
-    var _line = function(id, title, data, xAxisLabel, yAxisLabel) {
-        addChart("line", id, title, data, xAxisLabel, yAxisLabel);
+    var _line = function(id, title, data, xAxisLabel, yAxisLabel, isXAxisNumeric) {
+        addChart("line", id, title, data, xAxisLabel, yAxisLabel, isXAxisNumeric);
     }
 
-    var _bar = function(id, title, data, xAxisLabel, yAxisLabel) {
-        addChart("bar", id, title, data, xAxisLabel, yAxisLabel);
+    var _bar = function(id, title, data, xAxisLabel, yAxisLabel, isXAxisNumeric) {
+        addChart("bar", id, title, data, xAxisLabel, yAxisLabel, isXAxisNumeric);
     }
 
     //Public APIs
