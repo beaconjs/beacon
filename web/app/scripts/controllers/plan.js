@@ -37,8 +37,18 @@ angular.module('webApp')
         return false;
     }
 
+    $scope.canMoveStory = function(storyId, max, status) {
+      var sID = parseInt(storyId.replace("story_", ""), 10);
+      var total = _.reduce($scope.stories, function(t, story){ return story.status === status ? t + 1 : t; }, 0);
+
+      if (total >= max) {
+        alert("Can not move this story as the targetted lane will have too many stories");
+        return false;
+      }
+      return true;
+    }
+
     $scope.moveStory = function(storyId, status) {
-      console.log(status);
 
       var sID = parseInt(storyId.replace("story_", ""), 10);
       var story = _.find($scope.stories, function(s){

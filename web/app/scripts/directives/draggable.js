@@ -24,12 +24,13 @@ angular.module('webApp')
             // Don't do anything if dropping the same column we're dragging.
             if ($rootScope.dragSrcEl != this) {
               // move the element by appending to the area dropped in.
-              if ($(this).hasClass('lane')) {
-                  $(this).append($rootScope.dragSrcEl);
-                  scope.$parent.moveStory($rootScope.dragSrcEl.id, $(this).attr('data-status'));
-              } else {
-                  $(this).parent().append($rootScope.dragSrcEl);
-                  scope.$parent.moveStory($rootScope.dragSrcEl.id, $(this).parent().attr('data-status'));
+              if (scope.$parent.canMoveStory($rootScope.dragSrcEl.id, $(this).attr('data-max-stories'), $(this).attr('data-status'))) {
+                if ($(this).hasClass('lane')) {
+                    $(this).append($rootScope.dragSrcEl);
+                } else {
+                    $(this).parent().append($rootScope.dragSrcEl);
+                }
+                scope.$parent.moveStory($rootScope.dragSrcEl.id, $(this).attr('data-status'));
               }
               $rootScope.dragSrcEl = null;
             }
