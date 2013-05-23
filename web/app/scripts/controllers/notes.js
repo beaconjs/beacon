@@ -94,7 +94,10 @@ angular.module('webApp')
     $scope.addComment = function() {
         sync.post('/notes/' + $scope.note_id + '/comments', {
             details: $scope.comment.details,
-            user: $rootScope.loggedInUser.id
+            user: { id: $rootScope.loggedInUser.id, name: $rootScope.loggedInUser.name },
+            project_id: $rootScope.project_id,
+            project_name: $rootScope.project_name,
+            note_title: $scope.notetitle
         }).success(function(o){
             console.log("saved");
             $scope.comments.push({ details: $scope.comment.details, user: { name: $rootScope.loggedInUser.name }, created_at: new Date() });
