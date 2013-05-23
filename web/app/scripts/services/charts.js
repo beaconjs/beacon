@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('webApp').factory('charts', function ($rootScope, $http, $location) {
-    var h = Math.floor($("#page").height() * 0.45);
-    var w = Math.floor($("#page").width() * 0.45);
 
     var addChart = function(type, id, title, data, xAxisLabel, yAxisLabel) {
+        var h = Math.floor($("#page").height() * 0.45);
+        var w = Math.floor($("#page").width() * 0.45);
+
         nv.addGraph(function() {  
          var chart = null;
          if (type === "line") {
@@ -20,6 +21,8 @@ angular.module('webApp').factory('charts', function ($rootScope, $http, $locatio
              .axisLabel(yAxisLabel)
              .tickFormat(d3.format('d'));
          d3.select(id + ' svg')
+           .attr("width", w)
+           .attr("height", h)
              .datum(data)
            .transition().duration(500)
              .call(chart);
