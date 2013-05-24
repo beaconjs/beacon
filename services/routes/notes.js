@@ -2,6 +2,7 @@ var fs = require('fs');
 var mkdirp = require('mkdirp');
 var Note = require('../models/notes/note').get;
 var NoteAttachment = require('../models/notes/attachments').get;
+var NotificationsService = require('../notifications');
 
 /*
  * GET notes listing.
@@ -37,6 +38,11 @@ exports.create = function(req, res){
     if (o.id) note.id = o.id;
     
     note.save(function(obj){
+        if (!o.id) {
+          NotificationsService.send({id: o.user}, o.project, " created note \"" + o.title + "\".", true);
+        } else if (o.notify) {
+          NotificationsService.send({id: o.user}, o.project, " updated note \"" + o.title + "\".", true);
+        }
         res.json({id: obj.id});
     }, function(error){
         console.log(error);
@@ -53,7 +59,9 @@ exports.upload = function(req, res) {
         path += ("/" + req.files.file.name);
         fs.writeFile(path, data, function (err) {
            var attachment = new NoteAttachment(req.params.noteId, req.files.file.name);
-           attachment.save(function(){}, function(){});
+           attachment.save(function(){
+            NotificationsService.send({}, req.params.id, "New attachment \"" + req.files.file.name + " added\".", true);
+           }, function(){});
         });
       });
     }

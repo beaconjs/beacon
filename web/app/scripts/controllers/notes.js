@@ -4,6 +4,7 @@ angular.module('webApp')
   .controller('NotesCtrl', function ($rootScope, $scope, sync) {
     $scope.note_id = null;
     $scope.notes = [];
+    $scope.notify = false;
 
     sync.get("/projects/" + $rootScope.project_id + "/notes").success(function(res){
         $scope.notes = res;
@@ -15,6 +16,10 @@ angular.module('webApp')
         return (!str || /^\s*$/.test(str));
     }
 
+    $scope.$watch('note_id', function(){
+        $scope.notify = true;
+    });
+
     $scope.$watch('notedetails', function(){
         if ((!$scope.note_id && !isBlank($scope.notedetails)) || $scope.note_id) {
             sync.post('/notes', {
@@ -22,7 +27,8 @@ angular.module('webApp')
                 title: $scope.notetitle,
                 details: $('#notedetails').val(),
                 project: $rootScope.project_id,
-                user: $rootScope.loggedInUser.id
+                user: $rootScope.loggedInUser.id,
+                notify: $scope.notify
             }).success(function(o){
                 if (o.id) { 
                     if (!$scope.note_id) {

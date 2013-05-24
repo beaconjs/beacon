@@ -70,13 +70,15 @@ wsServer.on('request', function(request) {
     });
 });
 
-exports.send = function(issuer, project_id, message) {
+exports.send = function(issuer, project_id, message, suppress) {
     var channel = 'project_' + project_id;
     if (!channels[channel]) return;
 
     new Notification(message, project_id, issuer.id).save(function(){}, function(){});
 
-    for (var i=0; i < channels[channel].clients.length; i++) {
-        channels[channel].clients[i].sendUTF(JSON.stringify( { message: message, issuer: issuer, project_id: project_id }));
+    if (!suppress) {
+        for (var i=0; i < channels[channel].clients.length; i++) {
+            channels[channel].clients[i].sendUTF(JSON.stringify( { message: message, issuer: issuer, project_id: project_id }));
+        }
     }
 }
