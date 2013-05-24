@@ -9,6 +9,8 @@ var express = require('express')
   , roles = require('./routes/roles')
   , projects = require('./routes/projects')
   , notes = require('./routes/notes')
+  , bugs = require('./routes/bugs')
+  , todos = require('./routes/todos')
   , comments = require('./routes/comments')
   , projectusers = require('./routes/projectusers')
   , cardModels = require('./routes/card_wall')
@@ -70,10 +72,18 @@ app.get('/projects/:id/notes/:noteId', notes.get);
 app.post('/projects/:id/:noteId/upload', notes.upload);
 app.post('/projects/:id/upload', projects.upload);
 
+app.get('/projects/:id/bugs', bugs.list);
+app.get('/projects/:id/bugs/:bugId', bugs.get);
+app.get('/projects/:id/todos', todos.list);
+app.get('/projects/:id/todos/:todoId', todos.get);
+
+
 app.get('/projects/:id/members', projectusers.list);
 app.post('/projects/:id/members', projectusers.create);
 app.get('/users/:userId/projects', projectusers.forUser);
 app.post('/notes', notes.create);
+app.post('/bugs', bugs.create);
+app.post('/todos', todos.create);
 app.post('/notes/:id/comments', comments.createForNote);
 app.get('/notes/:id/comments', comments.forNote);
 app.get('/notes/:id/attachments', notes.attachments);
