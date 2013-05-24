@@ -22,10 +22,10 @@ angular.module('webApp')
 
         var remainingPoints = $scope.burnDown[$scope.burnDown.length - 1].y;
         var lastSprintId = $scope.burnDown[$scope.burnDown.length - 1].sprintId;
-        var lastSprintVelocity = res.completed[lastSprintId].points;
+        var lastSprintVelocity = res.completed[lastSprintId] ? res.completed[lastSprintId].points : 0;
 
         $scope.projection.push({ x: i, y: remainingPoints});
-        while (remainingPoints > 0) {
+        while (remainingPoints > 0 && lastSprintVelocity > 0) {
             remainingPoints = remainingPoints - lastSprintVelocity;
             if (remainingPoints < 0) remainingPoints = 0;
             $scope.projection.push({ x: ++i, y: remainingPoints});
@@ -44,7 +44,7 @@ angular.module('webApp')
         charts.line("#burndown_chart", "Effort Burndown", [
                      {values: $scope.burnDown, key: 'Trend', color: '#2ca02c'}, 
                      {values: $scope.projection, key: 'Expected', color: '#ff7f0e'}
-                    ], 'Sprint', 'Points');
+                    ], 'Sprint', 'Points', true);
 
         charts.line("#velocity_chart", "Velocity Trend", [
                      {values: $scope.velocityTrend, key: 'Trend', color: '#2ca02c'} 
