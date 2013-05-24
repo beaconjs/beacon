@@ -171,8 +171,9 @@ chat .row { background-color: #FFF !important; padding: 1em 0.5em; margin: 0;}
 
 .signup { position: absolute; width: 50%; height: 60%; top: 20%; left: 25%; margin: 0 1em; z-index: 100; background-color: #eee; padding: 2em; }
 .dashboard table { width: 80%;}
-.dashboard table td, .dashboard table th { border: 1px solid #eee !important;}
+.dashboard table td, .dashboard table th { border: 1px solid #ddd !important;}
 .dashboard table th { background-color: #eee !important;}
+.dashboard th a { background: url(../images/filter.png) no-repeat; display: block; cursor: pointer; float: right; width: 1em;}
 .story-filter { width: 20em; background-color: #eee; padding: 1em; position: absolute; z-index: 100; top: 20%; left: 10%;}
 .story-filter ul { list-style: none; }
 .story-filter ul li label { float: left; }

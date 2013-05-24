@@ -9,8 +9,9 @@ angular.module('webApp')
 
             var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-            function chat(author, message) {
-                var d = moment().format('MMM Do, YYYY h:mm a');
+            function chat(author, message, dt) {
+                var m = dt ? moment(dt) : moment();
+                var d = m.format('MMM Do, YYYY h:mm a');
                 var msg = "";
                 msg += message;
                 msg += ' <span>' + d + "</span>";
@@ -160,7 +161,7 @@ angular.module('webApp')
                  * Add message to the chat window
                  */
                 function addMessage(author, message, dt) {
-                    chat(author, message);
+                    chat(author, message, dt);
                 }
 
                 $rootScope.chatChannels[$rootScope.project_id] = connection;

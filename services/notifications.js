@@ -1,6 +1,8 @@
 // http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/
 "use strict";
 
+var Notification = require('./models/history/notifications').get;
+
 // Optional. You will see this name in eg. 'ps' or 'top' command
 process.title = 'beacon-notifications';
 
@@ -72,9 +74,9 @@ exports.send = function(issuer, project_id, message) {
     var channel = 'project_' + project_id;
     if (!channels[channel]) return;
 
-    for (var i=0; i < channels[channel].clients.length; i++) {
-        console.log(message);
+    new Notification(message, project_id, issuer.id).save(function(){}, function(){});
 
+    for (var i=0; i < channels[channel].clients.length; i++) {
         channels[channel].clients[i].sendUTF(JSON.stringify( { message: message, issuer: issuer, project_id: project_id }));
     }
 }

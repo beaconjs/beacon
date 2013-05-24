@@ -1,6 +1,8 @@
 // http://ejohn.org/blog/ecmascript-5-strict-mode-json-and-more/
 "use strict";
 
+var Chat = require('./models/history/chat').get;
+
 // Optional. You will see this name in eg. 'ps' or 'top' command
 process.title = 'beacon-chat';
 
@@ -71,6 +73,25 @@ wsServer.on('request', function(request) {
 
     console.log((new Date()) + ' Connection accepted.');
 
+    if (history.length == 0) {
+        Chat.all(channel, 0, 100, function(o) {
+            for(var i =0; i< o.length; i++) {
+                var obj = {
+                    time: o[i].created_at,
+                    text: o[i].text,
+                    author: o[i].author,
+                    channel: o[i].channel
+                };
+                history.push(obj);
+            }
+
+            if (history.length > 0) {
+                history.reverse();
+                connection.sendUTF(JSON.stringify( { type: 'history', data: history} ));
+            }
+        }, function(){} );
+    }
+
     // send back chat history
     if (history.length > 0) {
         connection.sendUTF(JSON.stringify( { type: 'history', data: history} ));
@@ -96,6 +117,9 @@ wsServer.on('request', function(request) {
                     channel: channel
                 };
                 history.push(obj);
+                
+                new Chat(message.utf8Data, channel, userName).save(function(){}, function(){});
+
                 channels[channel].history = history.slice(-100);
 
                 // broadcast message to all connected clients

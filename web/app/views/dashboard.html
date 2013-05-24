@@ -3,7 +3,7 @@
         <ul>
             <li><a href="#">Home</a></li>
             <li><a ng-click="gotoPage('/projects/edit')">{{project_name}}</a></li>
-            <li><span>Charts</span></li>
+            <li><span>Dashboard</span></li>
         </ul>
     </div>
 </div>
@@ -12,9 +12,9 @@
     <table>
         <tr>
             <th>Title</th>
-            <th>Status <a ng-click="showStatusFilter=!showStatusFilter">+</a></th>
-            <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">+</a></th>
-            <th>Sprint <a ng-click="showSprintFilter=!showSprintFilter">+</a></th>
+            <th>Status <a ng-click="showStatusFilter=!showStatusFilter">&nbsp;</a></th>
+            <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
+            <th>Sprint <a ng-click="showSprintFilter=!showSprintFilter">&nbsp;</a></th>
             <th>Points</th>
         </tr>
         <tr ng-repeat="s in stories">

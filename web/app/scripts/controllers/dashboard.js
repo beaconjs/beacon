@@ -86,4 +86,8 @@ angular.module('webApp')
         console.log(error);
     });
 
+    $("th a").click( function(event) {
+      $(".story-filter").css( {position:"absolute", top:(event.pageY + 10), left: (event.pageX + 10)});
+    });
+
   });
