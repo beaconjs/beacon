@@ -147,6 +147,8 @@ ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; backgr
 chat { position: absolute; width: 80%; height: 80%; top: 5%; left: 5%; margin: 0 1em; z-index: 100;}
 chat .row { background-color: #FFF !important; padding: 1em 0.5em; margin: 0;}
 .chat-overlay { position: absolute; left: 0; top: 0; background-color: rgba(0, 0, 0, 0.5); height: 100%; width: 100%;z-index: 99;}
+history { position: absolute; width: 20%; height: 80%; top: 10%; left: 70%; margin: 0 1em; z-index: 100; background-color: #E3E7EB; border: 3px #ddd dashed; padding: 1em 0; overflow: auto;}
+history ul { list-style: none; color: #333;}
 
 
 #newStory { display: none; width: 60%; background-color: #eee; position: absolute; top: 25%; left: 15%; padding: 10px; z-index: 90;}

@@ -12,6 +12,7 @@ var express = require('express')
   , comments = require('./routes/comments')
   , projectusers = require('./routes/projectusers')
   , cardModels = require('./routes/card_wall')
+  , notifications = require('./routes/notifications')
   , http = require('http')
   , db = require("./db")
   , path = require('path');
@@ -63,6 +64,7 @@ app.get('/roles', roles.list);
 app.post('/projects', projects.create);
 app.get('/projects', projects.list);
 app.get('/projects/:id', projects.get);
+app.get('/projects/:id/notifications', notifications.list);
 app.get('/projects/:id/notes', notes.list);
 app.get('/projects/:id/notes/:noteId', notes.get);
 app.post('/projects/:id/:noteId/upload', notes.upload);

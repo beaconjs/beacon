@@ -10,7 +10,7 @@ angular.module('webApp')
             var options = {
                 "cls": "notification-info",
                 "speed": 1000, //Fade-in / out animation speed
-                "timeout": 10000 //Timeout before notification disappears
+                "timeout": 3000 //Timeout before notification disappears
             };
 
             var connect = function(channel) {
@@ -23,6 +23,8 @@ angular.module('webApp')
                     try {
                         var json = JSON.parse(message.data);
                         $.Growl.show(json.issuer.name + ": " + json.message, options);
+                        $rootScope.newNotifications = $rootScope.newNotifications || 0;
+                        $rootScope.newNotifications += 1;
                     } catch (e) {
                         console.log(e);
                         console.log('This doesn\'t look like a valid JSON: ', message.data);
