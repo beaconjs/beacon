@@ -1,5 +1,9 @@
 <div class="row">
     <ul>
-        <li ng-repeat="n in allNotifications">{{n.created_at | date}} : {{n.user.name}} : {{n.text}}</li>
+        <li ng-repeat="nlist in allNotifications" class="notifications-section"><span>{{nlist.date | date}}</span>
+            <ul>
+               <li ng-repeat="n in nlist.notifications">{{n.user.name}} : {{n.text}}</li>
+            </ul>
+        </li>
     </ul>
 </div>
