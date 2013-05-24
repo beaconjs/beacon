@@ -25,7 +25,7 @@ exports.get = function(req, res){
 
 exports.create = function(req, res){
     var o = req.body;
-    var bug = new Bug(o.title, o.details, o.project, o.owner, o.status, o.user);
+    var bug = new Bug(o.title, o.details, o.project, o.owner, o.status, o.priority, o.user);
     if (o.id) bug.id = o.id;
     
     bug.save(function(obj){

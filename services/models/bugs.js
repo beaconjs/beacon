@@ -1,12 +1,13 @@
 var db = require("../db.js").sequelize;
 var DataTypes = require("sequelize");
 
-var Bug = function(title, details, project_id, owner_id, status, created_by) {
+var Bug = function(title, details, project_id, owner_id, status, priority, created_by) {
  this.title = title, 
  this.details = details, 
  this.owner_id = owner_id, 
  this.project_id = project_id,
  this.status = status, 
+ this.priority = priority,
  this.created_by = created_by,
  this.modified_by = created_by,
  this.created_at = new Date(),
@@ -17,6 +18,7 @@ var bugs_table = db.define('bugs', {
       title: DataTypes.STRING,
       details: DataTypes.STRING,
       status: DataTypes.STRING,
+      priority: DataTypes.STRING,
       project_id: DataTypes.INTEGER,
       owner_id: DataTypes.INTEGER,
       created_by: DataTypes.INTEGER,
@@ -38,7 +40,7 @@ Bug.prototype.save=function(onSuccess, onError) {
     bugs_table.build(this).save().success(onSuccess).error(onError);
   } else {
     bugs_table.find(this.id).success(function(o) { 
-      o.updateAttributes({ title: bug.title, details: bug.details, owner_id: bug.owner_id, status: bug.status, modified_at: new Date(), modified_by: bug.modified_by }).success(onSuccess).error(onError); 
+      o.updateAttributes({ title: bug.title, details: bug.details, owner_id: bug.owner_id, status: bug.status, priority: bug.priority, modified_at: new Date(), modified_by: bug.modified_by }).success(onSuccess).error(onError); 
     });
   }
 };

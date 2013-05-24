@@ -7,6 +7,7 @@ exports.up = function(db, callback) {
         title: 'string',
         details: 'string',
         status: 'string',
+        due_date: 'datetime',
         project_id: 'int',
         owner_id: 'int',
         created_at: 'datetime',

@@ -1,12 +1,13 @@
 var db = require("../db.js").sequelize;
 var DataTypes = require("sequelize");
 
-var Todo = function(title, details, project_id, owner_id, status, created_by) {
+var Todo = function(title, details, project_id, owner_id, status, due_date, created_by) {
  this.title = title, 
  this.details = details, 
  this.owner_id = owner_id, 
  this.project_id = project_id,
  this.status = status, 
+ this.due_date = due_date,
  this.created_by = created_by,
  this.modified_by = created_by,
  this.created_at = new Date(),
@@ -18,6 +19,7 @@ var todos_table = db.define('todos', {
       details: DataTypes.STRING,
       status: DataTypes.STRING,
       project_id: DataTypes.INTEGER,
+      due_date: DataTypes.DATE,
       owner_id: DataTypes.INTEGER,
       created_by: DataTypes.INTEGER,
       created_at: DataTypes.DATE,
@@ -39,7 +41,7 @@ Todo.prototype.save=function(onSuccess, onError) {
     todos_table.build(this).save().success(onSuccess).error(onError);
   } else {
     todos_table.find(this.id).success(function(o) { 
-      o.updateAttributes({ title: todo.title, details: todo.details, owner_id: todo.owner_id, status: todo.status, modified_at: new Date(), modified_by: todo.modified_by }).success(onSuccess).error(onError); 
+      o.updateAttributes({ title: todo.title, details: todo.details, owner_id: todo.owner_id, due_date: todo.due_date, status: todo.status, modified_at: new Date(), modified_by: todo.modified_by }).success(onSuccess).error(onError); 
     });
   }
 };

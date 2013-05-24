@@ -7,7 +7,7 @@ var assert = require("assert")
 describe('Bug', function(){
   describe('#save()', function(){
     it('should save a bug', function(done){
-        var bug = new Bug('test', 'this is a test', 1, 1, "new", 1);
+        var bug = new Bug('test', 'this is a test', 1, 1, "new", "high", 1);
         bug.save(function(o){
             expect(o.id).to.not.equal(null);
             done();

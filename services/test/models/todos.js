@@ -7,7 +7,7 @@ var assert = require("assert")
 describe('Todo', function(){
   describe('#save()', function(){
     it('should save a todo', function(done){
-        var todo = new Todo('test', 'this is a test', 1, 1, "new", 1);
+        var todo = new Todo('test', 'this is a test', 1, 1, "new", new Date(), 1);
         todo.save(function(o){
             expect(o.id).to.not.equal(null);
             done();

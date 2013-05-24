@@ -25,7 +25,7 @@ exports.get = function(req, res){
 
 exports.create = function(req, res){
     var o = req.body;
-    var todo = new Todo(o.title, o.details, o.project, o.owner, o.status, o.user);
+    var todo = new Todo(o.title, o.details, o.project, o.owner, o.status, o.due_date, o.user);
     if (o.id) todo.id = o.id;
     
     todo.save(function(obj){
