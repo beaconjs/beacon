@@ -16,7 +16,7 @@
             <th>Status <a ng-click="showStatusFilter=!showStatusFilter">&nbsp;</a></th>
             <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
         </tr>
-        <tr ng-repeat="s in bugs">
+        <tr ng-repeat="s in bugs" ng-click="load(s.id)">
             <td>{{s.priority}}</td>
             <td>{{s.title}}</td>
             <td>{{s.status}}</td>

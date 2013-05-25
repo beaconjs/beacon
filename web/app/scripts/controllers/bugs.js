@@ -19,6 +19,10 @@ angular.module('webApp')
             console.log("error");
         });
     };
+
+    $scope.load = function(id) {
+        $location.path("/bugs/" + id)
+    }
   });
 
 angular.module('webApp')

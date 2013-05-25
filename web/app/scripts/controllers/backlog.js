@@ -44,8 +44,8 @@ angular.module('webApp')
 
     getEpics();
 
-    $scope.getStories = function(epicId) {
-        if ($scope.stories[epicId]) {
+    $scope.getStories = function(epicId, force) {
+        if (!force && $scope.stories[epicId]) {
             $scope.stories[epicId] = null;
         } else {
             sync.get('/epics/' + epicId + '/stories').success(function(res) { $scope.stories[epicId] = res || []; }).error(function() {
@@ -58,7 +58,7 @@ angular.module('webApp')
         if ($scope.story.owner) $scope.story.owner_id = $scope.story.owner.id;
         if ($scope.story.sprint) $scope.story.sprint_id = $scope.story.sprint.id;
         $scope.story.created_by = $rootScope.loggedInUser.id;
-        sync.post('/epics/' + epicId + '/stories', $scope.story).success(function() { $scope.getStories(epicId); }).error(function(e) { console.log(e); } );
+        sync.post('/epics/' + epicId + '/stories', $scope.story).success(function() { $scope.getStories(epicId, true); }).error(function(e) { console.log(e); } );
     }
 
     $scope.saveStory = function() {
@@ -66,7 +66,7 @@ angular.module('webApp')
         if ($scope.storyDetails.sprint) $scope.storyDetails.sprint_id = $scope.storyDetails.sprint.id;
         $scope.storyDetails.modified_by = $rootScope.loggedInUser.id;
         sync.post('/stories/' + $scope.storyDetails.id, $scope.storyDetails).success(function(res) { 
-            $scope.getStories($scope.storyDetails.epic_id); 
+            $scope.getStories($scope.storyDetails.epic_id, true); 
             $scope.showStory = false;
         }).error(function() {
             console.log("error");

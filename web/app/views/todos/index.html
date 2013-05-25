@@ -16,7 +16,7 @@
             <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
             <th>Due Date</th>
         </tr>
-        <tr ng-repeat="s in todos">
+        <tr ng-repeat="s in todos" ng-click="load(s.id)">
             <td>{{s.title}}</td>
             <td>{{s.status}}</td>
             <td>{{s.user.name}}</td>
