@@ -12,7 +12,7 @@ angular.module('webApp')
     });
 
     $scope.add = function() {
-        sync.post('/projects/' + $rootScope.project_id + '/bugs', $scope.bug).success(function(res) {            
+        sync.post('/projects/' + $rootScope.project_id + '/bugs', $scope.bug).success(function(res) {
             console.log("done");
             $location.path("/bugs");
         }).error(function() {
@@ -37,7 +37,7 @@ angular.module('webApp')
     });
 
     $scope.save = function() {
-        sync.post('/projects/' + $rootScope.project_id + '/bugs', $scope.bug).success(function(res) {            
+        sync.post('/projects/' + $rootScope.project_id + '/bugs', $scope.bug).success(function(res) {
             console.log("done");
             $scope.bug = {};
             $location.path("/bugs");

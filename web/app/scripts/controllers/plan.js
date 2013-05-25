@@ -17,8 +17,8 @@ angular.module('webApp')
     get('/members', 'members');
     get('/lanes', 'lanes');
 
-    sync.get('/projects/' + $rootScope.project_id + '/sprints/current', {}).success(function(res) { 
-      $scope.sprint = res || {}; 
+    sync.get('/projects/' + $rootScope.project_id + '/sprints/current', {}).success(function(res) {
+      $scope.sprint = res || {};
       sync.get('/sprints/' + $scope.sprint.id + '/stories', {}).success(function(s) { $scope.stories = s || []; }).error(function() {
           console.log("error");
       });
@@ -64,8 +64,8 @@ angular.module('webApp')
     }
 
     $scope.openStory = function(id) {
-        sync.get('/stories/' + id).success(function(s) { 
-          $scope.story = s || {}; 
+        sync.get('/stories/' + id).success(function(s) {
+          $scope.story = s || {};
           $scope.story.owner = (s && s.owner_id) ? _.find($scope.members, function(m) { return m.id === s.owner_id; }) : null;
         }).error(function() {
             console.log("error");

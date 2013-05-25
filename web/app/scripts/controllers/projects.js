@@ -3,8 +3,8 @@
 angular.module('webApp')
   .controller('ProjectsCtrl', function ($rootScope, $scope, sync, $location) {
     $scope.addProject = function() {
-        sync.post('/projects', { 
-            name: $scope.project.name, 
+        sync.post('/projects', {
+            name: $scope.project.name,
             description: $scope.project.description,
             created_by: $rootScope.loggedInUser.id
         }).success(function(r) {
@@ -36,7 +36,7 @@ angular.module('webApp')
             }).error(function() {
                 console.log("error");
             });
-        } 
+        }
     });
 
     sync.get('/roles', {}).success(function(res) {
@@ -63,8 +63,8 @@ angular.module('webApp')
     get('/lanes', 'lanes');
 
     $scope.addMember = function() {
-        var member = { 
-            role_id: $scope.member.role.id, 
+        var member = {
+            role_id: $scope.member.role.id,
             user_id: $scope.member.user_id,
             user: { name: $scope.member.name },
             project_name: $rootScope.project_name,

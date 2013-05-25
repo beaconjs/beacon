@@ -2,7 +2,7 @@
 
 angular.module('webApp')
   .controller('BacklogCtrl', function ($rootScope, $scope, sync, $location) {
-    
+
     $scope.stories = {};
     $scope.epics = [];
     $scope.points = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144];
@@ -14,8 +14,8 @@ angular.module('webApp')
     $scope.projectSprints = {};
 
     var get = function(path, arr, mapping) {
-        sync.get('/projects/' + $rootScope.project_id + path).success(function(res) { 
-            $scope[arr] = res || []; 
+        sync.get('/projects/' + $rootScope.project_id + path).success(function(res) {
+            $scope[arr] = res || [];
             _.each($scope[arr], function(a) {
                 $scope[mapping][a.id] = a;
             });
@@ -27,8 +27,8 @@ angular.module('webApp')
     get('/members', 'members', 'projectMembers');
     get('/sprints', 'sprints', 'projectSprints');
 
-    sync.get('/projects/' + $rootScope.project_id + '/lanes').success(function(res) { 
-        $scope.statuses = []; 
+    sync.get('/projects/' + $rootScope.project_id + '/lanes').success(function(res) {
+        $scope.statuses = [];
         _.each(res, function(o){
             $scope.statuses.push(o.status);
         });
@@ -65,8 +65,8 @@ angular.module('webApp')
         if ($scope.storyDetails.owner) $scope.storyDetails.owner_id = $scope.storyDetails.owner.id;
         if ($scope.storyDetails.sprint) $scope.storyDetails.sprint_id = $scope.storyDetails.sprint.id;
         $scope.storyDetails.modified_by = $rootScope.loggedInUser.id;
-        sync.post('/stories/' + $scope.storyDetails.id, $scope.storyDetails).success(function(res) { 
-            $scope.getStories($scope.storyDetails.epic_id, true); 
+        sync.post('/stories/' + $scope.storyDetails.id, $scope.storyDetails).success(function(res) {
+            $scope.getStories($scope.storyDetails.epic_id, true);
             $scope.showStory = false;
         }).error(function() {
             console.log("error");

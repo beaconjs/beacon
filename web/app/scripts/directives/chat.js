@@ -40,7 +40,7 @@ angular.module('webApp')
                 myName = $rootScope.loggedInUser.name;
                 if (!connection) startChat();
 
-                if (!chat_initiated) { 
+                if (!chat_initiated) {
                     chat_initiated = true;
                     connection.send(myName);
                 }
@@ -62,7 +62,7 @@ angular.module('webApp')
 
                 // lets not connect if this channel is already open
                 if (connection || !$rootScope.project_id) return;
-             
+
                 // for better performance - to avoid searching in DOM
                 var content = $('.chat-box');
                 var input = $('#chatMsg');
@@ -76,12 +76,12 @@ angular.module('webApp')
                         console.log("error");
                     });
                 }
-             
+
                 // my name sent to the server
-             
+
                 // if user is running mozilla then use it's built-in WebSocket
                 window.WebSocket = window.WebSocket || window.MozWebSocket;
-             
+
                 // if browser doesn't support WebSocket, just show some notification and exit
                 if (!window.WebSocket) {
                     content.html($('<p>', { text: 'Sorry, but your browser doesn\'t '
@@ -90,7 +90,7 @@ angular.module('webApp')
                     $('span').hide();
                     return;
                 }
-             
+
                 // open connection
                 connection = new WebSocket($rootScope.appconfig.chatServer, channel);
 
@@ -104,14 +104,14 @@ angular.module('webApp')
                     $rootScope.chatChannels[$rootScope.project_id] = null;
                     connection = null;
                 };
-             
+
                 connection.onerror = function (error) {
                     // just in there were some problems with conenction...
                     content.html($('<p>', { text: 'Sorry, but there\'s some problem with your '
                                                 + 'connection or the server is down.' } ));
                     $rootScope.chatChannels[$rootScope.project_id] = null;
                 };
-             
+
                 // most important part - incoming messages
                 connection.onmessage = function (message) {
                     // try to parse JSON message. Because we know that the server always returns
@@ -125,7 +125,7 @@ angular.module('webApp')
                     }
 
                     if (json.data.channel && json.data.channel !== channel) return;
-             
+
                     // NOTE: if you're not sure about the JSON structure
                     // check the server source code above
                     if (json.type === 'history') { // entire message history
@@ -137,15 +137,15 @@ angular.module('webApp')
                         input.removeAttr('disabled'); // let the user write another message
                         addMessage(json.data.author, json.data.text, new Date(json.data.time));
                         $.Growl.show(json.data.author + ": " + json.data.text, options);
-                    } else if (json.type === 'connection') { 
+                    } else if (json.type === 'connection') {
                         $('#' + json.data.author.replace(/ /g, '_')).addClass("online");
-                    } else if (json.type === 'disconnection') { 
+                    } else if (json.type === 'disconnection') {
                         $('#' + json.data.author.replace(/ /g, '_')).removeClass("online");
                     } else {
                         console.log('Hmm..., I\'ve never seen JSON like this: ', json);
                     }
                 };
-             
+
                 /**
                  * This method is optional. If the server wasn't able to respond to the
                  * in 3 seconds then show some error message to notify the user that
@@ -156,7 +156,7 @@ angular.module('webApp')
                         status.text('Error : Unable to communicate ' + 'with the WebSocket server.');
                     }
                 }, 3000);
-             
+
                 /**
                  * Add message to the chat window
                  */
@@ -184,16 +184,16 @@ angular.module('webApp')
                     formdata.append("file", f);
                 }
 
-                $.ajax({  
+                $.ajax({
                     url: $rootScope.appconfig.server + "/projects/" + $rootScope.project_id + "/upload",
-                    type: "POST",  
-                    data: formdata,  
-                    processData: false,  
-                    contentType: false,  
+                    type: "POST",
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
                     success: function (res) {
                         if (files && files.length > 0) {
                             var file = files[0];
-                            if (!chat_initiated) { 
+                            if (!chat_initiated) {
                                 chat_initiated = true;
                                 connection.send($rootScope.loggedInUser.name);
                             }

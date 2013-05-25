@@ -42,16 +42,16 @@ angular.module('webApp')
          });
 
         charts.line("#burndown_chart", "Effort Burndown", [
-                     {values: $scope.burnDown, key: 'Trend', color: '#2ca02c'}, 
+                     {values: $scope.burnDown, key: 'Trend', color: '#2ca02c'},
                      {values: $scope.projection, key: 'Expected', color: '#ff7f0e'}
                     ], 'Sprint', 'Points', true);
 
         charts.line("#velocity_chart", "Velocity Trend", [
-                     {values: $scope.velocityTrend, key: 'Trend', color: '#2ca02c'} 
+                     {values: $scope.velocityTrend, key: 'Trend', color: '#2ca02c'}
                     ], 'Sprint', 'Points', true);
 
         charts.bar("#trend_chart", "Planned Vs Completed", [
-                     {values: totalData, key: 'Planned', color: '#1F77B4'}, 
+                     {values: totalData, key: 'Planned', color: '#1F77B4'},
                      {values: completedData, key: 'Completed', color: '#2ca02c'}
                     ], 'Sprint', 'Points');
     });

@@ -3,8 +3,8 @@
 angular.module('webApp').factory('sync', function ($rootScope, $http, $location) {
 
     var baseUrl = $rootScope.appconfig.server;
-    
-    /** 
+
+    /**
      * -====== helper functions ======-
      */
     var http = function (_path, _data, _method, setHeader) {
@@ -29,7 +29,7 @@ angular.module('webApp').factory('sync', function ($rootScope, $http, $location)
         }
 
         return {
-                success: function(f) { return this; }, 
+                success: function(f) { return this; },
                 error: function(f) { console.error("There was an error processing the request. Do you have an active internet connection?"); return this; }
             };
     };

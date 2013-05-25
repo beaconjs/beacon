@@ -12,7 +12,7 @@ angular.module('webApp')
     });
 
     $scope.add = function() {
-        sync.post('/projects/' + $rootScope.project_id + '/todos', $scope.todo).success(function(r) {            
+        sync.post('/projects/' + $rootScope.project_id + '/todos', $scope.todo).success(function(r) {
             console.log("done");
             $location.path("/todos");
         }).error(function() {
@@ -22,7 +22,7 @@ angular.module('webApp')
 
     $scope.load = function(id) {
         $location.path("/todos/" + id)
-    }    
+    }
   });
 
 angular.module('webApp')
@@ -37,7 +37,7 @@ angular.module('webApp')
     });
 
     $scope.save = function() {
-        sync.post('/projects/' + $rootScope.project_id + '/todos', $scope.todo).success(function(r) {            
+        sync.post('/projects/' + $rootScope.project_id + '/todos', $scope.todo).success(function(r) {
             console.log("done");
             $scope.todo = {};
             $location.path("/todos");

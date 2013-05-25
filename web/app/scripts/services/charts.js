@@ -6,7 +6,7 @@ angular.module('webApp').factory('charts', function ($rootScope, $http, $locatio
         var h = Math.floor($("#page").height() * 0.45);
         var w = Math.floor($("#page").width() * 0.45);
 
-        nv.addGraph(function() {  
+        nv.addGraph(function() {
          var chart = null;
          if (type === "line") {
             chart = nv.models.lineChart().width(w).height(h);
@@ -14,7 +14,7 @@ angular.module('webApp').factory('charts', function ($rootScope, $http, $locatio
             // assume a bar chart
             chart = nv.models.multiBarChart().width(w).height(h);
          }
-         
+
          chart.xAxis
              .axisLabel(xAxisLabel);
          if (isXAxisNumeric) {

@@ -8,9 +8,9 @@ angular.module('webApp')
     $scope.authenticate = function() {
         var hash = CryptoJS.SHA512($scope.password);
 
-        sync.post('/authenticate', { 
-            username: $scope.username, 
-            password: hash.toString(CryptoJS.enc.Hex) 
+        sync.post('/authenticate', {
+            username: $scope.username,
+            password: hash.toString(CryptoJS.enc.Hex)
         }).success(function(response) {
             $rootScope.loggedInUser = response;
             $location.path("/");

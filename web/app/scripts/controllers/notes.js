@@ -30,14 +30,14 @@ angular.module('webApp')
                 user: $rootScope.loggedInUser.id,
                 notify: $scope.notify
             }).success(function(o){
-                if (o.id) { 
+                if (o.id) {
                     if (!$scope.note_id) {
                         $scope.notes.push({
                             id: o.id,
                             title: $scope.notetitle
                         });
                     }
-                    $scope.note_id = o.id; 
+                    $scope.note_id = o.id;
                 }
             });
         }
