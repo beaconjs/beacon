@@ -64,6 +64,7 @@ angular.module('webApp')
     loadTodos();
 
     $scope.add = function() {
+        $scope.todo.owner_id = $scope.todo.owner ? $scope.todo.owner.id : null;
         sync.post('/projects/' + $rootScope.project_id + '/todos', $scope.todo).success(function(r) {
             $scope.todo = { user: $rootScope.loggedInUser.id };
             loadTodos();

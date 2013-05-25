@@ -15,11 +15,13 @@
             <th>Title</th>
             <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
             <th>Due Date</th>
+            <th></th>
         </tr>
         <tr>
             <td><input type="checkbox" ng-checked="todo.status == 'Done'" ng-click="toggle(todo)" /></td>
-            <td><input type="text" ng-model="todo.title"/></td>
-            <td><input type="number" ng-model="todo.owner_id"/></td>
+            <td><input type="text" ng-model="todo.title" class="long"/></td>
+            <td><select ng-model="todo.owner" ng-options="o.name for o in owners"></td>
+            <td><input type="date" ng-model="todo.due_date"/></td>
             <td><a ng-click="add()" class="btn btn-small btn-round">Add</a></td>
         </tr>
         <tr ng-repeat="s in todos">
@@ -27,6 +29,7 @@
             <td ng-click="load(s.id)">{{s.title}}</td>
             <td ng-click="load(s.id)">{{s.user.name}}</td>
             <td ng-click="load(s.id)">{{s.due_date}}</td>
+            <td></td>
         </tr>
     </table>
     

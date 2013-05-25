@@ -26,8 +26,8 @@ input[type="date"], input[type="number"] {
 
 #page .nav-project-name { color: #aaa; font-size: 0.9em; float: right;margin-top: -1em; height: 2em;}
 
-#page form input::-webkit-outer-spin-button,
-#page form input::-webkit-inner-spin-button {
+#page input::-webkit-outer-spin-button,
+#page input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -134,6 +134,9 @@ ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; backgr
 
 .backlog { overflow: auto; }
 .backlog input, .dashboard input { height: 23px !important; width: auto !important;}
+.backlog input.long, .dashboard input.long {width: 90% !important;}
+.backlog select.long, .dashboard select.long {width: 90% !important;}
+
 .backlog select, .dashboard select { height: 23px !important; width: auto !important;}
 .backlog .epic { background-color: #CCC; padding: 10px 0 0 0; clear: both; min-height: 1.5em;}
 .backlog .epic-header { background-color: #aaa; padding: 10px 0 0 0; clear: both; min-height: 1.5em; font-size: 1em; font-weight: bold;}
