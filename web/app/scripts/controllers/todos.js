@@ -3,18 +3,22 @@
 angular.module('webApp')
   .controller('TodosCtrl', function ($rootScope, $scope, sync, $location) {
 
-    $scope.todo = {};
+    $scope.todo = { user: $rootScope.loggedInUser.id };
 
-    sync.get('/projects/' + $rootScope.project_id + '/todos').success(function(res) {
-        $scope.todos = res || {};
-    }).error(function() {
-        console.log("error");
-    });
+    var loadTodos = function() {
+        sync.get('/projects/' + $rootScope.project_id + '/todos').success(function(res) {
+            $scope.todos = res || {};
+        }).error(function() {
+            console.log("error");
+        });
+    }
+
+    loadTodos();
 
     $scope.add = function() {
         sync.post('/projects/' + $rootScope.project_id + '/todos', $scope.todo).success(function(r) {
-            console.log("done");
-            $location.path("/todos");
+            $scope.todo = { user: $rootScope.loggedInUser.id };
+            loadTodos();
         }).error(function() {
             console.log("error");
         });
@@ -37,6 +41,8 @@ angular.module('webApp')
     });
 
     $scope.save = function() {
+        $scope.todo.user = $rootScope.loggedInUser.id;
+
         sync.post('/projects/' + $rootScope.project_id + '/todos', $scope.todo).success(function(r) {
             console.log("done");
             $scope.todo = {};

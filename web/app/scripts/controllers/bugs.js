@@ -3,18 +3,22 @@
 angular.module('webApp')
   .controller('BugsCtrl', function ($rootScope, $scope, sync, $location) {
 
-    $scope.bug = {};
+    $scope.bug = { user: $rootScope.loggedInUser.id };
 
-    sync.get('/projects/' + $rootScope.project_id + '/bugs').success(function(res) {
-        $scope.bugs = res || {};
-    }).error(function() {
-        console.log("error");
-    });
+    var loadBugs = function() {
+        sync.get('/projects/' + $rootScope.project_id + '/bugs').success(function(res) {
+            $scope.bugs = res || {};
+        }).error(function() {
+            console.log("error");
+        });
+    }
+
+    loadBugs();
 
     $scope.add = function() {
         sync.post('/projects/' + $rootScope.project_id + '/bugs', $scope.bug).success(function(res) {
-            console.log("done");
-            $location.path("/bugs");
+            $scope.bug = { user: $rootScope.loggedInUser.id };
+            loadBugs();
         }).error(function() {
             console.log("error");
         });
@@ -37,6 +41,8 @@ angular.module('webApp')
     });
 
     $scope.save = function() {
+        $scope.bug.user = $rootScope.loggedInUser.id;
+        
         sync.post('/projects/' + $rootScope.project_id + '/bugs', $scope.bug).success(function(res) {
             console.log("done");
             $scope.bug = {};

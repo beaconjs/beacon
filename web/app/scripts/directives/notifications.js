@@ -22,7 +22,9 @@ angular.module('webApp')
                 connection.onmessage = function (message) {
                     try {
                         var json = JSON.parse(message.data);
-                        $.Growl.show(json.issuer.name + ": " + json.message, options);
+                        if (json.type !== "refresh") {
+                            $.Growl.show(json.issuer.name + ": " + json.message, options);
+                        }
                         $rootScope.newNotifications = $rootScope.newNotifications || 0;
                         $rootScope.newNotifications += 1;
                     } catch (e) {

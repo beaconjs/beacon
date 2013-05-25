@@ -133,8 +133,8 @@ input[type="submit"], button { width: 10em !important; border: 0px; background-c
 ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; background-color: #eee; padding: 1em; width: 20em; font-size: 0.9em; margin-top: 0.5em; margin-left: 0;}
 
 .backlog { overflow: auto; }
-.backlog input { height: 23px !important; width: auto !important;}
-.backlog select { height: 23px !important; width: auto !important;}
+.backlog input, .dashboard input { height: 23px !important; width: auto !important;}
+.backlog select, .dashboard select { height: 23px !important; width: auto !important;}
 .backlog .epic { background-color: #CCC; padding: 10px 0 0 0; clear: both; min-height: 1.5em;}
 .backlog .epic-header { background-color: #aaa; padding: 10px 0 0 0; clear: both; min-height: 1.5em; font-size: 1em; font-weight: bold;}
 .backlog ul { list-style: none; float: left; width: 70%;}

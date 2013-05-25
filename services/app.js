@@ -76,14 +76,14 @@ app.get('/projects/:id/bugs', bugs.list);
 app.get('/projects/:id/bugs/:bugId', bugs.get);
 app.get('/projects/:id/todos', todos.list);
 app.get('/projects/:id/todos/:todoId', todos.get);
+app.post('/projects/:id/bugs', bugs.create);
+app.post('/projects/:id/todos', todos.create);
 
 
 app.get('/projects/:id/members', projectusers.list);
 app.post('/projects/:id/members', projectusers.create);
 app.get('/users/:userId/projects', projectusers.forUser);
 app.post('/notes', notes.create);
-app.post('/bugs', bugs.create);
-app.post('/todos', todos.create);
 app.post('/notes/:id/comments', comments.createForNote);
 app.get('/notes/:id/comments', comments.forNote);
 app.get('/notes/:id/attachments', notes.attachments);

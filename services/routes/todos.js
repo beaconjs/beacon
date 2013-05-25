@@ -25,14 +25,14 @@ exports.get = function(req, res){
 
 exports.create = function(req, res){
     var o = req.body;
-    var todo = new Todo(o.title, o.details, o.project, o.owner, o.status, o.due_date, o.user);
+    var todo = new Todo(o.title, o.details, req.params.id, o.owner_id, o.status, o.due_date, o.user);
     if (o.id) todo.id = o.id;
     
     todo.save(function(obj){
         if (!o.id) {
-          NotificationsService.send({id: o.user}, o.project, " created todo \"" + o.title + "\".", true);
+          NotificationsService.send({id: o.user}, req.params.id, " created todo \"" + o.title + "\".", true);
         } else if (o.notify) {
-          NotificationsService.send({id: o.user}, o.project, " updated todo \"" + o.title + "\".", true);
+          NotificationsService.send({id: o.user}, req.params.id, " updated todo \"" + o.title + "\".", true);
         }
         res.json({id: obj.id});
     }, function(error){

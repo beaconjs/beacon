@@ -12,6 +12,7 @@ angular.module('webApp')
                 if ($rootScope.project_id) {
                     sync.get('/projects/' + $rootScope.project_id + '/notifications').success(function(res){
                         var r = res || [];
+                        $rootScope.allNotifications = [];
                         var last = null;
                         var notifications = [];
                         _.each(r, function(o){

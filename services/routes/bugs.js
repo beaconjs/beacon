@@ -25,14 +25,14 @@ exports.get = function(req, res){
 
 exports.create = function(req, res){
     var o = req.body;
-    var bug = new Bug(o.title, o.details, o.project, o.owner, o.status, o.priority, o.user);
+    var bug = new Bug(o.title, o.details, req.params.id, o.owner_id, o.status, o.priority, o.user);
     if (o.id) bug.id = o.id;
     
     bug.save(function(obj){
         if (!o.id) {
-          NotificationsService.send({id: o.user}, o.project, " created bug \"" + o.title + "\".", true);
+          NotificationsService.send({id: o.user}, req.params.id, " created bug \"" + o.title + "\".", true);
         } else if (o.notify) {
-          NotificationsService.send({id: o.user}, o.project, " updated bug \"" + o.title + "\".", true);
+          NotificationsService.send({id: o.user}, req.params.id, " updated bug \"" + o.title + "\".", true);
         }
         res.json({id: obj.id});
     }, function(error){

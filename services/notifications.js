@@ -75,10 +75,14 @@ exports.send = function(issuer, project_id, message, suppress) {
     if (!channels[channel]) return;
 
     new Notification(message, project_id, issuer.id).save(function(){}, function(){});
+    var mType = "text";
 
-    if (!suppress) {
-        for (var i=0; i < channels[channel].clients.length; i++) {
-            channels[channel].clients[i].sendUTF(JSON.stringify( { message: message, issuer: issuer, project_id: project_id }));
-        }
+    if (suppress) {
+        message = null;
+        mType = "refresh";
+    }
+
+    for (var i=0; i < channels[channel].clients.length; i++) {
+        channels[channel].clients[i].sendUTF(JSON.stringify( { type: mType, message: message, issuer: issuer, project_id: project_id }));
     }
 }

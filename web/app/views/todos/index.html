@@ -16,6 +16,12 @@
             <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
             <th>Due Date</th>
         </tr>
+        <tr>
+            <td><input type="text" ng-model="todo.title"/></td>
+            <td><input type="text" ng-model="todo.status"/></td>
+            <td><input type="number" ng-model="todo.owner_id"/></td>
+            <td><a ng-click="add()" class="btn btn-small btn-round">Add</a></td>
+        </tr>
         <tr ng-repeat="s in todos" ng-click="load(s.id)">
             <td>{{s.title}}</td>
             <td>{{s.status}}</td>
