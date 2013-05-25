@@ -186,3 +186,6 @@ history .notifications-section span { color: #666; text-decoration: underline;}
 .story-filter ul { list-style: none; }
 .story-filter ul li label { float: left; }
 .story-filter ul li input { float: left; }
+
+.dashboard tr.done { text-decoration: line-through; color: #aaa;}
+.dashboard tr.overdue { color: red;}

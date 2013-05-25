@@ -24,7 +24,7 @@
             <td><input type="date" ng-model="todo.due_date"/></td>
             <td><a ng-click="add()" class="btn btn-small btn-round">Add</a></td>
         </tr>
-        <tr ng-repeat="s in todos">
+        <tr ng-repeat="s in todos" class="{{getCss(s)}}">
             <td><input type="checkbox" ng-checked="s.status == 'Done'" ng-click="toggle(s)" /></td>
             <td ng-click="load(s.id)">{{s.title}}</td>
             <td ng-click="load(s.id)">{{s.user.name}}</td>

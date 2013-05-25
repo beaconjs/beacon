@@ -10,8 +10,21 @@ angular.module('webApp')
     $scope.owner = [];
     $scope.status = [];
 
+    $scope.getCss = function(todo) {
+        var css = "";
+        css += ((todo.status === "Done")? "done" : "");
+        if (todo.due_date && moment(todo.due_date).isBefore(moment())) {
+            css += "overdue";
+        }
+        return css;
+    }
+
     $scope.toggle = function(todo) {
         todo.status = (todo.status === "Done") ? "Pending" : "Done";
+        sync.post('/projects/' + $rootScope.project_id + '/todos', todo).success(function(r) {
+        }).error(function() {
+            console.log("error");
+        });
     }
 
     var applyFilters = function() {
