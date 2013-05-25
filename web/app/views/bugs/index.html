@@ -17,9 +17,9 @@
             <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
         </tr>
         <tr>
-            <td><input type="text" ng-model="bug.priority"/></td>
+            <td><select ng-model="bug.priority" ng-options="o for o in priorities"></select></td>
             <td><input type="text" ng-model="bug.title"/></td>
-            <td><input type="text" ng-model="bug.status"/></td>
+            <td><select ng-model="bug.status" ng-options="o for o in statuses"></select></td>
             <td><a ng-click="add()" class="btn btn-small btn-round">Add</a></td>
         </tr>
         <tr ng-repeat="s in bugs" ng-click="load(s.id)">

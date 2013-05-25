@@ -11,22 +11,22 @@
 
     <table>
         <tr>
-            <th>Title</th>
             <th>Status <a ng-click="showStatusFilter=!showStatusFilter">&nbsp;</a></th>
+            <th>Title</th>
             <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
             <th>Due Date</th>
         </tr>
         <tr>
+            <td><input type="checkbox" ng-checked="todo.status == 'Done'" ng-click="toggle(todo)" /></td>
             <td><input type="text" ng-model="todo.title"/></td>
-            <td><input type="text" ng-model="todo.status"/></td>
             <td><input type="number" ng-model="todo.owner_id"/></td>
             <td><a ng-click="add()" class="btn btn-small btn-round">Add</a></td>
         </tr>
-        <tr ng-repeat="s in todos" ng-click="load(s.id)">
-            <td>{{s.title}}</td>
-            <td>{{s.status}}</td>
-            <td>{{s.user.name}}</td>
-            <td>{{s.due_date}}</td>
+        <tr ng-repeat="s in todos">
+            <td><input type="checkbox" ng-checked="s.status == 'Done'" ng-click="toggle(s)" /></td>
+            <td ng-click="load(s.id)">{{s.title}}</td>
+            <td ng-click="load(s.id)">{{s.user.name}}</td>
+            <td ng-click="load(s.id)">{{s.due_date}}</td>
         </tr>
     </table>
     
