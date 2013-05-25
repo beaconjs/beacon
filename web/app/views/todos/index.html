@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a ng-click="gotoPage('/dashboard')">{{project_name}}</a></li>
+            <li><span>To Dos</span></li>
+        </ul>
+    </div>
+</div>
+<div class="row dashboard">
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Status <a ng-click="showStatusFilter=!showStatusFilter">&nbsp;</a></th>
+            <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
+            <th>Due Date</th>
+        </tr>
+        <tr ng-repeat="s in todos">
+            <td>{{s.title}}</td>
+            <td>{{s.status}}</td>
+            <td>{{s.user.name}}</td>
+            <td>{{s.due_date}}</td>
+        </tr>
+    </table>
+    
+</div>
+
+<div ng-show="showStatusFilter" class="story-filter">
+    <a ng-click="showStatusFilter=!showStatusFilter">Close</a>
+    <ul>
+        <li ng-repeat="s in statuses"><input type="checkbox" value="{{s}}" ng-click="statusFilter(s)" ng-checked="status.indexOf(s) != -1"/><label>{{s}}</label></li>
+    </ul>
+</div>
+
+<div ng-show="showOwnerFilter" class="story-filter">
+    <a ng-click="showOwnerFilter=!showOwnerFilter">Close</a>
+    <ul>
+        <li ng-repeat="s in owners"><input type="checkbox" value="{{s.id}}" ng-click="ownerFilter(s.id)" ng-checked="owner.indexOf(s.id) != -1"/><label>{{s.name}}</label></li>
+    </ul>
+</div>
+
+<div class="chat-overlay" ng-show="showStatusFilter || showOwnerFilter"></div>

@@ -1,5 +1,6 @@
 var db = require("../db.js").sequelize;
 var DataTypes = require("sequelize");
+var User = require('./users').table
 
 var Todo = function(title, details, project_id, owner_id, status, due_date, created_by) {
  this.title = title, 
@@ -31,6 +32,9 @@ var todos_table = db.define('todos', {
       freezeTableName:true
     });
 
+todos_table.belongsTo(User, { foreignKey: 'owner_id' });
+User.hasMany(todos_table, { as: 'owners', foreignKey: 'owner_id' });
+
 exports.get=Todo;
 exports.table=todos_table;
 
@@ -47,7 +51,7 @@ Todo.prototype.save=function(onSuccess, onError) {
 };
 
 Todo.all=function(projectId, onSuccess, onError) {
-    todos_table.findAll({ where: { project_id: projectId } }).success(onSuccess).error(onError);
+    todos_table.findAll({ include: [User], where: { project_id: projectId } }).success(onSuccess).error(onError);
 };
 
 Todo.get=function(projectId, id, onSuccess, onError) {

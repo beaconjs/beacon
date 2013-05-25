@@ -1,5 +1,6 @@
 var db = require("../db.js").sequelize;
 var DataTypes = require("sequelize");
+var User = require('./users').table
 
 var Bug = function(title, details, project_id, owner_id, status, priority, created_by) {
  this.title = title, 
@@ -30,6 +31,9 @@ var bugs_table = db.define('bugs', {
       underscored: true
     });
 
+bugs_table.belongsTo(User, { foreignKey: 'owner_id' });
+User.hasMany(bugs_table, { as: 'owners', foreignKey: 'owner_id' });
+
 exports.get=Bug;
 exports.table=bugs_table;
 
@@ -46,7 +50,7 @@ Bug.prototype.save=function(onSuccess, onError) {
 };
 
 Bug.all=function(projectId, onSuccess, onError) {
-    bugs_table.findAll({ where: { project_id: projectId } }).success(onSuccess).error(onError);
+    bugs_table.findAll({ include: [User], where: { project_id: projectId } }).success(onSuccess).error(onError);
 };
 
 Bug.get=function(projectId, id, onSuccess, onError) {
