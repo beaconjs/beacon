@@ -23,6 +23,9 @@ angular.module('webApp')
                     try {
                         var json = JSON.parse(message.data);
                         if (json.type !== "refresh") {
+                            json.issuer = json.issuer || { name: "" };
+                            json.issuer.name = json.issuer.name || "";
+
                             $.Growl.show(json.issuer.name + ": " + json.message, options);
                         }
                         $rootScope.newNotifications = $rootScope.newNotifications || 0;

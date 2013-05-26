@@ -27,6 +27,13 @@ angular.module('webApp')
         });
     }
 
+    var isValid = function(arr, value) {
+        var match = true;
+
+        if ($scope[arr] && $scope[arr].length > 0 && $scope[arr].indexOf(value) === -1 ) match = false;
+        return match;
+    }
+
     var applyFilters = function() {
         $scope.todos = [];
         _.each($scope.allTodos, function(o){

@@ -4,6 +4,7 @@
         </div>
     </div>
     <div class="sixth">
+        <div class="close" ng-click="showChat=false;"></div>
         <div class="nav-v">
             <ul>
                 <li ng-repeat="member in members"><span id="{{replace(member.user.name)}}">{{member.user.name}}</span></li>
@@ -20,6 +21,5 @@
     <div class="onesixth">
         <span id="status"></span>
         <button ng-click="sendChat()">Send</button>
-        <a ng-click="showChat=false;">Close</a>
     </div>
 </div>

@@ -23,7 +23,7 @@ exports.lookup = function(req, res){
 
 exports.create = function(req, res){
   var u = req.body;
-  var user = new User(u.name, u.username, u.password);
+  var user = new User(u.name, u.username, u.password, u.email);
   user.save(function(o){
       o.password = null;
       res.json(o);

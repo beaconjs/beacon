@@ -30,9 +30,9 @@ exports.create = function(req, res){
     
     todo.save(function(obj){
         if (!o.id) {
-          NotificationsService.send({id: o.user}, req.params.id, " created todo \"" + o.title + "\".", true);
+          NotificationsService.send({id: o.user}, req.params.id, "New todo \"" + o.title + "\".");
         } else if (o.notify) {
-          NotificationsService.send({id: o.user}, req.params.id, " updated todo \"" + o.title + "\".", true);
+          NotificationsService.send({id: o.user}, req.params.id, "Todo \"" + o.title + "\" has been updated.");
         }
         res.json({id: obj.id});
     }, function(error){

@@ -6,7 +6,8 @@ exports.up = function(db, callback) {
         id: { type: 'int', primaryKey: true, autoIncrement: true },
         name: 'string',
         user_name: 'string',
-        password: 'string'
+        password: 'string',
+        email: 'string'
       }, callback);
 };
 

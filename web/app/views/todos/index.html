@@ -28,7 +28,7 @@
             <td><input type="checkbox" ng-checked="s.status == 'Done'" ng-click="toggle(s)" /></td>
             <td ng-click="load(s.id)">{{s.title}}</td>
             <td ng-click="load(s.id)">{{s.user.name}}</td>
-            <td ng-click="load(s.id)">{{s.due_date}}</td>
+            <td ng-click="load(s.id)">{{s.due_date | date}}</td>
             <td></td>
         </tr>
     </table>
@@ -36,14 +36,14 @@
 </div>
 
 <div ng-show="showStatusFilter" class="story-filter">
-    <a ng-click="showStatusFilter=!showStatusFilter">Close</a>
+    <div class="close" ng-click="showStatusFilter=false;"></div>
     <ul>
         <li ng-repeat="s in statuses"><input type="checkbox" value="{{s}}" ng-click="statusFilter(s)" ng-checked="status.indexOf(s) != -1"/><label>{{s}}</label></li>
     </ul>
 </div>
 
 <div ng-show="showOwnerFilter" class="story-filter">
-    <a ng-click="showOwnerFilter=!showOwnerFilter">Close</a>
+    <div class="close" ng-click="showOwnerFilter=false;"></div>
     <ul>
         <li ng-repeat="s in owners"><input type="checkbox" value="{{s.id}}" ng-click="ownerFilter(s.id)" ng-checked="owner.indexOf(s.id) != -1"/><label>{{s.name}}</label></li>
     </ul>
