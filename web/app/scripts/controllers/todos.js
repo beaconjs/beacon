@@ -13,7 +13,7 @@ angular.module('webApp')
     $scope.getCss = function(todo) {
         var css = "";
         css += ((todo.status === "Done")? "done" : "");
-        if (todo.due_date && moment(todo.due_date).isBefore(moment())) {
+        if (todo.due_date && moment(todo.due_date).isBefore(moment()) && todo.status !== "Done") {
             css += "overdue";
         }
         return css;
