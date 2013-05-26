@@ -8,30 +8,87 @@
     </div>
 </div>
 <div class="row dashboard">
+    <div id="tabs">
+        <div id="stories" ng-click="context='stories'" ng-class="{selected: context=='stories'}">
+            <h2>Stories</h2>
+            <h3 class="ribbon orange" ng-show="context=='stories'">Stories</h3>
+            <table ng-show="context=='stories'">
+                <tr>
+                    <th>Title</th>
+                    <th>Status <a ng-click="showStatusFilter=!showStatusFilter">&nbsp;</a></th>
+                    <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
+                    <th>Sprint <a ng-click="showSprintFilter=!showSprintFilter">&nbsp;</a></th>
+                    <th>Points</th>
+                </tr>
+                <tr ng-repeat="s in stories">
+                    <td>{{s.title}}</td>
+                    <td>{{s.status}}</td>
+                    <td>{{s.user.name}}</td>
+                    <td>{{s.sprint.title}}</td>
+                    <td>{{s.points}}</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="bugs" ng-click="context='bugs'" ng-class="{selected: context=='bugs'}">
+            <h2>Bugs</h2>
+            <h3 class="ribbon orange" ng-show="context=='bugs'">Bugs</h3>
+            <table ng-show="context=='bugs'">
+                <tr>
+                    <th>Priority <a ng-click="showPriorityFilter=!showPriorityFilter">&nbsp;</a></th>
+                    <th>Title</th>
+                    <th>Status <a ng-click="showStatusFilter=!showStatusFilter">&nbsp;</a></th>
+                    <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
+                </tr>
+                <tr>
+                    <td><select ng-model="bug.priority" ng-options="o for o in config.bugs.priorities"></select></td>
+                    <td><input type="text" ng-model="bug.title" class="long"/></td>
+                    <td><select ng-model="bug.status" ng-options="o for o in config.bugs.statuses"></select></td>
+                    <td><a ng-click="addBug()" class="btn btn-small btn-round">Add</a></td>
+                </tr>
+                <tr ng-repeat="s in bugs" ng-click="getBug(s.id)">
+                    <td>{{s.priority}}</td>
+                    <td>{{s.title}}</td>
+                    <td>{{s.status}}</td>
+                    <td>{{s.user.name}}</td>
+                </tr>
+            </table>
+        </div>
 
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Status <a ng-click="showStatusFilter=!showStatusFilter">&nbsp;</a></th>
-            <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
-            <th>Sprint <a ng-click="showSprintFilter=!showSprintFilter">&nbsp;</a></th>
-            <th>Points</th>
-        </tr>
-        <tr ng-repeat="s in stories">
-            <td>{{s.title}}</td>
-            <td>{{s.status}}</td>
-            <td>{{s.user.name}}</td>
-            <td>{{s.sprint.title}}</td>
-            <td>{{s.points}}</td>
-        </tr>
-    </table>
-    
+        <div id="todos" ng-click="context='todos'" ng-class="{selected: context=='todos'}">
+            <h2>TO DOs</h2>
+            <h3 class="ribbon orange" ng-show="context=='todos'">TO DOs</h3>
+            <table ng-show="context=='todos'">
+                <tr>
+                    <th>Status <a ng-click="showStatusFilter=!showStatusFilter">&nbsp;</a></th>
+                    <th>Title</th>
+                    <th>Owner <a ng-click="showOwnerFilter=!showOwnerFilter">&nbsp;</a></th>
+                    <th>Due Date</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" ng-checked="todo.status == 'Done'" ng-click="toggle(todo)" /></td>
+                    <td><input type="text" ng-model="todo.title" class="long"/></td>
+                    <td><select ng-model="todo.owner" ng-options="o.name for o in owners"></td>
+                    <td><input type="date" ng-model="todo.due_date"/></td>
+                    <td><a ng-click="addTodo()" class="btn btn-small btn-round">Add</a></td>
+                </tr>
+                <tr ng-repeat="s in todos" class="{{getCss(s)}}">
+                    <td><input type="checkbox" ng-checked="s.status == 'Done'" ng-click="toggle(s)" /></td>
+                    <td ng-click="getTodo(s.id)">{{s.title}}</td>
+                    <td ng-click="getTodo(s.id)">{{s.user.name}}</td>
+                    <td ng-click="getTodo(s.id)">{{s.due_date | date}}</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 
 <div ng-show="showStatusFilter" class="story-filter">
     <div class="close" ng-click="showStatusFilter=false;"></div>
     <ul>
-        <li ng-repeat="s in statuses"><input type="checkbox" value="{{s}}" ng-click="statusFilter(s)" ng-checked="status.indexOf(s) != -1"/><label>{{s}}</label></li>
+        <li ng-repeat="s in config[context].statuses"><input type="checkbox" value="{{s}}" ng-click="statusFilter(s)" ng-checked="status.indexOf(s) != -1"/><label>{{s}}</label></li>
     </ul>
 </div>
 
@@ -48,4 +105,10 @@
         <li ng-repeat="s in sprints"><input type="checkbox" value="{{s.id}}" ng-click="sprintFilter(s.id)" ng-checked="sprint.indexOf(s.id) != -1"/><label>{{s.title}}</label></li>
     </ul>
 </div>
-<div class="chat-overlay" ng-show="showStatusFilter || showOwnerFilter || showSprintFilter"></div>
+<div ng-show="showPriorityFilter" class="story-filter">
+    <div class="close" ng-click="showPriorityFilter=false;"></div>
+    <ul>
+        <li ng-repeat="s in config[context].priorities"><input type="checkbox" value="{{s}}" ng-click="priorityFilter(s)" ng-checked="priority.indexOf(s) != -1"/><label>{{s}}</label></li>
+    </ul>
+</div>
+<div class="chat-overlay" ng-show="showStatusFilter || showOwnerFilter || showSprintFilter || showPriorityFilter"></div>

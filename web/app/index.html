@@ -28,9 +28,9 @@
     <!-- Add your site or application content here -->
     
     <div id="page">
-      <span ng-show="project_id" class="nav-project-name">{{project_name}}</span>
+      <span ng-show="project_id" class="nav-project-name">{{project_name}}<span></span></span>
       <div ng-view style="float:left; width: 95%;height: 95%; overflow:auto;"></div>
-      <div ng-include="'views/_menu.html'" style="background-color:#88B0D7; float:right;"></div>
+      <div ng-include="'views/_menu.html'" style="background-color:#88B0D7; float:right;margin:1em 0;"></div>
     </div>
 
 
