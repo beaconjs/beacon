@@ -24,8 +24,7 @@ input[type="date"], input[type="number"] {
 
 #page { width: 90%; padding: 2em; margin: 24px auto; border: 2px #EEE solid; height: 800px; box-shadow: 5px 5px 5px #CCC; background: #FFF; overflow: auto;}
 
-#page .nav-project-name { color: #FFF; background-color: #F0473B; position: absolute; top: 3em; right: 4em; padding: 0.25em 2em; width: 15em; font-size: 0.9em; float: right; margin-top: -1em; height: 2em;}
-#page .nav-project-name span {border-top: 1.25em solid transparent; border-bottom: 1.25em solid transparent; border-right: 0.75em solid #fff; position: absolute; top:0; right: 0;}
+#page .nav-project-name { color: #ccc; padding: 0.25em 2em; width: 15em; font-size: 0.9em; float: right; margin-top: -1em; height: 2em;}
 
 #page input::-webkit-outer-spin-button,
 #page input::-webkit-inner-spin-button {
