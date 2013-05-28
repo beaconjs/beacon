@@ -185,7 +185,7 @@ angular.module('webApp')
     }
 
     $("th a").click( function(event) {
-      $(".story-filter").css( {position:"absolute", top:(event.pageY + 10), left: (event.pageX + 10)});
+      $(".story-filter").css( {position:"absolute", top:(event.pageY + 10), left: (event.pageX - 50)});
     });
 
   });

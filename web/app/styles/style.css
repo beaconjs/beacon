@@ -188,9 +188,13 @@ history .notifications-section span { color: #666; text-decoration: underline;}
 .dashboard #tabs div.selected h2 { display: none; }
 .dashboard #tabs div.selected { width: 90em; height: 43em; background-color: #fff; padding: 1em; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear;-ms-transition: all 0.2s linear; transition: all 0.2s linear;}
 
-.story-filter { width: 20em; background-color: #fff; padding: 1em; position: absolute; z-index: 100; top: 20%; left: 10%;}
+.story-filter { width: 20em; background: #0FA1E0; font-size: 1.2em; color: #FFF; padding: 1em; position: absolute; z-index: 100; top: 20%; left: 10%;}
+.story-filter .arrow { content: ''; display: block; width: 0;height: 0;position: absolute;left: 2em; top: -0.5em; border-left: 0.5em solid transparent; border-right: 0.5em solid transparent; border-bottom: 0.5em solid #0fa1e0;margin-left: -0.5em;}
+.story-filter .close { float:right; margin:-30px -30px 0 0; cursor:pointer; color: #fff; border: 1px solid #0FA1E0; border-radius: 30px; background: #0FA1E0; font-size: 31px; font-weight: bold; display: inline-block; line-height: 0px; padding: 11px 3px; height: auto; width: auto; }
+.story-filter .close:before { content: "×"; }
+
 .story-filter ul { list-style: none; }
-.story-filter ul li { clear: both; }
+.story-filter ul li { clear: both; border-bottom: 1px dotted #6FC7EC; line-height: 100%; height: 1.5em; padding: 1em;}
 .story-filter ul li label { float: left; padding: 1em;}
 .story-filter ul li input { float: left; width: auto !important;}
 
