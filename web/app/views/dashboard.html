@@ -73,7 +73,40 @@
                     <td><input type="date" ng-model="todo.due_date"/></td>
                     <td><a ng-click="addTodo()" class="btn btn-small btn-round">Add</a></td>
                 </tr>
-                <tr ng-repeat="s in todos" class="{{getCss(s)}}">
+                <tr ng-show="todos.nodate.length > 0"><td colspan="5" class="header">No Due Date</td></tr>
+                <tr ng-repeat="s in todos.nodate" class="{{getCss(s)}}">
+                    <td><input type="checkbox" ng-checked="s.status == 'Done'" ng-click="toggle(s)" /></td>
+                    <td ng-click="getTodo(s.id)">{{s.title}}</td>
+                    <td ng-click="getTodo(s.id)">{{s.user.name}}</td>
+                    <td ng-click="getTodo(s.id)">{{s.due_date | date}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-show="todos.past.length > 0"><td colspan="5" class="header">Past</td></tr>
+                <tr ng-repeat="s in todos.past" class="{{getCss(s)}}">
+                    <td><input type="checkbox" ng-checked="s.status == 'Done'" ng-click="toggle(s)" /></td>
+                    <td ng-click="getTodo(s.id)">{{s.title}}</td>
+                    <td ng-click="getTodo(s.id)">{{s.user.name}}</td>
+                    <td ng-click="getTodo(s.id)">{{s.due_date | date}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-show="todos.today.length > 0"><td colspan="5" class="header">Today</td></tr>
+                <tr ng-repeat="s in todos.today" class="{{getCss(s)}}">
+                    <td><input type="checkbox" ng-checked="s.status == 'Done'" ng-click="toggle(s)" /></td>
+                    <td ng-click="getTodo(s.id)">{{s.title}}</td>
+                    <td ng-click="getTodo(s.id)">{{s.user.name}}</td>
+                    <td ng-click="getTodo(s.id)">{{s.due_date | date}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-show="todos.week.length > 0"><td colspan="5" class="header">This week</td></tr>
+                <tr ng-repeat="s in todos.week" class="{{getCss(s)}}">
+                    <td><input type="checkbox" ng-checked="s.status == 'Done'" ng-click="toggle(s)" /></td>
+                    <td ng-click="getTodo(s.id)">{{s.title}}</td>
+                    <td ng-click="getTodo(s.id)">{{s.user.name}}</td>
+                    <td ng-click="getTodo(s.id)">{{s.due_date | date}}</td>
+                    <td></td>
+                </tr>
+                <tr ng-show="todos.later.length > 0"><td colspan="5" class="header">Later</td></tr>
+                <tr ng-repeat="s in todos.later" class="{{getCss(s)}}">
                     <td><input type="checkbox" ng-checked="s.status == 'Done'" ng-click="toggle(s)" /></td>
                     <td ng-click="getTodo(s.id)">{{s.title}}</td>
                     <td ng-click="getTodo(s.id)">{{s.user.name}}</td>

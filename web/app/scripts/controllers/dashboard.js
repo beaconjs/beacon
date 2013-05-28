@@ -11,7 +11,7 @@ angular.module('webApp')
     $scope.priority = [];
     $scope.owners = [];
     $scope.sprints = [];
-    $scope.todo = { user: $rootScope.loggedInUser.id };
+    $scope.todo = { user: $rootScope.loggedInUser.id, status: "Pending" };
     $scope.bug = { user: $rootScope.loggedInUser.id };
     $scope.config = { bugs: {}, stories: {}, todos: {}};
 
@@ -74,6 +74,8 @@ angular.module('webApp')
 
             if(match) $scope[$scope.context].push(o);
         });
+
+        if ($scope.context === "todos") arrangeTodos($scope[$scope.context]);
     }
 
     var addFilter = function(filter, s) {
@@ -137,10 +139,33 @@ angular.module('webApp')
 
     var loadTodos = function() {
         sync.get('/projects/' + $rootScope.project_id + '/todos').success(function(res) {
-            $scope.todos = res || {};
-            $scope.all.todos = $scope.todos;
+            $scope.all.todos = res || {};
+            arrangeTodos($scope.all.todos);
         }).error(function() {
             console.log("error");
+        });
+    }
+
+    var arrangeTodos = function(todos) {
+        $scope.todos = {past: [], today: [], week: [], later: [], nodate: []};
+        var today = moment().startOf('day');
+        var tomorrow = moment().endOf('day');
+        var thisWeek = moment().endOf('week');
+        _.each(todos, function(t){
+            var m = moment(t.due_date);
+            if (t.due_date) {
+                if (m.isBefore(today)) {
+                    $scope.todos.past.push(t);
+                } else if (m.isBefore(tomorrow)) {
+                    $scope.todos.today.push(t);
+                } else if (m.isBefore(thisWeek)) {
+                    $scope.todos.week.push(t);
+                } else {
+                    $scope.todos.later.push(t);
+                }
+            } else {
+                $scope.todos.nodate.push(t);
+            }
         });
     }
 
@@ -149,7 +174,7 @@ angular.module('webApp')
     $scope.addTodo = function() {
         $scope.todo.owner_id = $scope.todo.owner ? $scope.todo.owner.id : null;
         sync.post('/projects/' + $rootScope.project_id + '/todos', $scope.todo).success(function(r) {
-            $scope.todo = { user: $rootScope.loggedInUser.id };
+            $scope.todo = { user: $rootScope.loggedInUser.id, status: "Pending" };
             loadTodos();
         }).error(function() {
             console.log("error");
