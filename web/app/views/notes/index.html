@@ -72,11 +72,18 @@
                             <h3><a ng-click="showAttachments=!showAttachments">Attachments</a></h3>
                             <div ng-show="showAttachments">
                                 <ul class="attachments">
-                                    <li ng-repeat="a in attachments"><a href="{{appconfig.server}}/uploads/{{project_id}}/{{note_id}}/{{a.filename}}">{{a.filename}}</a></li>
+                                    <li ng-repeat="a in attachments" ng-show="isImage(a.filename)"><a ng-click="preview(project_id, note_id, a.filename)">{{a.filename}}</a></li>
+                                    <li ng-repeat="a in attachments" ng-hide="isImage(a.filename)"><a href="{{appconfig.server}}/uploads/{{project_id}}/{{note_id}}/{{a.filename}}">{{a.filename}}</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="imagePreview" ng-show="showImgPreview" id="previewImgDiv">
+            <div class="close" ng-click="showImgPreview=false;"></div>
+            <div id="previewImgDivInner">
             </div>
         </div>

@@ -20,6 +20,18 @@ angular.module('webApp')
         $scope.notify = true;
     });
 
+    $scope.showImgPreview = false;
+
+    $scope.preview = function(project_id, note_id, filename) {
+        var imgurl = $rootScope.appconfig.server + "/uploads/" + $rootScope.project_id + "/" + $scope.note_id + "/" + filename;
+        $("#previewImgDivInner").html("<img src=\"" + imgurl + "\" class=\"annotatable\" id=\"imgPreview\" />");
+        $scope.showImgPreview = true;
+    }
+
+    $scope.isImage = function(filename) {
+        return filename && (filename.toLowerCase().indexOf("jpg") || filename.toLowerCase().indexOf("jpeg") || filename.toLowerCase().indexOf("gif") || filename.toLowerCase().indexOf("png"));
+    }
+
     $scope.$watch('notedetails', function(){
         if ((!$scope.note_id && !isBlank($scope.notedetails)) || $scope.note_id) {
             sync.post('/notes', {
