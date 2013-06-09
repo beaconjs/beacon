@@ -6,6 +6,8 @@ angular.module('webApp')
     $scope.notes = [];
     $scope.notify = false;
 
+    $scope.ann = {};
+
     sync.get("/projects/" + $rootScope.project_id + "/notes").success(function(res){
         $scope.notes = res;
     }).error(function(error){
@@ -20,12 +22,31 @@ angular.module('webApp')
         $scope.notify = true;
     });
 
+    $scope.$watch('ann', function(){
+        if ($scope.ann.text) {
+            console.log($scope.ann);
+            var visible = $('#ann-' + $scope.ann.x + '-' + $scope.ann.y ).is(':visible');
+            console.log(visible);
+            $scope.ann = { filename: $scope.ann.filename };
+        }
+    });
+
     $scope.showImgPreview = false;
 
     $scope.preview = function(project_id, note_id, filename) {
         var imgurl = $rootScope.appconfig.server + "/uploads/" + $rootScope.project_id + "/" + $scope.note_id + "/" + filename;
         $("#previewImgDivInner").html("<img src=\"" + imgurl + "\" class=\"annotatable\" id=\"imgPreview\" />");
         $scope.showImgPreview = true;
+        $("#previewImgDivInner").click(function(e){
+          var x = Math.round(e.pageX  - $(this).parent().offset().left);
+          var y = Math.round(e.pageY - $(this).parent().offset().top);
+          $scope.ann.filename = filename;
+          var id = "ann-" + x + "-" + y;
+
+          $(this).parent().append("<div class='img-annotation' style='position:absolute;top:" + y + "px;left:" + 
+            x + "px;' id='" + id + "'><div class='close' onclick='closeAnnotation($(this))'></div><div contenteditable onblur='saveAnnotation($(this).html(), " + 
+                x + ", " + y + ", $(this))'></div></div>");
+       });
     }
 
     $scope.isImage = function(filename) {
@@ -63,6 +84,7 @@ angular.module('webApp')
         });
         notesDropzone.on("complete", function(file) {
           notesDropzone.removeFile(file);
+          $scope.loadAttachments();
           $('#notedetails-dropzone-container').hide();
           notesDropzone.disable();
         });
@@ -118,8 +140,26 @@ angular.module('webApp')
             note_title: $scope.notetitle
         }).success(function(o){
             console.log("saved");
-            $scope.comments.push({ details: $scope.comment.details, user: { name: $rootScope.loggedInUser.name }, created_at: new Date() });
+            $scope.loadComments();
             $scope.comment = {};
         });
     }
   });
+
+function saveAnnotation(text, x, y) {
+    var scope = angular.element($('#previewImgDiv')).scope();
+
+    if (scope) { 
+        scope.ann = {
+            text: text,
+            x: x,
+            y: y,
+            filename: scope.ann.filename
+        }
+        scope.$apply();
+    }
+}
+
+function closeAnnotation(obj) {
+    obj.parent().hide();
+}

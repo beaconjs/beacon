@@ -207,3 +207,7 @@ history .notifications-section span { color: #666; text-decoration: underline;}
 .imagePreview { position: absolute; top: 10%; left: 10%; z-index: 120; }
 .imagePreview .close { float:right; margin:-30px -30px 0 0; cursor:pointer; color: #fff; border: 1px solid #0FA1E0; border-radius: 30px; background: #0FA1E0; font-size: 31px; font-weight: bold; display: inline-block; line-height: 0px; padding: 11px 3px; height: auto; width: auto; }
 .imagePreview .close:before { content: "×"; }
+
+.img-annotation { width:10em; min-height:1em; background-color:#fff; color:#0FA1E0; border: 6px #0FA1E0 solid; border-radius: 10px; padding: 0.5em; font-size: 0.8em;}
+.img-annotation .close { float:right; margin:-20px -20px 0 0; cursor:pointer; color: #fff; border: 1px solid #0FA1E0; border-radius: 15px; background: #0FA1E0; font-size: 21px; font-weight: bold; display: inline-block; line-height: 0px; padding: 10px 3px; height: auto; width: auto; }
+.img-annotation .close:before { content: "×"; }

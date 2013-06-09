@@ -30,3 +30,7 @@ NoteAttachment.forNote=function(noteId, onSuccess, onError) {
 NoteAttachment.get=function(id, noteId, onSuccess, onError) {
     noteAttachments_table.find({ where: { id: id, note_id: noteId } }).success(onSuccess).error(onError);
 };
+
+NoteAttachment.find=function(noteId, filename, onSuccess, onError) {
+    noteAttachments_table.find({ where: { filename: filename, note_id: noteId } }).success(onSuccess).error(onError);
+};

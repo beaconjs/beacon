@@ -58,10 +58,15 @@ exports.upload = function(req, res) {
       fs.readFile(req.files.file.path, function (err, data) {
         path += ("/" + req.files.file.name);
         fs.writeFile(path, data, function (err) {
-           var attachment = new NoteAttachment(req.params.noteId, req.files.file.name);
-           attachment.save(function(){
-            NotificationsService.send({}, req.params.id, "New attachment \"" + req.files.file.name + " added\".", true);
-           }, function(){});
+          NoteAttachment.find(req.params.noteId, req.files.file.name, function(o) {
+            if (!o) {
+              // dont create an entry if it exists
+              var attachment = new NoteAttachment(req.params.noteId, req.files.file.name);
+              attachment.save(function(){
+                NotificationsService.send({}, req.params.id, "New attachment \"" + req.files.file.name + " added\".", true);
+              }, function(){});            
+            }
+          }, function() { });
         });
       });
     }
