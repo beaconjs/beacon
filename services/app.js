@@ -12,6 +12,7 @@ var express = require('express')
   , bugs = require('./routes/bugs')
   , todos = require('./routes/todos')
   , comments = require('./routes/comments')
+  , annotations = require('./routes/annotations')
   , projectusers = require('./routes/projectusers')
   , cardModels = require('./routes/card_wall')
   , notifications = require('./routes/notifications')
@@ -71,6 +72,8 @@ app.get('/projects/:id/notes', notes.list);
 app.get('/projects/:id/notes/:noteId', notes.get);
 app.post('/projects/:id/:noteId/upload', notes.upload);
 app.post('/projects/:id/upload', projects.upload);
+app.post('/projects/:id/:noteId/annotations', annotations.create);
+app.post('/projects/:id/:noteId/annotations/list', annotations.list);
 
 app.get('/projects/:id/bugs', bugs.list);
 app.get('/projects/:id/bugs/:bugId', bugs.get);

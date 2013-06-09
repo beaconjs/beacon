@@ -6,7 +6,7 @@ angular.module('webApp')
     $scope.notes = [];
     $scope.notify = false;
 
-    $scope.ann = {};
+    $scope.ann = { user_id: $rootScope.loggedInUser.id };
 
     sync.get("/projects/" + $rootScope.project_id + "/notes").success(function(res){
         $scope.notes = res;
@@ -24,10 +24,12 @@ angular.module('webApp')
 
     $scope.$watch('ann', function(){
         if ($scope.ann.text) {
-            console.log($scope.ann);
-            var visible = $('#ann-' + $scope.ann.x + '-' + $scope.ann.y ).is(':visible');
-            console.log(visible);
-            $scope.ann = { filename: $scope.ann.filename };
+            sync.post('/projects/' + $rootScope.project_id + '/' + $scope.note_id + '/annotations', $scope.ann).success(function(o){
+                console.log("saved");
+                $scope.loadComments();
+                $scope.comment = {};
+            });
+            $scope.ann = { filename: $scope.ann.filename, user_id: $rootScope.loggedInUser.id };
         }
     });
 
@@ -47,6 +49,8 @@ angular.module('webApp')
             x + "px;' id='" + id + "'><div class='close' onclick='closeAnnotation($(this))'></div><div contenteditable onblur='saveAnnotation($(this).html(), " + 
                 x + ", " + y + ", $(this))'></div></div>");
        });
+
+      loadAnnotations(filename);
     }
 
     $scope.isImage = function(filename) {
@@ -131,6 +135,27 @@ angular.module('webApp')
         }
     };
 
+    var loadAnnotations = function(filename) {
+        $('.img-annotation').remove();
+        if ($scope.note_id && filename) {
+            sync.post('/projects/'+ $rootScope.project_id + '/' + $scope.note_id + '/annotations/list', { filename: filename }).success(function(res) {
+                _.each(res, function(o){
+                    var x = o.posx;
+                    var y = o.posy;
+                    var id = "ann-" + x + "-" + y;
+                    var text = o.todos.title;
+                    var css = "img-annotation";
+                    if (o.todos.status === "Done") css += " done";
+                    $('#previewImgDiv').append("<div class='" + css + "' style='position:absolute;top:" + y + "px;left:" + 
+                            x + "px;' id='" + id + "'><div class='close' onclick='closeAnnotation($(this))'></div><div contenteditable onblur='saveAnnotation($(this).html(), " + 
+                            x + ", " + y + ", $(this))'></div>" + text + "</div>");
+                });
+            }).error(function() {
+                console.log("error");
+            });
+        }
+    }
+
     $scope.addComment = function() {
         sync.post('/notes/' + $scope.note_id + '/comments', {
             details: $scope.comment.details,
@@ -154,12 +179,13 @@ function saveAnnotation(text, x, y) {
             text: text,
             x: x,
             y: y,
-            filename: scope.ann.filename
+            filename: scope.ann.filename,
+            user_id: scope.ann.user_id
         }
         scope.$apply();
     }
 }
 
 function closeAnnotation(obj) {
-    obj.parent().hide();
+    obj.parent().remove();
 }
