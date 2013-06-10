@@ -24,18 +24,12 @@ var webApp = angular.module('webApp', [])
       }).when('/projects/edit', {
         templateUrl: 'views/projects/edit.html',
         controller: 'EditProjectsCtrl'
-      }).when('/todos', {
-        templateUrl: 'views/todos/index.html',
-        controller: 'TodosCtrl'
       }).when('/todos/:id', {
         templateUrl: 'views/todos/edit.html',
-        controller: 'EditTodosCtrl'
-      }).when('/bugs', {
-        templateUrl: 'views/bugs/index.html',
-        controller: 'BugsCtrl'
+        controller: 'TodosCtrl'
       }).when('/bugs/:id', {
         templateUrl: 'views/bugs/edit.html',
-        controller: 'EditBugsCtrl'
+        controller: 'BugsCtrl'
       }).when('/report', {
         templateUrl: 'views/report.html',
         controller: 'ReportsCtrl'
