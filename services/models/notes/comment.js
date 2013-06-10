@@ -32,20 +32,8 @@ Comment.prototype.save=function(onSuccess, onError) {
     comments_table.build(this).save().success(onSuccess).error(onError);
 };
 
-Comment.forNote=function(id, onSuccess, onError) {
-    comments_table.findAll({ include: [ User ], where: { source_id: id, source_type: 'note' } }).success(onSuccess).error(onError);
-};
-
-Comment.forStory=function(id, onSuccess, onError) {
-    comments_table.findAll({ include: [ User ], where: { source_id: id, source_type: 'story' } }).success(onSuccess).error(onError);
-};
-
-Comment.forBug=function(id, onSuccess, onError) {
-    comments_table.findAll({ include: [ User ], where: { source_id: id, source_type: 'bug' } }).success(onSuccess).error(onError);
-};
-
-Comment.forTodo=function(id, onSuccess, onError) {
-    comments_table.findAll({ include: [ User ], where: { source_id: id, source_type: 'todo' } }).success(onSuccess).error(onError);
+Comment.list=function(id, source_type, onSuccess, onError) {
+    comments_table.findAll({ include: [ User ], where: { source_id: id, source_type: source_type }, order: "created_at DESC" }).success(onSuccess).error(onError);
 };
 
 Comment.get=function(id, onSuccess, onError) {

@@ -18,9 +18,9 @@ describe('Comment', function(){
     })
   })
 
-  describe('#forNote()', function(){
+  describe('#list()', function(){
     it('should get comments for note', function(done){
-        Comment.forNote(1, function(o){
+        Comment.list(1, 'note', function(o){
             expect(o.length).to.not.equal(0);
             done();
         }, function(error){

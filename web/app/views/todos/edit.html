@@ -17,4 +17,10 @@
             <div class="row"><div class="quarter"><a ng-click="save()" class="btn btn-small btn-round">Save</a></div></div>
         </div>
     </div>
+    <div class="half" style="overflow:auto;">
+        <ul class="comments" style="margin-top:0;">
+            <li><button ng-click="addComment()">Save</button><textarea ng-model="comment.details" rows="10"></textarea></li>
+            <li ng-repeat="c in comments"><span>{{c.user.name}} {{c.created_at | date:short}}</span> {{c.details}}</li>
+        </ul>
+    </div>
 </div>

@@ -91,6 +91,11 @@ app.post('/notes/:id/comments', comments.createForNote);
 app.get('/notes/:id/comments', comments.forNote);
 app.get('/notes/:id/attachments', notes.attachments);
 app.get('/comments', comments.get);
+app.post('/bugs/:id/comments', comments.createForBug);
+app.post('/todos/:id/comments', comments.createForTodo);
+app.get('/bugs/:id/comments', comments.forBug);
+app.get('/todos/:id/comments', comments.forTodo);
+
 
 app.get('/projects/:id/sprints', cardModels.sprints.list);
 app.get('/projects/:id/sprints/current', cardModels.sprints.current);

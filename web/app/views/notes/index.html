@@ -63,8 +63,8 @@
                             <h3><a ng-click="showComments=!showComments">Comments</a></h3>
                             <div ng-show="showComments">
                                 <ul class="comments">
-                                    <li ng-repeat="c in comments"><span>{{c.user.name}} {{c.created_at | date:short}}</span> {{c.details}}</li>
                                     <li><button ng-click="addComment()">Save</button><textarea ng-model="comment.details" rows="10"></textarea></li>
+                                    <li ng-repeat="c in comments"><span>{{c.user.name}} {{c.created_at | date:short}}</span> {{c.details}}</li>
                                 </ul>
                             </div>
                         </div>
