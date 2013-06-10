@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "Beacon Bug Capture",
+  "description": "This extension allows you to take screenshots and attach to bugs.",
+  "version": "1.0",
+
+  "permissions": [
+    "tabs", "<all_urls>"
+  ],
+  "browser_action": {
+    "default_icon": "attachments.png",
+    "default_popup": "popup.html"
+  }
+}
