@@ -23,14 +23,28 @@ angular.module('webApp')
             res.forEach(function(p){
                 $scope.projectNames[p.project.id] = p.project.name;
             });
+
+            loadMembers();
         }
     }).error(function(error){
         console.log(error);
     });
 
+    var loadMembers = function() {
+        sync.get("/projects/" + $rootScope.project_id + "/members").success(function(res){
+            var owners = res || [];
+            $rootScope.appconfig.project_members = _.map(owners, function(o){
+                return o.user;
+            });
+        }).error(function(error){
+            console.log(error);
+        });
+    }
+
     $scope.select = function(id) {
         $rootScope.project_id = id;
         $rootScope.project_name = $scope.projectNames[id];
+        loadMembers();
         $location.path('dashboard');
     };
 

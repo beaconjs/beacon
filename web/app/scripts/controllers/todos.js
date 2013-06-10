@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('webApp')
-  .controller('EditTodosCtrl', function ($rootScope, $scope, sync, $location, $routeParams) {
+  .controller('TodosCtrl', function ($rootScope, $scope, sync, $location, $routeParams) {
 
     $scope.todo = {};
+    $scope.config = { todos: {} };
+    $scope.config.todos = $rootScope.appconfig.todos;
 
     sync.get('/projects/' + $rootScope.project_id + '/todos/' + $routeParams.id).success(function(res) {
         $scope.todo = res || {};

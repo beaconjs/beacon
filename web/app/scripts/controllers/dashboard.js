@@ -16,9 +16,8 @@ angular.module('webApp')
     $scope.config = { bugs: {}, stories: {}, todos: {}};
 
     $scope.config.stories.statuses = [];
-    $scope.config.bugs.statuses = ['New', 'Open', 'Fixed', 'Released', 'Invalid', 'Closed'];
-    $scope.config.bugs.priorities = ['High', 'Medium', 'Low', 'Trivial'];
-    $scope.config.todos.statuses = ['Pending', 'Done'];
+    $scope.config.bugs = $rootScope.appconfig.bugs;
+    $scope.config.todos = $rootScope.appconfig.todos;
 
     $scope.invert = false;
 

@@ -17,19 +17,10 @@ angular.module('webApp')
             };
 
             scope.config = { bugs: {} };
-            scope.config.bugs.statuses = ['New', 'Open', 'Fixed', 'Released', 'Invalid', 'Closed'];
-            scope.config.bugs.priorities = ['High', 'Medium', 'Low', 'Trivial'];
-            $rootScope.$watch('project_id', function() {
-                if ($rootScope.project_id) {
-                    sync.get("/projects/" + $rootScope.project_id + "/members").success(function(res){
-                        var owners = res || [];
-                        scope.config.bugs.owners = _.map(owners, function(o){
-                            return o.user;
-                        });
-                    }).error(function(error){
-                        console.log(error);
-                    });
-                }
+            scope.config.bugs = $rootScope.appconfig.bugs;
+            scope.config.bugs.owners = $rootScope.appconfig.project_members;
+            $rootScope.$watch("appconfig.project_members", function(){
+                scope.config.bugs.owners = $rootScope.appconfig.project_members;
             });
         }
     }

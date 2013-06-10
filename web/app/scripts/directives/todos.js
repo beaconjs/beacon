@@ -18,18 +18,10 @@ angular.module('webApp')
             };
 
             scope.config = { todos: {} };
-            scope.config.todos.statuses = ['Pending', 'Done'];
-            $rootScope.$watch('project_id', function() {
-                if ($rootScope.project_id) {
-                    sync.get("/projects/" + $rootScope.project_id + "/members").success(function(res){
-                        var owners = res || [];
-                        scope.config.todos.owners = _.map(owners, function(o){
-                            return o.user;
-                        });
-                    }).error(function(error){
-                        console.log(error);
-                    });
-                }
+            scope.config.todos = $rootScope.appconfig.todos;
+            scope.config.todos.owners = $rootScope.appconfig.project_members;
+            $rootScope.$watch("appconfig.project_members", function(){
+                scope.config.todos.owners = $rootScope.appconfig.project_members;
             });
         }
     }

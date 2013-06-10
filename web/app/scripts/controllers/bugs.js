@@ -4,6 +4,8 @@ angular.module('webApp')
   .controller('BugsCtrl', function ($rootScope, $scope, sync, $location, $routeParams) {
 
     $scope.bug = {};
+    $scope.config = { bugs: {} };
+    $scope.config.bugs = $rootScope.appconfig.bugs;
 
     sync.get('/projects/' + $rootScope.project_id + '/bugs/' + $routeParams.id).success(function(res) {
         $scope.bug = res || {};

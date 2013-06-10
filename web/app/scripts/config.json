@@ -1,5 +1,12 @@
 {
     "server": "http://localhost:3000",
     "chatServer": "ws://localhost:1337",
-    "notifications": "ws://localhost:1338"
+    "notifications": "ws://localhost:1338",
+    "bugs": {
+        "statuses": ["New", "Open", "Fixed", "Released", "Invalid", "Closed"],
+        "priorities": ["High", "Medium", "Low", "Trivial"]
+    },
+    "todos": {
+        "statuses": ["Pending", "Done"]
+    }
 }
