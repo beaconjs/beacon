@@ -7,11 +7,15 @@
         </ul>
     </div>
 </div>
-<div class="quick-form">
-    <div class="row"><div class="quarter"><label>Title</label></div><div class="threequarter"><input type="text" ng-model="bug.title"/></div></div>
-    <div class="row"><div class="quarter"><label>Priority</label></div><div class="threequarter"><select ng-model="bug.priority" ng-options="o for o in config.bugs.priorities"></select></div></div>
-    <div class="row"><div class="quarter"><label>Status</label></div><div class="threequarter"><select ng-model="bug.status" ng-options="o for o in config.bugs.statuses"></select></div></div>
-    <div class="row"><div class="quarter"><label>Owner</label></div><div class="threequarter"><select ng-model="bug.owner" ng-options="o.name for o in appconfig.project_members"></select></div></div>
-    <div class="row"><div class="quarter"><label>Details</label></div><div class="threequarter"><textarea ng-model="bug.details"></textarea></div></div>
-    <div class="row"><div class="quarter"><a ng-click="save()" class="btn btn-small btn-round">Add</a></div></div>
+<div class="row">
+    <div class="half" style="overflow:auto;">
+        <div class="quick-form">
+            <div class="row"><div class="quarter"><label>Title</label></div><div class="threequarter"><input type="text" ng-model="bug.title"/></div></div>
+            <div class="row"><div class="quarter"><label>Priority</label></div><div class="threequarter"><select ng-model="bug.priority" ng-options="o for o in config.bugs.priorities"></select></div></div>
+            <div class="row"><div class="quarter"><label>Status</label></div><div class="threequarter"><select ng-model="bug.status" ng-options="o for o in config.bugs.statuses"></select></div></div>
+            <div class="row"><div class="quarter"><label>Owner</label></div><div class="threequarter"><select ng-model="bug.owner" ng-options="o.name for o in appconfig.project_members"></select></div></div>
+            <div class="row"><div class="quarter"><label>Details</label></div><div class="threequarter"><textarea ng-model="bug.details"></textarea></div></div>
+            <div class="row"><div class="quarter"><a ng-click="save()" class="btn btn-small btn-round">Save</a></div></div>
+        </div>
+    </div>
 </div>
