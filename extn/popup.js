@@ -3,6 +3,8 @@ var user_id = null;
 
 var bug = {};
 
+var screenshot = null;
+
 var init = function() {
     chrome.storage.local.get(['beacon_auth', 'beacon_auth_id'], function(o){
         if(o.beacon_auth) {
@@ -19,7 +21,7 @@ var init = function() {
 
 var capture = function() {
     chrome.tabs.captureVisibleTab(null, {}, function (image) {
-       console.log(image);
+       screenshot = image;
        $("#main").append("<img src=\"" + image + "\" style=\"height:30em; width:auto;\"/>");
     });
 }
@@ -80,7 +82,13 @@ var save = function() {
     project_id = $('#project').val();
 
     $.post(base_url + 'projects/' + project_id + '/bugs', bug).done(function(res){
+        if (screenshot) {
+            $.post(base_url + 'projects/' + project_id + '/bugs/' + res.id + '/screenshot', { screenshot: screenshot }).done(function(res){
+            });
+        }
+
         bug = {};
+        screenshot = null;
         $("#title").val("");
         $("#details").val("");
         $("#priority").val("");

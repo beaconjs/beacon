@@ -17,6 +17,9 @@
             <div class="row"><div class="quarter"><label>Details</label></div><div class="threequarter"><textarea ng-model="bug.details"></textarea></div></div>
             <div class="row"><div class="quarter"><a ng-click="save()" class="btn btn-small btn-round">Save</a></div></div>
         </div>
+        <ul class="attachments" style="margin-top:0;">
+            <li ng-repeat="c in attachments"><span ng-show="c.filename">{{c.filename}}</span><span ng-show="c.screenshot"><img src="{{c.screenshot}}" /></span></li>
+        </ul>
     </div>
 
     <div class="half" style="overflow:auto;">

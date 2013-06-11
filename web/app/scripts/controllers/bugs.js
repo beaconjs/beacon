@@ -10,6 +10,7 @@ angular.module('webApp')
     sync.get('/projects/' + $rootScope.project_id + '/bugs/' + $routeParams.id).success(function(res) {
         $scope.bug = res || {};
         $scope.loadComments();
+        $scope.loadAttachments();
     }).error(function() {
         console.log("error");
     });
@@ -30,6 +31,16 @@ angular.module('webApp')
         if ($scope.bug) {
             sync.get('/bugs/' + $scope.bug.id + '/comments').success(function(res) {
                 $scope.comments = res || [];
+            }).error(function() {
+                console.log("error");
+            });
+        }
+    };
+
+    $scope.loadAttachments = function() {
+        if ($scope.bug) {
+            sync.get('/bugs/' + $scope.bug.id + '/attachments').success(function(res) {
+                $scope.attachments = res || [];
             }).error(function() {
                 console.log("error");
             });

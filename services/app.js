@@ -70,6 +70,7 @@ app.get('/projects/:id', projects.get);
 app.get('/projects/:id/notifications', notifications.list);
 app.get('/projects/:id/notes', notes.list);
 app.get('/projects/:id/notes/:noteId', notes.get);
+app.post('/projects/:id/:bugId/bugUpload', bugs.upload);
 app.post('/projects/:id/:noteId/upload', notes.upload);
 app.post('/projects/:id/upload', projects.upload);
 app.post('/projects/:id/:noteId/annotations', annotations.create);
@@ -81,7 +82,8 @@ app.get('/projects/:id/todos', todos.list);
 app.get('/projects/:id/todos/:todoId', todos.get);
 app.post('/projects/:id/bugs', bugs.create);
 app.post('/projects/:id/todos', todos.create);
-
+app.post('/projects/:id/bugs/:bugId/screenshot', bugs.addScreenshot);
+app.get('/bugs/:id/attachments', bugs.attachments);
 
 app.get('/projects/:id/members', projectusers.list);
 app.post('/projects/:id/members', projectusers.create);
