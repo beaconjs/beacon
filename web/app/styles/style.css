@@ -109,8 +109,9 @@ select { width: 30%; font-size: 2em;}
 #homepage .info-row .content { margin: 1em 25em; width: 100%; }
 #homepage .info-row.even { background-color: #EFEFEB; }
 #homepage .info-row h1 { margin-bottom: 0; }
-.info-row ul { width: 100%;}
-.info-row ul li { width: 40%; margin-bottom: 1em;}
+#homepage .info-row ul { width: 100%;}
+#homepage .info-row ul li { width: 40%; margin-bottom: 1em;}
+#homepage .footer { padding: 1em; background-color: #2a313a; color: #fff; font-size: 0.9em;}
 
 .login-form { padding: 2em; border: #eee solid 1px; background-color: #EFEFEB; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}
 .login-form-inner { margin: 1em; border: #AAA 1px dashed; padding: 3em; }
