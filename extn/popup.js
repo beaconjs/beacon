@@ -22,7 +22,7 @@ var init = function() {
 var capture = function() {
     chrome.tabs.captureVisibleTab(null, {}, function (image) {
        screenshot = image;
-       $("#main").append("<img src=\"" + image + "\" style=\"height:30em; width:auto;\"/>");
+       $("#main").append("<img id='screenshot' src=\"" + image + "\" style=\"height:30em; width:auto;\"/>");
     });
 }
 
@@ -89,6 +89,7 @@ var save = function() {
 
         bug = {};
         screenshot = null;
+        $('#screenshot').remove();
         $("#title").val("");
         $("#details").val("");
         $("#priority").val("");
