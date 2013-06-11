@@ -12,9 +12,11 @@ var init = function() {
             $('#main').show();
             user_id = o.beacon_auth_id;
             loadProjects();
+            $('#title').focus();
         } else {
             $('#logindiv').show();
             $('#main').hide();
+            $('#username').focus();
         }
     });
 }
