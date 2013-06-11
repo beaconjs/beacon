@@ -10,11 +10,11 @@
 
       img {
         margin: 5px;
-        border: 2px solid black;
         vertical-align: middle;
-        width: 75px;
-        height: 75px;
       }
+
+      .row { margin: 5px 0;}
+
     </style>
 
     <!--
@@ -32,7 +32,31 @@
     </div>
     <div id="main">
       <button id="logout">Log out</button>
-      <button id="captureBtn">Capture Screenshot</button>
+      <div>
+        <div class="row">
+          <select id="project">
+          </select>
+        </div>
+        <div class="row">
+          <input type="text" id="title" style="width:30em;"/>
+        </div>
+        <div class="row">
+          <textarea id="details" style="width:30em;height:5em;"></textarea>
+        </div>
+        <div class="row">
+          <select id="owner">
+          </select>
+        </div>
+        <div class="row">
+          <select id="priority">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+            <option value="Trivial">Trivial</option>
+          </select>
+        </div>
+        <button id="captureBtn">Capture Screenshot</button><button id="saveBtn">Save</button>
+      </div>
     </div>
 
   </body>
