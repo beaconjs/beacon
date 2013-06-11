@@ -105,8 +105,9 @@ select { width: 30%; font-size: 2em;}
 #homepage h1 { color: #db3c14; font-size: 1.5em; padding: 1em; }
 #homepage span {color: #747c81; padding: 0 2em; font-style: italic;}
 
-#homepage .info-row { background-color: #fff; min-height: 15em; padding: 5px 2em; color: #0088cc; width: 80%; border-bottom: #eee 2px solid; margin: 0 10em; }
+#homepage .info-row { background-color: #fff; min-height: 15em; padding: 5px 2em; color: #0088cc; width: 100%; border-bottom: #eee 2px solid; margin: 0; }
 #homepage .info-row .content { margin: 1em 25em; width: 100%; }
+#homepage .info-row.even { background-color: #EFEFEB; }
 #homepage .info-row h1 { margin-bottom: 0; }
 .info-row ul { width: 100%;}
 .info-row ul li { width: 40%; margin-bottom: 1em;}
