@@ -101,7 +101,17 @@ select { width: 30%; font-size: 2em;}
 .nav-v span.online { color: #329532; }
 .nav-v span.offline { color: #a43739; }
 
-.login-form {margin: 10em; padding: 2em; border: #eee solid 1px; background-color: #E3E7EB; -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, .2), 0 3px 0 #FFF, 0 4px 0 rgba(0, 0, 0, .2), 0 6px 0 #FFF, 0 7px 0 rgba(0, 0, 0, .2); -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 1px 1px 0 rgba(0, 0, 0, .1), 3px 3px 0 rgba(255, 255, 255, 1), 4px 4px 0 rgba(0, 0, 0, .1), 6px 6px 0 rgba(255, 255, 255, 1), 7px 7px 0 rgba(0, 0, 0, .1); box-shadow: 0 0 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, .2), 0 3px 0 #FFF, 0 4px 0 rgba(0, 0, 0, .2), 0 6px 0 #FFF, 0 7px 0 rgba(0, 0, 0, .2); -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}
+#homepage { min-height: 800px; background: #FFF; padding: 0;}
+#homepage h1 { color: #db3c14; font-size: 1.5em; padding: 1em; }
+#homepage span {color: #747c81; padding: 0 2em; font-style: italic;}
+
+#homepage .info-row { background-color: #fff; min-height: 15em; padding: 5px 2em; color: #0088cc; width: 80%; border-bottom: #eee 2px solid; margin: 0 10em; }
+#homepage .info-row .content { margin: 1em 25em; width: 100%; }
+#homepage .info-row h1 { margin-bottom: 0; }
+.info-row ul { width: 100%;}
+.info-row ul li { width: 40%; margin-bottom: 1em;}
+
+.login-form { padding: 2em; border: #eee solid 1px; background-color: #EFEFEB; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}
 .login-form-inner { margin: 1em; border: #AAA 1px dashed; padding: 3em; }
 input { width: 60%; height: 3em !important; }
 input[type="submit"], button { width: 10em !important; border: 0px; background-color: #FFB94B; height: 4em; color: #FFF; }

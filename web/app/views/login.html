@@ -1,8 +1,10 @@
+<h1>Beacon</h1>
+<p><span>A complete, free and open source toolkit for Agile teams.</span></p>
 <form ng-submit="authenticate()" class="login-form">
     <div class="login-form-inner">
         <div class="row"><input type="text" ng-model="username" id="username" placeholder="user name" /></div>
         <div class="row"><input type="password" ng-model="password" id="password" placeholder="password" /></div>
-        <div class="row"><input type="submit" value="Login" /><a ng-click="showSignup=!showSignup">Sign Up</a></div>
+        <div class="row"><input type="submit" value="Login" />&nbsp;<a ng-click="showSignup=!showSignup" class="btn">Sign Up</a></div>
     </div>
 </form>
 <div class="signup" ng-show="showSignup">
@@ -12,4 +14,63 @@
     <div class="row"><input type="password" ng-model="user.password" id="user_password" placeholder="password" /></div>
     <div class="row"><button ng-click="showSignup=!showSignup">Cancel</button>&nbsp;<button ng-click="signup()">Sign Up</button></div>
 </div>
+<div class="info-row">
+    <div class="content">
+        <h1>All that an Agile Team needs</h1>
+        <ul>
+            <li>Requirements Capturing
+                <br><span>Take notes in rich text that are auto saved. Attach files, or discuss via comments.</span>
+            </li>
+            <li>Story Planning
+                <br><span>Create stories and epics/ use cases, sprints/ iterations and plan your work.</span>
+            </li>
+            <li>Card Wall
+                <br><span>Use a virtual card wall to have your morning meetings. Drag and drop cards to change their statuses!</span>
+            </li>
+            <li>Bug Tracking
+                <br><span>Capture bugs and track them. Attach files and images.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="info-row">
+    <div class="content">
+        <h1>Collaborate Better</h1>
+        <ul>
+            <li>Team chat
+                <br><span>One common team room for everybody to chat. Drag and drop files for everybody's discussion. Save your chat to create notes straight from the chat window! And the chat is persistent, so you can look at old chats!</span>
+            </li>
+            <li>Comment on bugs and requirements
+                <br><span>Leave comments on bugs or notes for others to review.</span>
+            </li>
+            <li>Annotations on images to enable better discussion
+                <br><span>Add annotations to images on notes describing what exactly should be looked into. Automatically create to do items for each annotation.</span>
+            </li>
+            <li>Manage To Dos at one place
+                <br><span>A simple To Do tracker with highlights for what's been missed, and what's upcoming.</span>
+            </li>
+            <li>Notifications to show when something is changed
+                <br><span>Simple non-interfering notifications whenever a bug or a note is added, or something is changed. A notifications center to look into history.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="info-row">
+    <div class="content">
+        <h1>Simple but effective</h1>
+        <ul>
+            <li>Google Chrome extension to capture bugs and screenshots
+                <br><span>Capture a bug from the window you see it at, along with its screenshot.</span>
+            </li>
+            <li>All requirements at one place
+                <br><span>Notes, images, files etc all stored at one place.</span>
+            </li>
+            <li>Simple reporting to show project progress
+                <br><span>Velocity charts, effort burndown, expected completion dates all shown in simple charts.</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
 <div class="chat-overlay" ng-show="showSignup"></div>
