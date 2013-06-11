@@ -28,7 +28,10 @@ User.prototype.save=function(onSuccess, onError) {
 };
 
 User.find=function(username, password, onSuccess, onError) {
-    users_table.find({ where: {user_name: username, password: password}, attributes: ['id', 'name', 'user_name', 'email'] }).success(onSuccess).error(onError);
+    var shasum = crypto.createHash('sha512');
+    shasum.update(password);
+    var p = shasum.digest('hex');
+    users_table.find({ where: {user_name: username, password: p}, attributes: ['id', 'name', 'user_name', 'email'] }).success(onSuccess).error(onError);
 };
 
 User.lookup=function(name, onSuccess, onError) {

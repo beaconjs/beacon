@@ -18,9 +18,12 @@ var capture = function() {
 }
 
 var login = function() {
-    chrome.storage.local.set({'beacon_auth': $('#username').val() }, function() {
-        load();
-      });
+    $.post('http://localhost:3000/authenticate', { username: $("#username").val(), password: $("#password").val() }).done(function(res) {
+        console.log(res);
+        chrome.storage.local.set({'beacon_auth': $('#username').val() }, function() {
+            load();
+          });
+    });
 }
 
 var logout = function() {

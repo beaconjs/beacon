@@ -8,7 +8,7 @@ var assert = require("assert")
 describe('User', function(){
   describe('#authenticate()', function(){
     it('should authenticate a user', function(done){
-        var req = {username: 'test', password: 'password'};
+        var req = {username: 'username', password: 'password'};
         mockHttp({}, req, User.authenticate, 
             function(user) {
               expect(user.name).to.equal('test user');
