@@ -6,7 +6,7 @@ var Todo = require('../models/todos').get;
  */
 
 exports.list = function(req, res){
-  Annotation.list(req.params.id, req.body.filename, function(o){
+  Annotation.list(req.params.noteId, req.body.filename, function(o){
     res.json(o);
   }, function(err){
     res.send(err);
