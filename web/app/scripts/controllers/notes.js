@@ -57,8 +57,8 @@ angular.module('webApp')
         return filename && (filename.toLowerCase().indexOf("jpg") || filename.toLowerCase().indexOf("jpeg") || filename.toLowerCase().indexOf("gif") || filename.toLowerCase().indexOf("png"));
     }
 
-    $scope.$watch('notedetails', function(){
-        if ((!$scope.note_id && !isBlank($scope.notedetails)) || $scope.note_id) {
+    var autosave = function(){
+        if ((!$scope.note_id && !isBlank($scope.notetitle)) || $scope.note_id) {
             sync.post('/notes', {
                 id: $scope.note_id,
                 title: $scope.notetitle,
@@ -73,12 +73,20 @@ angular.module('webApp')
                             id: o.id,
                             title: $scope.notetitle
                         });
+                    } else {
+                        var note = _.find($scope.notes, function(n){
+                            return n.id === o.id;
+                        });
+                        note.title = $scope.notetitle;
                     }
                     $scope.note_id = o.id;
                 }
             });
         }
-    });
+    };
+
+    $scope.$watch('notedetails', autosave);
+    $scope.$watch('notetitle', autosave);
 
     $scope.attachFile = function(insert) {
         $('#notedetails-dropzone-container').show();
