@@ -70,7 +70,7 @@ Story.get = function(id, onSuccess, onError) {
 }
 
 Story.forSprint = function(sprint_id, onSuccess, onError) {
-    stories_table.findAll({where: { sprint_id: sprint_id } }).success(onSuccess).error(onError);
+    stories_table.findAll({include: [User], where: { sprint_id: sprint_id } }).success(onSuccess).error(onError);
 }
 
 Story.forUser = function(user_id, project_id, onSuccess, onError) {

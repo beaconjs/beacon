@@ -76,7 +76,21 @@ angular.module('webApp')
 
     $scope.saveStory = function() {
         $scope.story.modified_by = $rootScope.loggedInUser.id;
-        sync.post('/stories/' + $scope.story.id, $scope.story).success(function(res) { console.log("updated"); }).error(function() {
+        $scope.story.owner = $scope.story.user || {};
+        $scope.story.owner_id = $scope.story.owner.id;
+
+        sync.post('/stories/' + $scope.story.id, $scope.story).success(function(res) { 
+          var st = _.find($scope.stories, function(s){
+            return s.id === $scope.story.id;
+          });
+          st.title = $scope.story.title;
+          st.points = $scope.story.points;
+          st.owner = $scope.story.owner;
+          st.user = $scope.story.user;
+          st.owner_id = $scope.story.owner_id;
+          st.details = $scope.story.details;
+
+        }).error(function() {
             console.log("error");
         });
         $scope.closePopup();

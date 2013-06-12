@@ -19,7 +19,7 @@
                     </div>
                     <div class="right">
                         <div class="points">{{story.points}}</div>
-                        <div class="assigned" ng-show="story.owner">{{story.owner.name}}</div>
+                        <div class="assigned" ng-show="story.user">{{story.user.name}}</div>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <ul>
                     <li><input type="text" ng-model="story.title" class="width-100" placeholder="Story name"/></li>
                     <li>
-                        <select ng-model="story.owner" ng-options="u.user.name for u in members">
+                        <select ng-model="story.user" ng-options="u.user.name for u in members">
                         </select>
                         <div class="right">
                             <label>Points</label>
