@@ -223,10 +223,10 @@ history .notifications-section span { color: #666; text-decoration: underline;}
 .imagePreview .close { float:right; margin:-30px -30px 0 0; cursor:pointer; color: #fff; border: 1px solid #0FA1E0; border-radius: 30px; background: #0FA1E0; font-size: 31px; font-weight: bold; display: inline-block; line-height: 0px; padding: 11px 3px; height: auto; width: auto; }
 .imagePreview .close:before { content: "×"; }
 
-.img-annotation { width:10em; min-height:1em; background-color:#fff; color:#0FA1E0; border: 6px #0FA1E0 solid; border-radius: 10px; padding: 0.5em; font-size: 0.8em;}
+.img-annotation { }
 .img-annotation .close { float:right; margin:-20px -20px 0 0; cursor:pointer; color: #fff; border: 1px solid #0FA1E0; border-radius: 15px; background: #0FA1E0; font-size: 21px; font-weight: bold; display: inline-block; line-height: 0px; padding: 10px 3px; height: auto; width: auto; }
 .img-annotation .close:before { content: "×"; }
-.img-annotation.done {border: 6px #70B90D solid; color: #70B90D; display: none;}
+.img-annotation.done .ann-inner {border: 6px #70B90D solid; color: #70B90D; }
 
 bugs, todos { position: absolute; top: 10%; left: 10%; width: 50em; height: 30em; z-index: 100; background-color: #F3F3F3;border: #CCC 3px solid;padding: 1em; color: #333;}
 bugs label, todos label, bugs a, todos a { float: right; }
@@ -256,3 +256,5 @@ bugs label, todos label, bugs a, todos a { float: right; }
 .pin.green {
     border: 6px solid #70B90D;
 }
+
+.ann-inner { display: none; width:10em; min-height:1em; background-color:#fff; color:#0FA1E0; border: 6px #0FA1E0 solid; border-radius: 10px; padding: 0.5em; font-size: 0.8em; z-index: 1000;}

@@ -46,8 +46,8 @@ angular.module('webApp')
           var id = "ann-" + x + "-" + y;
 
           $(this).parent().append("<div class='img-annotation' style='position:absolute;top:" + y + "px;left:" + 
-            x + "px;' id='" + id + "'><div class='close' onclick='closeAnnotation($(this))'></div><div class='pin pink'></div><div contenteditable onblur='saveAnnotation($(this).html(), " + 
-                x + ", " + y + ", $(this))'></div></div>");
+            x + "px;' id='" + id + "'><div class='pin pink'></div><div class='ann-inner' style='display:block'><div class='close' onclick='closeAnnotation($(this))'></div><div contenteditable onblur='saveAnnotation($(this).html(), " + 
+                x + ", " + y + ", $(this))'></div></div></div>");
        });
 
       loadAnnotations(filename);
@@ -156,9 +156,15 @@ angular.module('webApp')
                     if (o.todos.status === "Done") css += " done";
                     var pinColor = (o.todos.status === "Done") ? "green" : "pink";
                     $('#previewImgDiv').append("<div class='" + css + "' style='position:absolute;top:" + y + "px;left:" + 
-                            x + "px;' id='" + id + "'><div class='close' onclick='closeAnnotation($(this))'></div><div class='pin " + pinColor + "'></div><div contenteditable onblur='saveAnnotation($(this).html(), " + 
-                            x + ", " + y + ", $(this))'></div>" + text + "</div>");
+                            x + "px;' id='" + id + "'><div class='pin " + pinColor + "'></div><div class='ann-inner'><div class='close' onclick='closeAnnotation($(this))'></div><div contenteditable onblur='saveAnnotation($(this).html(), " + 
+                            x + ", " + y + ", $(this))'></div>" + text + "</div></div>");
                 });
+
+                window.setTimeout(function(){
+                    $(".pin").click(function(p){
+                        $(this).parent().find(".ann-inner").toggle();
+                    })
+                }, 1000);
             }).error(function() {
                 console.log("error");
             });
@@ -196,5 +202,5 @@ function saveAnnotation(text, x, y) {
 }
 
 function closeAnnotation(obj) {
-    obj.parent().remove();
+    obj.parent().parent().remove();
 }
