@@ -127,7 +127,7 @@ input[type="submit"], button { width: 10em !important; border: 0px; background-c
 .comments, .attachments { list-style: none; margin-top: 2em;}
 .comments button { float: right;}
 .comments textarea { display: block; width: 80%; height: 10em; }
-.comments li, .attachments li { padding: 1em; margin-bottom: 5px; font-size: 0.9em; background-color: #EEE;border-radius: 10px;}
+.comments li, .attachments li { padding: 0.5em 1em; margin-bottom: 5px; font-size: 0.9em; border: #EEE 1px solid; border-radius: 10px;}
 .comments li span { color: #888; }
 .notes-box {float: right; width: 95%;}
 .comments-box {float: left; width: 0.5em; height: 50em; display: block; position: absolute; z-index: 3; padding: 0 0.25em 0 0; background-color: #ccc;}
