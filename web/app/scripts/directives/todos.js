@@ -5,7 +5,6 @@ angular.module('webApp')
   return {
         restrict: 'E', //element only
         templateUrl: 'views/todos/form.html',
-        scope: {},
         link: function(scope, element, attrs) {
 
             scope.addTodo = function() {
@@ -17,7 +16,7 @@ angular.module('webApp')
                 });
             };
 
-            scope.config = { todos: {} };
+            scope.config = scope.config || { todos: {} };
             scope.config.todos = $rootScope.appconfig.todos;
             scope.config.todos.owners = $rootScope.appconfig.project_members;
             $rootScope.$watch("appconfig.project_members", function(){

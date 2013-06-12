@@ -5,7 +5,6 @@ angular.module('webApp')
   return {
         restrict: 'E', //element only
         templateUrl: 'views/bugs/form.html',
-        scope: {},
         link: function(scope, element, attrs) {
             scope.addBug = function() {
                 scope.bug.owner_id = scope.bug.owner ? scope.bug.owner.id : null;
@@ -16,7 +15,7 @@ angular.module('webApp')
                 });
             };
 
-            scope.config = { bugs: {} };
+            scope.config = scope.config || { bugs: {} };
             scope.config.bugs = $rootScope.appconfig.bugs;
             scope.config.bugs.owners = $rootScope.appconfig.project_members;
             $rootScope.$watch("appconfig.project_members", function(){

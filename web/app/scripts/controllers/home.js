@@ -24,6 +24,8 @@ angular.module('webApp')
                 $scope.projectNames[p.project.id] = p.project.name;
             });
 
+            $rootScope.selectedTab = null;
+
             loadMembers();
         }
     }).error(function(error){
@@ -44,6 +46,7 @@ angular.module('webApp')
     $scope.select = function(id) {
         $rootScope.project_id = id;
         $rootScope.project_name = $scope.projectNames[id];
+        $rootScope.selectedTab = null;
         loadMembers();
         $location.path('dashboard');
     };

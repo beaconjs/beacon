@@ -21,7 +21,7 @@ angular.module('webApp')
 
     $scope.invert = false;
 
-    $scope.context='stories';
+    $scope.context= $rootScope.selectedTab || 'stories';
 
     $scope.$watch('context', function() {
         $scope.owner = [];
@@ -29,6 +29,7 @@ angular.module('webApp')
         $scope.sprint = [];
         $scope.priority = [];
         $scope.invert = false;
+        $rootScope.selectedTab = $scope.context;
     });
 
     $scope.$watch('invert', applyFilters);
