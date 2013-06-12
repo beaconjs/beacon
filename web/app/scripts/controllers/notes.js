@@ -46,7 +46,7 @@ angular.module('webApp')
           var id = "ann-" + x + "-" + y;
 
           $(this).parent().append("<div class='img-annotation' style='position:absolute;top:" + y + "px;left:" + 
-            x + "px;' id='" + id + "'><div class='close' onclick='closeAnnotation($(this))'></div><div contenteditable onblur='saveAnnotation($(this).html(), " + 
+            x + "px;' id='" + id + "'><div class='close' onclick='closeAnnotation($(this))'></div><div class='pin pink'></div><div contenteditable onblur='saveAnnotation($(this).html(), " + 
                 x + ", " + y + ", $(this))'></div></div>");
        });
 
@@ -154,8 +154,9 @@ angular.module('webApp')
                     var text = o.todos.title;
                     var css = "img-annotation";
                     if (o.todos.status === "Done") css += " done";
+                    var pinColor = (o.todos.status === "Done") ? "green" : "pink";
                     $('#previewImgDiv').append("<div class='" + css + "' style='position:absolute;top:" + y + "px;left:" + 
-                            x + "px;' id='" + id + "'><div class='close' onclick='closeAnnotation($(this))'></div><div contenteditable onblur='saveAnnotation($(this).html(), " + 
+                            x + "px;' id='" + id + "'><div class='close' onclick='closeAnnotation($(this))'></div><div class='pin " + pinColor + "'></div><div contenteditable onblur='saveAnnotation($(this).html(), " + 
                             x + ", " + y + ", $(this))'></div>" + text + "</div>");
                 });
             }).error(function() {
