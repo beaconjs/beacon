@@ -5,6 +5,7 @@ angular.module('webApp')
 
     $scope.lanes = [];
     $scope.members = [];
+    $scope.sprints = [];
     $scope.stories = [];
     $scope.story = {};
 
@@ -16,12 +17,19 @@ angular.module('webApp')
 
     get('/members', 'members');
     get('/lanes', 'lanes');
+    get('/sprints', 'sprints');
+
+    $scope.$watch("sprint", function(){
+      if ($scope.sprint && $scope.sprint.id) {
+        sync.get('/sprints/' + $scope.sprint.id + '/stories', {}).success(function(s) { $scope.stories = s || []; }).error(function() {
+            console.log("error");
+        });
+      }
+    });
 
     sync.get('/projects/' + $rootScope.project_id + '/sprints/current', {}).success(function(res) {
       $scope.sprint = res || {};
-      sync.get('/sprints/' + $scope.sprint.id + '/stories', {}).success(function(s) { $scope.stories = s || []; }).error(function() {
-          console.log("error");
-      });
+      loadStories();
     }).error(function() {
         console.log("error");
     });

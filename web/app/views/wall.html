@@ -8,7 +8,10 @@
     </div>
 </div>
 <div class="row">
-        <div class="card-wall">
+    <select ng-model="sprint" ng-options="o.title for o in sprints" style="margin: 0 1em;"></select>
+</div>
+<div class="row">
+        <div class="card-wall" style="width: {{lanes.length * 21}}%;">
             <div class="lane" ng-repeat="lane in lanes" id="lane_{{lane.id}}" drag-drop data-status="{{lane.status}}" data-max-stories="{{lane.max_stories}}">
                 <div class="heading">{{lane.title}}</div>
                 <div class="lane_summmary">{{lane.max_stories}}</div>
