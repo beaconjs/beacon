@@ -242,7 +242,10 @@ history .notifications-section span { color: #666; text-decoration: underline;}
 .img-annotation .close:before { content: "×"; }
 .img-annotation.done .ann-inner {border: 6px #70B90D solid; color: #70B90D; }
 
-bugs, todos { position: absolute; top: 10%; left: 10%; width: 50em; height: 30em; z-index: 100; background-color: #F3F3F3;border: #CCC 3px solid;padding: 1em; color: #333;}
+bugs, todos { position: absolute; top: 10%; left: 10%; width: 50em; height: 30em; z-index: 100; padding: 1em; color: #333;}
+bugs { background-color: #F9EDF1;border: #DBC6CA 1px dotted; }
+todos { background-color: #E3ECBF;border: #8BA917 1px dotted; }
+
 bugs label, todos label, bugs a, todos a { float: right; }
 .quick-form input, .quick-form textarea, .quick-form select { width: 90%; }
 
