@@ -153,7 +153,8 @@ ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; backgr
 
 .backlog select, .dashboard select { height: 23px !important; width: auto !important;}
 .backlog .epic-list { float: left; width: 70%;}
-.backlog .epic { background-color: #f0f6fc; padding: 10px 0 0 0; clear: both; min-height: 1.5em;}
+.backlog .epic-list .row {margin-bottom: 0.5em; }
+.backlog .epic { background-color: #E1F0F4; padding: 10px 0 0 0; clear: both; min-height: 1.5em;}
 .backlog .epic-header { background-color: #e1eaf3; padding: 10px 0 0 0; clear: both; min-height: 1.5em; font-size: 1em; font-weight: bold;}
 .backlog .cell1 { float: left; width: 5%; padding: 0 0.5em; border-right: #333 1px dashed; }
 .backlog .cell2 { float: left; width: 40%; padding: 0 0.5em; border-right: #333 1px dashed; }
@@ -163,12 +164,12 @@ ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; backgr
 .backlog .story-list {float: left; width: auto; font-size: 0.9em; width: 100%; overflow: auto;}
 .backlog .story-list .row { margin: 0; background: #fff; border: 1px #eee solid; margin: 0.5em;}
 .backlog .story-list .epic-details { padding: 1em; margin: 2em 0.5em 0 0.5em;}
-.backlog .story-list .story-header {font-size: 1em; font-weight: bold; background-color: #eee;}
-.backlog .story-list .story-cell1 { float: left; width: 10%; padding: 0.25em 0.5em; border-right: #aaa 1px solid;}
-.backlog .story-list .story-cell2 { float: left; width: 40%; padding: 0.25em 0.5em; border-right: #aaa 1px solid;}
-.backlog .story-list .story-cell3 { float: left; width: 14%; padding: 0.25em 0.5em; border-right: #aaa 1px solid;}
-.backlog .story-list .story-cell4 { float: left; width: 14%; padding: 0.25em 0.5em; border-right: #aaa 1px solid;}
-.backlog .story-list .story-cell5 { float: left; width: 12%; padding: 0.25em 0.5em; border-right: #aaa 1px solid;}
+.backlog .story-list .story-header {font-size: 1em; font-weight: bold; background-color: #CAE6EC;}
+.backlog .story-list .story-cell1 { float: left; width: 10%; padding: 0.25em 0.5em; border-right: #ddd 1px solid;}
+.backlog .story-list .story-cell2 { float: left; width: 40%; padding: 0.25em 0.5em; border-right: #ddd 1px solid;}
+.backlog .story-list .story-cell3 { float: left; width: 14%; padding: 0.25em 0.5em; border-right: #ddd 1px solid;}
+.backlog .story-list .story-cell4 { float: left; width: 14%; padding: 0.25em 0.5em; border-right: #ddd 1px solid;}
+.backlog .story-list .story-cell5 { float: left; width: 12%; padding: 0.25em 0.5em; border-right: #ddd 1px solid;}
 
 chat { position: absolute; width: 80%; height: 80%; top: 5%; left: 5%; margin: 0 1em; z-index: 100;}
 chat .row { background-color: #FFF !important; padding: 1em 0.5em; margin: 0;}
