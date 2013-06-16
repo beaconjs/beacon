@@ -5,7 +5,6 @@ exports.up = function(db, callback) {
     db.createTable('notes', {
         id: { type: 'int', primaryKey: true, autoIncrement: true },
         title: 'string',
-        details: 'string',
         project_id: 'int',
         created_at: 'datetime',
         modified_at: 'datetime',
@@ -14,6 +13,7 @@ exports.up = function(db, callback) {
       }, callback);
 
     db.runSql("ALTER TABLE notes ADD CONSTRAINT `fk_notes_project` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`)");
+    db.runSql("ALTER TABLE notes ADD details LONGTEXT");
 };
 
 exports.down = function(db, callback) {

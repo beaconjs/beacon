@@ -91,7 +91,11 @@ angular.module('webApp')
 
     $scope.addEpic = function() {
         $scope.epic.status = "not_started";
-        sync.post('/projects/' + $rootScope.project_id + '/epics', $scope.epic).success(function() { getEpics(); }).error(function(e) { console.log(e); } );
+        sync.post('/projects/' + $rootScope.project_id + '/epics', $scope.epic).success(function() { 
+            getEpics(); 
+            $scope.epic = {}; 
+        }).error(function(e) { console.log(e); } );
+        $scope.newepic = false;
     }
 
   });

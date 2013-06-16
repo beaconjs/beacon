@@ -7,11 +7,11 @@
 body {
     -webkit-user-select: text;
     background-color: #E3E7EB;
-    font: 15px "SourceSansProRegular", Helvetica, Arial, sans-serif;
+    font: 15px "SourceSansProRegular", Helvetica, Arial, sans-serif !important;
 }
 
 input[type="date"], input[type="number"] {
-    position:relative;z-index:2;font-family:'Source Sans Pro','PT Sans',Arial,"Helvetica Neue",Helvetica,Tahoma,sans-serif;
+    position:relative;z-index:2;
     height:23px;
     font-size: 0.95em;
     border:1px solid #ccc;margin:0;padding:1px 2px;background-color:white;color:#333;font-size:.95em;line-height:1;border-radius:1px;
@@ -116,7 +116,7 @@ select { width: 30%; font-size: 2em;}
 .login-form { padding: 2em; border: #eee solid 1px; background-color: #EFEFEB; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px;}
 .login-form-inner { margin: 1em; border: #AAA 1px dashed; padding: 3em; }
 input { width: 60%; height: 3em !important; }
-input[type="submit"], button { width: 10em !important; border: 0px; background-color: #FFB94B; height: 4em; color: #FFF; }
+input[type="submit"], button { width: 10em !important; border: 0px; background-color: #5994c3; height: 3em; color: #FFF; border-radius: 2em;}
 
 .login-form input[type="text"], .login-form input[type="password"] { padding: 0 2em; background: #F1F1F1 url(../images/sprite.png) no-repeat; }
 .login-form input#password { background-position: 5px -52px !important; }
@@ -146,8 +146,10 @@ ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; backgr
 
 .backlog { overflow: auto; }
 .backlog input, .dashboard input { height: 23px !important; width: auto !important;}
+.backlog input[type="submit"], .dashboard input[type="submit"] { width: 10em !important;}
 .backlog input.long, .dashboard input.long {width: 90% !important;}
 .backlog select.long, .dashboard select.long {width: 90% !important;}
+.backlog .new-epic { width: 60% !important; margin: 5px 0;}
 
 .backlog select, .dashboard select { height: 23px !important; width: auto !important;}
 .backlog .epic { background-color: #f0f6fc; padding: 10px 0 0 0; clear: both; min-height: 1.5em;}

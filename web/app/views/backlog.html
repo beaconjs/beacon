@@ -10,9 +10,9 @@
 <div class="row backlog">
     <a ng-click="newepic=!newepic" class="btn">Add an Epic</a><br>
     <div ng-show="newepic">
-        <br><input type="text" ng-model="epic.title" placeholder="Name" style="width:31%"/>
-        <input type="text" ng-model="epic.details" placeholder="Epic details" style="width:50%"/>
-        <a ng-click="addEpic()" class="btn">Save</a>
+        <br><input type="text" ng-model="epic.title" placeholder="Name" class="new-epic"/>
+        <br><textarea ng-model="epic.details" placeholder="Epic details" class="new-epic"></textarea>
+        <br><a ng-click="addEpic()" class="btn">Save</a>
     </div>
     <br>
     <ul>
