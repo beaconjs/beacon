@@ -18,7 +18,7 @@
 
     <div class="epic-list">
         <div class="epic-header row"><div class="cell1">&nbsp;</div><div class="cell2">Title</div><div class="cell3">Number of Stories</div><div class="cell4">Total Points</div><div class="cell5">&nbsp;</div></div>
-        <div ng-repeat="epic in epics" class="epic row"><a ng-click="getStories(epic.id)"><div class="cell1">+</div><div class="cell2">{{epic.title}}</div><div class="cell3">({{epic.num_of_stories || 0}} stories)</div><div class="cell4">({{epic.points || 0}} points)</div></a><div class="cell5"><a ng-click="epic.newstory=!epic.newstory">Add a Story</a></div>
+        <div ng-repeat="epic in epics" id="epic{{epic.id}}" class="epic row"><a ng-click="getStories(epic.id)"><div class="cell1">+</div><div class="cell2">{{epic.title}}</div><div class="cell3">({{epic.num_of_stories || 0}} stories)</div><div class="cell4">({{epic.points || 0}} points)</div></a><div class="cell5"><a ng-click="epic.newstory=!epic.newstory">Add a Story</a></div>
             <div class="story-list">
                 <div ng-show="epic.newstory || stories[epic.id]" class="row epic-details">{{epic.details}}</div>
                 <div ng-show="epic.newstory || stories[epic.id]" class="row story-header">

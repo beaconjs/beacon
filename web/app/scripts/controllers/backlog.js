@@ -47,7 +47,9 @@ angular.module('webApp')
     $scope.getStories = function(epicId, force) {
         if (!force && $scope.stories[epicId]) {
             $scope.stories[epicId] = null;
+            $("#epic" + epicId).removeClass("selected");
         } else {
+            $("#epic" + epicId).addClass("selected");
             sync.get('/epics/' + epicId + '/stories').success(function(res) { $scope.stories[epicId] = res || []; }).error(function() {
                 console.log("error");
             });

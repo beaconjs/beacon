@@ -155,6 +155,7 @@ ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; backgr
 .backlog .epic-list { float: left; width: 70%;}
 .backlog .epic-list .row {margin-bottom: 0.5em; }
 .backlog .epic { background-color: #E1F0F4; padding: 10px 0 0 0; clear: both; min-height: 1.5em;}
+.backlog .epic.selected { background-color: #eee !important; }
 .backlog .epic-header { background-color: #e1eaf3; padding: 10px 0 0 0; clear: both; min-height: 1.5em; font-size: 1em; font-weight: bold;}
 .backlog .cell1 { float: left; width: 5%; padding: 0 0.5em; border-right: #333 1px dashed; }
 .backlog .cell2 { float: left; width: 40%; padding: 0 0.5em; border-right: #333 1px dashed; }
