@@ -15,17 +15,45 @@
         <br><a ng-click="addEpic()" class="btn">Save</a>
     </div>
     <br>
-    <ul>
-        <li class="epic-header"><div class="cell1">&nbsp;</div><div class="cell2">Title</div><div class="cell3">Number of Stories</div><div class="cell4">Total Points</div><div class="cell5">&nbsp;</div></li>
+    <div class="epic-header row"><div class="cell1">&nbsp;</div><div class="cell2">Title</div><div class="cell3">Number of Stories</div><div class="cell4">Total Points</div><div class="cell5">&nbsp;</div></div>
 
-        <li ng-repeat="epic in epics" class="epic"><a ng-click="getStories(epic.id)"><div class="cell1">+</div><div class="cell2">{{epic.title}}</div><div class="cell3">({{epic.num_of_stories || 0}} stories)</div><div class="cell4">({{epic.points || 0}} points)</div></a><div class="cell5"><a ng-click="epic.newstory=!epic.newstory">Add a Story</a></div>
-            <table>
-                <tr ng-show="epic.newstory || stories[epic.id]"><th>Sprint</th><th>Name</th><th>Owner</th><th>Points</th><th>Status</th></tr>
-                <tr ng-repeat="story in stories[epic.id]" ng-show="stories[epic.id]" ng-click="loadStory(epic.id, story.id)"><td>{{story.sprint.title}}</td><td>{{story.title}}</td><td>{{story.user.name}}</td><td>{{story.points}}</td><td>{{story.status}}</td></tr>
-                <tr ng-show="epic.newstory"><td><select ng-model="story.sprint" ng-options="s.title for s in sprints"><option></option><</select></td><td><input type="text" ng-model="story.title"/></td><td><select ng-model="story.owner" ng-options="u.user.name for u in members"><option></option></select></td><td><select ng-model="story.points" ng-options="p for p in points"><option></option></select></td><td><a ng-click="addStory(epic.id)" class="btn">Save</a></td></tr>
-            </table>
-        </li>
-    </ul>
+    <div ng-repeat="epic in epics" class="epic row"><a ng-click="getStories(epic.id)"><div class="cell1">+</div><div class="cell2">{{epic.title}}</div><div class="cell3">({{epic.num_of_stories || 0}} stories)</div><div class="cell4">({{epic.points || 0}} points)</div></a><div class="cell5"><a ng-click="epic.newstory=!epic.newstory">Add a Story</a></div>
+        <div class="story-list">
+            <div ng-show="epic.newstory || stories[epic.id]" class="row epic-details">{{epic.details}}</div>
+            <div ng-show="epic.newstory || stories[epic.id]" class="row story-header">
+                <div class="story-cell1">Sprint</div>
+                <div class="story-cell2">Name</div>
+                <div class="story-cell3">Owner</div>
+                <div class="story-cell4">Points</div>
+                <div class="story-cell5">Status</div>
+            </div>
+            <div ng-repeat="story in stories[epic.id]" ng-show="stories[epic.id]" class="row" ng-click="loadStory(epic.id, story.id)">
+                <div class="story-cell1">{{story.sprint.title}}</div>
+                <div class="story-cell2">{{story.title}}</div>
+                <div class="story-cell3">{{story.user.name}}</div>
+                <div class="story-cell4">{{story.points}}</div>
+                <div class="story-cell5">{{story.status}}</div>
+            </div>
+            <div ng-show="epic.newstory" class="row">
+                <div class="story-cell1">
+                    <select ng-model="story.sprint" ng-options="s.title for s in sprints">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="story-cell2"><input type="text" ng-model="story.title" class="long"/></div>
+                <div class="story-cell3">
+                    <select ng-model="story.owner" ng-options="u.user.name for u in members">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="story-cell4">
+                    <select ng-model="story.points" ng-options="p for p in points">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="story-cell5"><a ng-click="addStory(epic.id)" class="btn">Save</a></div></div>
+        </table>
+    </div>
     <div class="story-pane" ng-show="showStory">
         <div class="close" ng-click="closeStoryPane()"></div>
         <form method="POST" class="forms columnar" ng-submit="saveStory()">
