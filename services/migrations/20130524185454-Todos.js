@@ -5,7 +5,6 @@ exports.up = function(db, callback) {
     db.createTable('todos', {
         id: { type: 'int', primaryKey: true, autoIncrement: true },
         title: 'string',
-        details: 'string',
         status: 'string',
         due_date: 'datetime',
         project_id: 'int',
@@ -18,6 +17,7 @@ exports.up = function(db, callback) {
 
     db.runSql("ALTER TABLE todos ADD CONSTRAINT `fk_todos_project` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`)");
     db.runSql("ALTER TABLE todos ADD CONSTRAINT `fk_todos_user` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`)");
+    db.runSql("ALTER TABLE todos ADD details LONGTEXT");
 };
 
 exports.down = function(db, callback) {

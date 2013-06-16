@@ -5,7 +5,6 @@ exports.up = function(db, callback) {
     db.createTable('stories', {
         id: { type: 'int', primaryKey: true, autoIncrement: true },
         title: 'string',
-        details: 'string',
         points: 'int',
         owner_id: 'int',
         status: 'string',
@@ -14,6 +13,7 @@ exports.up = function(db, callback) {
         created_by: 'int',
         modified_by: 'int'
       }, callback);
+    db.runSql("ALTER TABLE stories ADD details LONGTEXT");
 };
 
 exports.down = function(db, callback) {
