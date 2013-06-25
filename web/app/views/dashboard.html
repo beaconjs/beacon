@@ -9,10 +9,10 @@
 </div>
 <div class="row dashboard">
     <div id="tabs">
-        <div id="stories" ng-click="context='stories'" ng-class="{selected: context=='stories'}">
+        <div id="stories" ng-click="context='storiesTab'" ng-class="{selected: context=='storiesTab'}">
             <h2>Stories</h2>
-            <h3 class="ribbon orange" ng-show="context=='stories'">Stories</h3>
-            <table ng-show="context=='stories'">
+            <h3 class="ribbon orange" ng-show="context=='storiesTab'">Stories</h3>
+            <table ng-show="context=='storiesTab'">
                 <tr>
                     <th>Title</th>
                     <th>Status <a ng-click="showStatusFilter=!showStatusFilter">&nbsp;</a></th>
@@ -30,10 +30,10 @@
             </table>
         </div>
         
-        <div id="bugs" ng-click="context='bugs'" ng-class="{selected: context=='bugs'}">
+        <div id="bugs" ng-click="context='bugsTab'" ng-class="{selected: context=='bugsTab'}">
             <h2>Bugs</h2>
-            <h3 class="ribbon orange" ng-show="context=='bugs'">Bugs</h3>
-            <table ng-show="context=='bugs'">
+            <h3 class="ribbon orange" ng-show="context=='bugsTab'">Bugs</h3>
+            <table ng-show="context=='bugsTab'">
                 <tr>
                     <th>Priority <a ng-click="showPriorityFilter=!showPriorityFilter">&nbsp;</a></th>
                     <th>Title</th>
@@ -55,10 +55,10 @@
             </table>
         </div>
 
-        <div id="todos" ng-click="context='todos'" ng-class="{selected: context=='todos'}">
+        <div id="todos" ng-click="context='todosTab'" ng-class="{selected: context=='todosTab'}">
             <h2>TO DOs</h2>
-            <h3 class="ribbon orange" ng-show="context=='todos'">TO DOs</h3>
-            <table ng-show="context=='todos'">
+            <h3 class="ribbon orange" ng-show="context=='todosTab'">TO DOs</h3>
+            <table ng-show="context=='todosTab'">
                 <tr>
                     <th>Status <a ng-click="showStatusFilter=!showStatusFilter">&nbsp;</a></th>
                     <th>Title</th>

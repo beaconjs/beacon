@@ -29,7 +29,6 @@ angular.module('webApp')
 
     sync.get('/projects/' + $rootScope.project_id + '/sprints/current', {}).success(function(res) {
       $scope.sprint = res || {};
-      loadStories();
     }).error(function() {
         console.log("error");
     });

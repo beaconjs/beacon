@@ -207,8 +207,8 @@ history .notifications-section span { color: #666; text-decoration: underline;}
 .signup { position: absolute; width: 50%; height: 60%; top: 20%; left: 25%; margin: 0 1em; z-index: 100; background-color: #eee; padding: 2em; }
 
 .breadcrumb-row { margin: 0;}
-.dashboard table { width: 80%;margin-top: 4em;}
-.dashboard table td, .dashboard table th { border: 1px solid #eee !important; padding: 0.25em 0.5em;}
+.dashboard table { min-width: 80%;margin-top: 4em;}
+.dashboard table td, .dashboard table th { border: 1px solid #eee !important; padding: 0.25em 0.5em; min-width: 5em;}
 .dashboard table td.header { background: #eee; color: #888; font-style: italic;}
 .dashboard table th { background-color: #eee !important;}
 .dashboard th a { background: url(../images/filter.png) no-repeat; display: block; cursor: pointer; float: right; width: 1em;}

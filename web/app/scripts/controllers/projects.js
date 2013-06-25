@@ -10,7 +10,7 @@ angular.module('webApp')
         }).success(function(r) {
             $rootScope.project_id = r.project.id;
             $rootScope.project_name = r.project.name;
-            $rootScope.userProjects.push(r.project.id);
+            $rootScope.userProjects = $rootScope.userProjects.concat(r.project.id);
             console.log("done");
             $location.path("/projects/edit");
         }).error(function() {

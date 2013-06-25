@@ -21,7 +21,7 @@ angular.module('webApp')
 
     $scope.invert = false;
 
-    $scope.context= $rootScope.selectedTab || 'stories';
+    $scope.context= $rootScope.selectedTab || 'storiesTab';
 
     $scope.$watch('context', function() {
         $scope.owner = [];
@@ -69,13 +69,13 @@ angular.module('webApp')
             var match = true;
             if (match && !isValid('owner', o.owner_id)) match = false;
             if (match && !isValid('status', o.status)) match = false;
-            if (match && $scope.context === "stories" && !isValid('sprint', o.sprint_id)) match = false;
-            if (match && $scope.context === "bugs" && !isValid('priority', o.priority)) match = false;
+            if (match && $scope.context === "storiesTab" && !isValid('sprint', o.sprint_id)) match = false;
+            if (match && $scope.context === "bugsTab" && !isValid('priority', o.priority)) match = false;
 
             if(match) $scope[$scope.context].push(o);
         });
 
-        if ($scope.context === "todos") arrangeTodos($scope[$scope.context]);
+        if ($scope.context === "todosTab") arrangeTodos($scope[$scope.context]);
     }
 
     var addFilter = function(filter, s) {
@@ -139,7 +139,7 @@ angular.module('webApp')
 
     var loadTodos = function() {
         sync.get('/projects/' + $rootScope.project_id + '/todos').success(function(res) {
-            $scope.all.todos = res || {};
+            $scope.all.todos = res || [];
             arrangeTodos($scope.all.todos);
         }).error(function() {
             console.log("error");
@@ -187,7 +187,7 @@ angular.module('webApp')
 
     var loadBugs = function() {
         sync.get('/projects/' + $rootScope.project_id + '/bugs').success(function(res) {
-            $scope.bugs = res || {};
+            $scope.bugs = res || [];
             $scope.all.bugs = $scope.bugs;
         }).error(function() {
             console.log("error");
