@@ -14,14 +14,14 @@ angular.module('webApp')
             };
 
             var connect = function(channel) {
-                window.WebSocket = window.WebSocket || window.MozWebSocket;
                 // open connection
-                var connection = new WebSocket($rootScope.appconfig.notifications, channel);
+                var socket = io.connect($rootScope.appconfig.notifications);
+                socket.emit("channel", channel);
                 $rootScope.notificationChannels[channel] = true;
 
-                connection.onmessage = function (message) {
+                socket.on('message', function (message) {
                     try {
-                        var json = JSON.parse(message.data);
+                        var json = JSON.parse(message);
                         if (json.type !== "refresh") {
                             json.issuer = json.issuer || { name: "" };
                             json.issuer.name = json.issuer.name || "";
@@ -32,10 +32,10 @@ angular.module('webApp')
                         $rootScope.newNotifications += 1;
                     } catch (e) {
                         console.log(e);
-                        console.log('This doesn\'t look like a valid JSON: ', message.data);
+                        console.log('This doesn\'t look like a valid JSON: ', message);
                         return;
                     }
-                }
+                });
             }
 
             var start = function() {

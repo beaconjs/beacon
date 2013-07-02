@@ -18,7 +18,7 @@
             <div class="row"><div class="quarter"><a ng-click="save()" class="btn btn-small btn-round">Save</a></div></div>
         </div>
         <ul class="attachments" style="margin-top:0;">
-            <li ng-repeat="c in attachments"><span ng-show="c.filename">{{c.filename}}</span><span ng-show="c.screenshot"><img src="{{c.screenshot}}" /></span></li>
+            <li ng-repeat="c in attachments"><span ng-show="c.filename">{{c.filename}}</span><span ng-show="c.screenshot" ng-click="showScreenshot(c.screenshot)"><img src="{{c.screenshot}}" /></span></li>
         </ul>
     </div>
 
@@ -28,4 +28,9 @@
             <li ng-repeat="c in comments"><span>{{c.user.name}} {{c.created_at | date:short}}</span> {{c.details}}</li>
         </ul>
     </div>
+</div>
+<div class="chat-overlay" ng-show="showScreenshotPreview"></div>
+<div class="imagePreview" ng-show="showScreenshotPreview">
+    <div class="close" ng-click="showScreenshotPreview=false;" style="margin-right: 20% !important;"></div>
+    <div id="screenshot-preview"></div>
 </div>

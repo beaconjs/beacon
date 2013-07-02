@@ -22,9 +22,9 @@ angular.module('webApp')
             $rootScope.chatChannels = $rootScope.chatChannels || {};
             $scope.members = [];
 
-            var connection = $rootScope.chatChannels[$rootScope.project_id];
+            var socket = $rootScope.chatChannels[$rootScope.project_id];
 
-            var chat_initiated = connection != null;
+            var chat_initiated = socket != null;
             var myName = null;
             var options = {
                 "cls": "notification-chat",
@@ -38,18 +38,18 @@ angular.module('webApp')
 
             $scope.sendChat = function() {
                 myName = $rootScope.loggedInUser.name;
-                if (!connection) startChat();
+                if (!socket) startChat();
 
                 if (!chat_initiated) {
                     chat_initiated = true;
-                    connection.send(myName);
+                    socket.emit("message", myName);
                 }
                 var msg = $('#chatMsg').val();
                 if (!msg) {
                     return;
                 }
                 // send the message as an ordinary text
-                connection.send(msg);
+                socket.emit("message", msg);
                 $('#chatMsg').val('');
                 // disable the input field to make the user wait until server
                 // sends back response
@@ -61,7 +61,7 @@ angular.module('webApp')
                 "use strict";
 
                 // lets not connect if this channel is already open
-                if (connection || !$rootScope.project_id) return;
+                if (socket || !$rootScope.project_id) return;
 
                 // for better performance - to avoid searching in DOM
                 var content = $('.chat-box');
@@ -77,74 +77,62 @@ angular.module('webApp')
                     });
                 }
 
-                // my name sent to the server
-
-                // if user is running mozilla then use it's built-in WebSocket
-                window.WebSocket = window.WebSocket || window.MozWebSocket;
-
-                // if browser doesn't support WebSocket, just show some notification and exit
-                if (!window.WebSocket) {
-                    content.html($('<p>', { text: 'Sorry, but your browser doesn\'t '
-                                                + 'support WebSockets.'} ));
-                    input.hide();
-                    $('span').hide();
-                    return;
-                }
-
                 // open connection
-                connection = new WebSocket($rootScope.appconfig.chatServer, channel);
+                socket = io.connect($rootScope.appconfig.chatServer);
+                socket.emit("channel", channel);
 
-                connection.onopen = function () {
-                    //channel
-                };
+                socket.on('connect', function(){
 
-                connection.onclose = function () {
-                    //channel
-                    console.log("closed...");
-                    $rootScope.chatChannels[$rootScope.project_id] = null;
-                    connection = null;
-                };
+                  if (socket) {
+                        socket.on('message', function(message){
+                        // try to parse JSON message. Because we know that the server always returns
+                        // JSON this should work without any problem but we should make sure that
+                        // the massage is not chunked or otherwise damaged.
+                        try {
+                            var json = JSON.parse(message);
+                        } catch (e) {
+                            console.log('This doesn\'t look like a valid JSON: ', message);
+                            return;
+                        }
 
-                connection.onerror = function (error) {
+                        if (json.data.channel && json.data.channel !== channel) return;
+
+                        // NOTE: if you're not sure about the JSON structure
+                        // check the server source code above
+                        if (json.type === 'history') { // entire message history
+                            // insert every single message to the chat window
+                            for (var i=0; i < json.data.length; i++) {
+                                addMessage(json.data[i].author, json.data[i].text, new Date(json.data[i].time));
+                            }
+                        } else if (json.type === 'message') { // it's a single message
+                            input.removeAttr('disabled'); // let the user write another message
+                            addMessage(json.data.author, json.data.text, new Date(json.data.time));
+                            $.Growl.show(json.data.author + ": " + json.data.text, options);
+                        } else if (json.type === 'connection') {
+                            $('#' + json.data.author.replace(/ /g, '_')).addClass("online");
+                        } else if (json.type === 'disconnection') {
+                            $('#' + json.data.author.replace(/ /g, '_')).removeClass("online");
+                        } else {
+                            console.log('Hmm..., I\'ve never seen JSON like this: ', json);
+                        }
+
+                      });
+
+                      socket.on('disconnect', function(){
+                        //channel
+                        console.log("closed...");
+                        $rootScope.chatChannels[$rootScope.project_id] = null;
+                        socket = null;
+                      });
+                  }
+                });
+
+                /*connection.onerror = function (error) {
                     // just in there were some problems with conenction...
                     content.html($('<p>', { text: 'Sorry, but there\'s some problem with your '
                                                 + 'connection or the server is down.' } ));
                     $rootScope.chatChannels[$rootScope.project_id] = null;
-                };
-
-                // most important part - incoming messages
-                connection.onmessage = function (message) {
-                    // try to parse JSON message. Because we know that the server always returns
-                    // JSON this should work without any problem but we should make sure that
-                    // the massage is not chunked or otherwise damaged.
-                    try {
-                        var json = JSON.parse(message.data);
-                    } catch (e) {
-                        console.log('This doesn\'t look like a valid JSON: ', message.data);
-                        return;
-                    }
-
-                    if (json.data.channel && json.data.channel !== channel) return;
-
-                    // NOTE: if you're not sure about the JSON structure
-                    // check the server source code above
-                    if (json.type === 'history') { // entire message history
-                        // insert every single message to the chat window
-                        for (var i=0; i < json.data.length; i++) {
-                            addMessage(json.data[i].author, json.data[i].text, new Date(json.data[i].time));
-                        }
-                    } else if (json.type === 'message') { // it's a single message
-                        input.removeAttr('disabled'); // let the user write another message
-                        addMessage(json.data.author, json.data.text, new Date(json.data.time));
-                        $.Growl.show(json.data.author + ": " + json.data.text, options);
-                    } else if (json.type === 'connection') {
-                        $('#' + json.data.author.replace(/ /g, '_')).addClass("online");
-                    } else if (json.type === 'disconnection') {
-                        $('#' + json.data.author.replace(/ /g, '_')).removeClass("online");
-                    } else {
-                        console.log('Hmm..., I\'ve never seen JSON like this: ', json);
-                    }
-                };
+                };*/
 
                 /**
                  * This method is optional. If the server wasn't able to respond to the
@@ -152,7 +140,7 @@ angular.module('webApp')
                  * something is wrong.
                  */
                 setInterval(function() {
-                    if (!connection || connection.readyState !== 1) {
+                    if (!socket) {
                         status.text('Error : Unable to communicate ' + 'with the WebSocket server.');
                     }
                 }, 3000);
@@ -164,7 +152,7 @@ angular.module('webApp')
                     chat(author, message, dt);
                 }
 
-                $rootScope.chatChannels[$rootScope.project_id] = connection;
+                $rootScope.chatChannels[$rootScope.project_id] = socket;
 
             };
 
@@ -195,12 +183,12 @@ angular.module('webApp')
                             var file = files[0];
                             if (!chat_initiated) {
                                 chat_initiated = true;
-                                connection.send($rootScope.loggedInUser.name);
+                                socket.emit("message", $rootScope.loggedInUser.name);
                             }
                             if (file.type.match(/image.*/)) {
-                                connection.send("<img src=\""+ $rootScope.appconfig.server + "/uploads/" + $rootScope.project_id + "/chat/" + file.name +"\" />");
+                                socket.emit("message", "<img src=\""+ $rootScope.appconfig.server + "/uploads/" + $rootScope.project_id + "/chat/" + file.name +"\" />");
                             } else {
-                                connection.send("<a href=\""+ $rootScope.appconfig.server + "/uploads/" + $rootScope.project_id + "/chat/" + file.name +"\" target=\"_blank\">" +  file.name + "</a>");
+                                socket.emit("message", "<a href=\""+ $rootScope.appconfig.server + "/uploads/" + $rootScope.project_id + "/chat/" + file.name +"\" target=\"_blank\">" +  file.name + "</a>");
                             }
                         }
                     }

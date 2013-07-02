@@ -19,6 +19,7 @@
     "chai": "*",
     "jade": "*",
     "websocket": "*",
-    "mkdirp": "*"
+    "mkdirp": "*",
+    "socket.io": "*"
   }
 }

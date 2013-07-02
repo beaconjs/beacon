@@ -61,4 +61,9 @@ angular.module('webApp')
         });
     }
 
+    $scope.showScreenshot = function(src) {
+        $("#screenshot-preview").html("<img src='"+ src + "' />");
+        $scope.showScreenshotPreview = true;
+    };
+
   });
