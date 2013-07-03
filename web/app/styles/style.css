@@ -146,7 +146,7 @@ input[type="submit"], button { width: 10em !important; border: 0px; background-c
 .project_tile h1 a { font-size: inherit; color: inherit; text-decoration: none; }
 ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; background-color: #eee; padding: 1em; width: 20em; font-size: 0.9em; margin-top: 0.5em; margin-left: 0;}
 
-.backlog { overflow: auto; }
+.backlog { overflow: auto; padding: 1em 0;}
 .backlog input, .dashboard input { height: 23px !important; width: auto !important;}
 .backlog input[type="submit"], .dashboard input[type="submit"] { width: 10em !important;}
 .backlog input.long, .dashboard input.long {width: 90% !important;}
@@ -154,7 +154,13 @@ ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; backgr
 .backlog .new-epic { width: 60% !important; margin: 5px 0;}
 
 .backlog select, .dashboard select { height: 23px !important; width: auto !important;}
-.backlog .epic-list { float: left; width: 70%;}
+.backlog .epic-list, .backlog .epic-tree { float: left; width: 70%;}
+.backlog .epic-tree { overflow: auto; }
+.backlog .epic-column { float: left; }
+.backlog .story-column { border-left: 1px #ddd solid; padding: 0 1em; margin: 0 0 0 0.5em; }
+.backlog .epic-tree .epic-node { width: 10em; min-height: 3em; background-color: #FFD; border: 2px #EEA solid; margin: 0 0.5em; padding: 0.5em;}
+.backlog .story-node { width: 9em; min-height: 3em; background-color: #FFD; border: 2px #EEA solid; margin: 0.5em 0; padding: 0.5em; }
+
 .backlog .epic-list .row {margin-bottom: 0.5em; }
 .backlog .epic { background-color: #E1F0F4; padding: 10px 0 0 0; clear: both; min-height: 1.5em;}
 .backlog .epic.selected { background-color: #eee !important; }

@@ -8,6 +8,7 @@
     </div>
 </div>
 <div class="row backlog">
+    <div style="float:right;"><a ng-click="listView=true;" class="btn" ng-hide="listView">List View</a><a ng-click="listView=false;" class="btn" ng-show="listView">Tree View</a></div>
     <a ng-click="newepic=!newepic" class="btn">Add an Epic</a><br>
     <div ng-show="newepic">
         <br><input type="text" ng-model="epic.title" placeholder="Name" class="new-epic"/>
@@ -16,7 +17,7 @@
     </div>
     <br>
 
-    <div class="epic-list">
+    <div class="epic-list" ng-show="listView">
         <div class="epic-header row"><div class="cell1">&nbsp;</div><div class="cell2">Title</div><div class="cell3">Number of Stories</div><div class="cell4">Total Points</div><div class="cell5">&nbsp;</div></div>
         <div ng-repeat="epic in epics" id="epic{{epic.id}}" class="epic row"><a ng-click="getStories(epic.id)"><div class="cell1">+</div><div class="cell2">{{epic.title}}</div><div class="cell3">({{epic.num_of_stories || 0}} stories)</div><div class="cell4">({{epic.points || 0}} points)</div></a><div class="cell5"><a ng-click="epic.newstory=!epic.newstory">Add a Story</a></div>
             <div class="story-list">
@@ -53,6 +54,16 @@
                         </select>
                     </div>
                     <div class="story-cell5"><a ng-click="addStory(epic.id)" class="btn">Save</a></div></div>
+            </div>
+        </div>
+    </div>
+    <div class="epic-tree" ng-hide="listView">
+        <div class="row">
+            <div ng-repeat="epic in epics" class="epic-column">
+                <div class="epic-node" ng-click="getStories(epic.id)">{{epic.title}}</div>
+                <div ng-show="stories[epic.id]" class="story-column">
+                    <div ng-repeat="story in stories[epic.id]" class="story-node" ng-click="loadStory(epic.id, story.id)">{{story.title}}</div>
+                </div>
             </div>
         </div>
     </div>
