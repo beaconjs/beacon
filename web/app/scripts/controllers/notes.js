@@ -59,6 +59,13 @@ angular.module('webApp')
 
     var autosave = function(){
         if ((!$scope.note_id && !isBlank($scope.notetitle)) || $scope.note_id) {
+            var modified = true;
+            if ($scope.originalNote) {
+                modified = ($scope.originalNote.details !== $('#notedetails').val()) || ($scope.originalNote.title !== $scope.notetitle);
+            }
+
+            if (!modified) return;
+
             sync.post('/notes', {
                 id: $scope.note_id,
                 title: $scope.notetitle,
@@ -67,9 +74,10 @@ angular.module('webApp')
                 user: $rootScope.loggedInUser.id,
                 notify: $scope.notify
             }).success(function(o){
+                $scope.notify = false;
                 if (o.id) {
                     $('#notedetails-msg').html("Autosaved at " + (new Date()));
-                    
+
                     if (!$scope.note_id) {
                         $scope.notes.push({
                             id: o.id,
@@ -113,6 +121,7 @@ angular.module('webApp')
         sync.get('/projects/' + $rootScope.project_id + '/notes/' + id).success(function(res) {
             $scope.note_id = id;
             if (res) {
+                $scope.originalNote = res;
                 $('#notedetails_div').html(res.details);
                 $scope.notetitle = res.title;
                 $('#notedetails').val(res.details);
