@@ -61,6 +61,14 @@ angular.module('webApp')
         });
     }
 
+    $scope.showAttachment = function(filename) {
+        sync.post('/resource', {
+            "project_id": $rootScope.project_id, "dirname": "bug-" + $scope.bug.id, "filename": filename
+        }).success(function(src){
+            console.log(src);
+        });
+    } 
+
     $scope.showScreenshot = function(src) {
         $("#screenshot-preview").html("<img src='"+ src + "' />");
         $scope.showScreenshotPreview = true;

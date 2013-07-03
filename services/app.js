@@ -10,6 +10,7 @@ var express = require('express')
   , projects = require('./routes/projects')
   , notes = require('./routes/notes')
   , bugs = require('./routes/bugs')
+  , resources = require('./routes/resources')
   , todos = require('./routes/todos')
   , comments = require('./routes/comments')
   , annotations = require('./routes/annotations')
@@ -32,7 +33,6 @@ var allowCrossDomain = function(req, res, next) {
 
     next();
 }
-
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -65,6 +65,7 @@ app.post('/users', user.create);
 app.get('/users/search/:name', user.lookup);
 app.get('/roles', roles.list);
 app.post('/projects', projects.create);
+app.post('/resource', resources.get);
 app.get('/projects', projects.list);
 app.get('/projects/:id', projects.get);
 app.get('/projects/:id/notifications', notifications.list);

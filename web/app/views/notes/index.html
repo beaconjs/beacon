@@ -11,7 +11,8 @@
             <div class="sixth">
                 <div class="nav-v notes-list">
                     <ul>
-                        <li ng-repeat="note in notes"><a ng-show="note.title" ng-click="load(note.id)">{{note.title}}</a><a href="#" ng-hide="note.title">(no name)</a></li>
+                        <li><input type="text" class="input-search" ng-model="searchText" placeholder="Search..." /></li>
+                        <li ng-repeat="note in notes | filter:searchText"><a ng-show="note.title" ng-click="load(note.id)">{{note.title}}</a><a href="#" ng-hide="note.title">(no name)</a></li>
                     </ul>
                 </div>   
             </div>

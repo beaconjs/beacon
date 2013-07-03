@@ -24,7 +24,6 @@ function insertTable() {
 
 (function setTextValue() {
     $('#notedetails').val($('#notedetails_div').html());
-    $('#notedetails-msg').html("Autosaved at " + (new Date()));
 
     var scope = angular.element($('#notedetails')).scope();
     if (scope) { 

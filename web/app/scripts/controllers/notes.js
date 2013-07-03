@@ -68,6 +68,8 @@ angular.module('webApp')
                 notify: $scope.notify
             }).success(function(o){
                 if (o.id) {
+                    $('#notedetails-msg').html("Autosaved at " + (new Date()));
+                    
                     if (!$scope.note_id) {
                         $scope.notes.push({
                             id: o.id,
