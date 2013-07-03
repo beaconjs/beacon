@@ -9,7 +9,7 @@
         <li><a ng-click="showBug=!showBug;" title="Bugs" ng-show="project_id"><img src="images/bugs.png"/></a></li>
         <li><a ng-click="gotoPage('report')" title="Reports" ng-show="project_id"><img src="images/reports.png"/></a></li>
         <li><a ng-click="gotoPage('projects/edit')" title="Users" ng-show="project_id"><img src="images/users.png"/></a></li>
-        <li><a ng-click="" title="Search" ng-show="project_id"><img src="images/search.png"/></a></li>
+        <li><a ng-click="showSearch=!showSearch" title="Search" ng-show="project_id"><img src="images/search.png"/></a></li>
         <li><a ng-click="showHistory=!showHistory" title="Notifications" ng-show="project_id"><img src="images/notifications.png"/></a></li>
     </ul>
 </div>
@@ -18,4 +18,5 @@
 <todos ng-show="showTodo"></todos>
 <div class="chat-overlay" ng-show="showChat"></div>
 <history ng-show="showHistory"></history>
+<search ng-show="showSearch"></search>
 <notifications></notifications>

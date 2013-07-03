@@ -10,6 +10,7 @@ var express = require('express')
   , projects = require('./routes/projects')
   , notes = require('./routes/notes')
   , bugs = require('./routes/bugs')
+  , search = require('./routes/search')
   , resources = require('./routes/resources')
   , todos = require('./routes/todos')
   , comments = require('./routes/comments')
@@ -68,6 +69,7 @@ app.post('/projects', projects.create);
 app.post('/resource', resources.get);
 app.get('/projects', projects.list);
 app.get('/projects/:id', projects.get);
+app.get('/projects/:id/search/:text', search.lookup);
 app.get('/projects/:id/notifications', notifications.list);
 app.get('/projects/:id/notes', notes.list);
 app.get('/projects/:id/notes/:noteId', notes.get);
