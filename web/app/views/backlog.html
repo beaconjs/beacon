@@ -58,7 +58,7 @@
         </div>
     </div>
     <div class="epic-tree" ng-hide="listView">
-        <div class="row">
+        <div class="row" style="min-width: {{epics.length * 13}}em;">
             <div ng-repeat="epic in epics" class="epic-column">
                 <div class="epic-node" ng-click="getStories(epic.id)">{{epic.title}}</div>
                 <div ng-show="stories[epic.id]" class="story-column">

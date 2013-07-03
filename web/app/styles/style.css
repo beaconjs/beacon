@@ -155,12 +155,12 @@ ul.search-results { list-style: none; z-index: 5; border: 1px solid #aaa; backgr
 
 .backlog select, .dashboard select { height: 23px !important; width: auto !important;}
 .backlog .epic-list, .backlog .epic-tree { float: left; width: 70%;}
-.backlog .epic-tree { overflow: auto; }
+.backlog .epic-tree { overflow: auto; min-height: 30em;}
 .backlog .epic-column { float: left; }
 .backlog .story-column { border-left: 1px #ddd solid; padding: 0 1em; margin: 0 0 0 0.5em; }
-.backlog .epic-tree .epic-node { width: 10em; min-height: 3em; background-color: #478EBE; color: #fff; margin: 0 0.5em; padding: 0.5em;}
-.backlog .story-node { width: 9em; min-height: 3em; background-color: #AED325; border: 2px #AED325 solid; color: #fff; margin: 0.5em 0; padding: 0.5em; }
-.backlog .story-node.done { background-color: #fff; color: #AED325; }
+.backlog .epic-tree .epic-node { width: 10em; min-height: 3em; background-color: #c8e4f8; color: #333; margin: 0 0.5em; padding: 0.5em;}
+.backlog .story-node { width: 8.5em; min-height: 3em; background-color: #dfcc9f; border: 2px #ddc798 solid; margin: 0.5em 0; padding: 0.5em; }
+.backlog .story-node.done { background-color: #bdd98c; border: 2px #bdd98c solid;}
 .backlog .story-node::before { content: ""; border-top: 1px solid #ddd; width: 1em; margin-left: -1.5em; margin-top: 1em; position: absolute; }
 
 .backlog .epic-list .row {margin-bottom: 0.5em; }
