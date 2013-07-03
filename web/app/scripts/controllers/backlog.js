@@ -43,6 +43,10 @@ angular.module('webApp')
         });
     };
 
+    $scope.getClassIfDone = function(status) {
+        return status === "done" ? "done" : "";
+    }
+
     getEpics();
 
     $scope.getStories = function(epicId, force) {

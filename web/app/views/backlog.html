@@ -62,7 +62,7 @@
             <div ng-repeat="epic in epics" class="epic-column">
                 <div class="epic-node" ng-click="getStories(epic.id)">{{epic.title}}</div>
                 <div ng-show="stories[epic.id]" class="story-column">
-                    <div ng-repeat="story in stories[epic.id]" class="story-node" ng-click="loadStory(epic.id, story.id)">{{story.title}}</div>
+                    <div ng-repeat="story in stories[epic.id]" class="story-node {{getClassIfDone(story.status)}}" ng-click="loadStory(epic.id, story.id)">{{story.title}}</div>
                 </div>
             </div>
         </div>
