@@ -61,7 +61,10 @@ angular.module('webApp')
         if ($scope.story.owner) $scope.story.owner_id = $scope.story.owner.id;
         if ($scope.story.sprint) $scope.story.sprint_id = $scope.story.sprint.id;
         $scope.story.created_by = $rootScope.loggedInUser.id;
-        sync.post('/epics/' + epicId + '/stories', $scope.story).success(function() { $scope.getStories(epicId, true); }).error(function(e) { console.log(e); } );
+        sync.post('/epics/' + epicId + '/stories', $scope.story).success(function() { 
+            $scope.getStories(epicId, true); 
+            $scope.story = {};
+        }).error(function(e) { console.log(e); } );
     }
 
     $scope.saveStory = function() {
