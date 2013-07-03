@@ -5,7 +5,7 @@
         <li ng-repeat="r in searchResults">
             <span class="type">{{r.type}}</span>
             <span class="title"><a ng-click="loadResult(r)">{{r.title}}</a></span>
-            <div style="height:6em;overflow:hidden;">{{r.details}}</div>
+            <div style="max-height:6em;overflow:hidden;" ng-bind-html-unsafe="r.details"></div>
         </li>
     </ul>
 </div>
