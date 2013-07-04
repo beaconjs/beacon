@@ -18,6 +18,9 @@ var webApp = angular.module('webApp', [])
       }).when('/notes', {
         templateUrl: 'views/notes/index.html',
         controller: 'NotesCtrl'
+      }).when('/notes/:id', {
+        templateUrl: 'views/notes/index.html',
+        controller: 'NotesCtrl'
       }).when('/projects/new', {
         templateUrl: 'views/projects/add.html',
         controller: 'ProjectsCtrl'

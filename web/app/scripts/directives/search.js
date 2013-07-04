@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('webApp')
-  .directive('search', function ($rootScope, sync) {
+  .directive('search', function ($rootScope, sync, $location) {
   return {
         restrict: 'E', //element only
         templateUrl: 'views/search.html',
@@ -17,6 +17,13 @@ angular.module('webApp')
                        console.log(e);
                     });
                 }
+            }
+
+            $scope.loadResult = function(obj) {
+              if (obj.type === "note") $location.path('notes/' + obj.id);
+              if (obj.type === "bug") $location.path('bugs/' + obj.id);
+              if (obj.type === "todo") $location.path('todos/' + obj.id);
+              $scope.showSearch = false;
             }
 
             $scope.$watch('searchKeyword', lookup);

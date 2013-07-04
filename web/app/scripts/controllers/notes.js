@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('webApp')
-  .controller('NotesCtrl', function ($rootScope, $scope, sync) {
+  .controller('NotesCtrl', function ($rootScope, $scope, sync, $routeParams) {
     $scope.note_id = null;
     $scope.notes = [];
     $scope.notify = false;
@@ -194,6 +194,12 @@ angular.module('webApp')
             $scope.loadComments();
             $scope.comment = {};
         });
+    }
+
+    var paramNoteId = $routeParams.id || null;
+    if (paramNoteId) {
+        $scope.notify = true;
+        $scope.load(paramNoteId);
     }
   });
 

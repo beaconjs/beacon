@@ -195,7 +195,7 @@ history .notifications-section span { color: #666; text-decoration: underline;}
 search { position: absolute; width: 80%; height: 80%; top: 10%; left: 10%; margin: 0 1em; z-index: 100; background-color: #E3E7EB; border: 3px #ddd dashed; padding: 1em 0; overflow: auto;}
 
 
-#newStory { display: none; width: 60%; background-color: #eee; position: absolute; top: 25%; left: 15%; padding: 10px; z-index: 90;}
+#newStory { display: none; width: 60%; background-color: #e1eaf3; position: absolute; top: 25%; left: 15%; padding: 10px; z-index: 90;}
 .story-pane { width: 25%; background-color: #e1eaf3; padding: 10px; float: right; }
 .story-pane ul { width: 100%; }
 .story-pane ul label { width: auto !important; margin-right: 10px !important;}
