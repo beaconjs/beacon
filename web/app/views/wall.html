@@ -15,9 +15,9 @@
             <div class="lane" ng-repeat="lane in lanes" id="lane_{{lane.id}}" drag-drop data-status="{{lane.status}}" data-max-stories="{{lane.max_stories}}">
                 <div class="heading">{{lane.title}}</div>
                 <div class="lane_summmary">{{lane.max_stories}}</div>
-                <div class="story" draggable="true" drag-drop data-id="{{story.id}}" id="story_{{story.id}}" ng-repeat="story in stories | filter: { status: lane.status }">
+                <div class="story" draggable="true" drag-drop data-id="{{story.id}}" id="story_{{story.id}}" ng-repeat="story in stories | filter: { status: lane.status }" ng-click="openStory(story.id)">
                     <div class="left">
-                        <div class="title"> <a ng-click="openStory(story.id)" >{{story.title}}</a></div>
+                        <div class="title"> <a>{{story.title}}</a></div>
                         <div class="text">{{story.details}}</div>
                     </div>
                     <div class="right">
@@ -35,7 +35,7 @@
                 <ul>
                     <li><input type="text" ng-model="story.title" class="width-100" placeholder="Story name"/></li>
                     <li>
-                        <select ng-model="story.user" ng-options="u.user.name for u in members">
+                        <select ng-model="story.owner" ng-options="u.user.name for u in members">
                         </select>
                         <div class="right">
                             <label>Points</label>

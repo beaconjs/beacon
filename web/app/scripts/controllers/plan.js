@@ -9,15 +9,30 @@ angular.module('webApp')
     $scope.stories = [];
     $scope.story = {};
 
-    var get = function(path, arr) {
-        sync.get('/projects/' + $rootScope.project_id + path, {}).success(function(res) { $scope[arr] = res || []; }).error(function() {
+    var get = function(path, arr, callback) {
+        sync.get('/projects/' + $rootScope.project_id + path, {}).success(function(res) { 
+          $scope[arr] = res || []; 
+          if (callback) callback(); 
+        }).error(function() {
             console.log("error");
         });
     }
 
+    var getCurrentSprint = function() {
+      sync.get('/projects/' + $rootScope.project_id + '/sprints/current', {}).success(function(res) {
+        $scope.sprint = res || {};
+        $scope.sprint = _.find($scope.sprints, function(s) {
+          return s.id === $scope.sprint.id;
+        });
+        $scope.sprint = $scope.sprint || {};
+      }).error(function() {
+          console.log("error");
+      });
+    }
+
     get('/members', 'members');
     get('/lanes', 'lanes');
-    get('/sprints', 'sprints');
+    get('/sprints', 'sprints', getCurrentSprint);
 
     $scope.$watch("sprint", function(){
       if ($scope.sprint && $scope.sprint.id) {
@@ -25,12 +40,6 @@ angular.module('webApp')
             console.log("error");
         });
       }
-    });
-
-    sync.get('/projects/' + $rootScope.project_id + '/sprints/current', {}).success(function(res) {
-      $scope.sprint = res || {};
-    }).error(function() {
-        console.log("error");
     });
 
     $scope.addStory = function() {
@@ -83,7 +92,6 @@ angular.module('webApp')
 
     $scope.saveStory = function() {
         $scope.story.modified_by = $rootScope.loggedInUser.id;
-        $scope.story.owner = $scope.story.user || {};
         $scope.story.owner_id = $scope.story.owner.id;
 
         sync.post('/stories/' + $scope.story.id, $scope.story).success(function(res) { 
