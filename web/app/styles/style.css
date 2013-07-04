@@ -132,9 +132,11 @@ input[type="submit"], button { width: 10em !important; border: 0px; background-c
 .comments li, .attachments li { padding: 0.5em 1em; margin-bottom: 5px; font-size: 0.9em; border: #EEE 1px solid; border-radius: 10px;}
 .comments li span { color: #888; }
 .notes-box {float: right; width: 95%;}
-.comments-box {float: left; width: 0.25em; height: 50em; display: block; position: absolute; z-index: 3; padding: 0 0.15em 0 0; background-color: #eee;}
+.comments-box {float: left; width: 0.25em; height: 45em; display: block; position: absolute; z-index: 3; padding: 0 0.15em 0 0; background-color: #eee;}
 .comments-box .comments, .comments-box .attachments { display: none; }
-.comments-box:hover {float: left; width: 45%; height: 50em; background-color: #fff; display: block; border: 1px solid #eee;padding: 0 1em 0 0;position: absolute; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear;-ms-transition: all 0.2s linear; transition: all 0.2s linear;}
+.comments-box:hover {float: left; width: 45%; height: 45em; background-color: #fff; display: block; border: 1px solid #eee;padding: 0 1em 0 0;position: absolute; 
+    box-shadow: 0.5em 0.5em 0.5em #eee;
+    -webkit-transition: all 0.5s linear; -moz-transition: all 0.5s linear; -o-transition: all 0.5s linear;-ms-transition: all 0.5s linear; transition: all 0.5s linear;}
 .comments-box:hover .comments, .comments-box:hover .attachments { display: block; z-index: 4;}
 .comments-box h3 { display: none; padding: 0.25em 1em; background-color: #EEE;}
 .comments-box h3 a { background: url(../images/key_plus.png) no-repeat 0 0; background-size: 1em; padding: 0 2em; color: #666;}
