@@ -103,6 +103,10 @@ angular.module('webApp')
         var notesDropzone = new Dropzone('form#notedetails-dropzone-form'); //;
         notesDropzone.on("addedfile", function(file) {
           $scope.loadAttachments();
+          if (insert) {
+            var imgurl = $rootScope.appconfig.server + "/uploads/" + $rootScope.project_id + "/" + $scope.note_id + "/" + file.name;
+            $('#notedetails_div').append("<img src=\""+ imgurl +"\" />");
+          }
         });
         notesDropzone.on("complete", function(file) {
           notesDropzone.removeFile(file);
